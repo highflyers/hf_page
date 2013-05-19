@@ -3,16 +3,19 @@ require_once './parser_tpl.php';
 require_once './model/user.php';
 require_once './modules/menu_loader.php';
 require_once './main_controller.php';
+require_once './model/news_provider.php';
 
 class MainPage
 {
   private $_user;
   private $_menuLoader;
   private $_controller;
+  private $newsProv;
 
-  public function __construct(Controller $controller, MenuLoader $loader, $user = null)
+  public function __construct(Controller $controller, MenuLoader $loader, NewsProvider $newsProv, $user = null)
   {
     $this->_user = $user;
+    $this->_newsProv = $newsProv;
     $this->_menuLoader = $loader;
     $this->_controller = $controller;
   }	
@@ -49,9 +52,9 @@ class MainPage
   private function GetHeadSection()
   {
     $template = new Template(CURRENT_TEMPLATE."head_section.htm");
-    $template->Dodaj("tpl_url", CURRENT_TEMPLATE);
     $template->Laduj();
 
+    $template->Dodaj("tpl_url", CURRENT_TEMPLATE);
     return $template->Parsuj();
   }
 
@@ -70,6 +73,16 @@ class MainPage
     $template->Dodaj("footer", $this->GetFooter());
     $template->Dodaj("main_content", $this->GetCurrentContent());
     $template->Dodaj("where_is", $this->GetWhereIs());
+    $template->Dodaj("news_short_list", $this->GetNewsShortList());
+    return $template->Parsuj();
+  }
+
+  private function GetNewsShortList()
+  {
+    $template = new Template(CURRENT_TEMPLATE."news_short_list.htm");
+    $template->Laduj();
+    $template->DodajPetle("news_short", $this->_newsProv->GetLastHeaders(4));
+
     return $template->Parsuj();
   }
   
