@@ -1,0 +1,22 @@
+RewriteEngine On
+RewriteBase /
+RewriteRule ^aktualnosci$ index.php?&site=aktualnosci [L]
+RewriteRule ^aktualnosci/([0-9]+)$ index.php?site=aktualnosci&news_id=$1
+RewriteRule ^archiwum$ index.php?&site=archiwum [L]
+RewriteRule ^galeria index.php?&site=galeria [L]
+RewriteRule ^statut$ index.php?&site=statut [L]
+RewriteRule ^onas$ index.php?&site=onas [L]
+RewriteRule ^kontakt$ index.php?&site=kontakt [L]
+RewriteRule ^dolacz$ index.php?&site=dolacz [L]
+RewriteRule ^adder$ index.php?&site=adder [L]
+
+
+RewriteRule ^page/([0-9]+)$ index.php?akcja=artykul&id=$1 [L]
+RewriteRule ^uczniowie/([^-]+)$ index.html?akcja=uczniowie&klasa=$1 [L]
+RewriteRule ^wiadomosci/([^-]+)$ index.html?id=$1 [L]
+RewriteRule ^([0-9]+)$ index.html?limit=$1 [L]
+RewriteRule ^oceny$ index.html?akcja=uczen&id=-1 [L]
+RewriteRule ^nowa_wiadomosc$ index.html?akcja=dodaj_wiadomosc [L]
+RewriteRule ^haslo$ index.html?akcja=zmiana_hasla [L]
+RewriteRule ^([a-zA-Z-_0-9]+)$ index.html?akcja=$1 [L]
+RewriteCond %{REQUEST_FILENAME} !\.(zip|pdf|css|jpg|gif|js|png)$ [NC]  
