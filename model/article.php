@@ -26,6 +26,7 @@ class Article extends BBCodedText
     $template->Dodaj("title", $this->_title);
     $template->Dodaj("date", $this->_date);
     $template->Dodaj("author_display_name", $this->_author->GetDisplayName());
+    $template->Dodaj("author_id", $this->_author->getid());
     $template->Dodaj("content", $this->GetHTMLText());
 
     return $template->Parsuj();

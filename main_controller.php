@@ -37,9 +37,10 @@ class Controller
 
     if ( $this->_mysql->NumberOfRows() == 0 )
       return "ni ma usera";
-
+    
     $user = new User($this->_mysql->FetchAssoc());
-
+    $user->set_first_name("marcinO");
+    echo $user->get_first_name();
     $art = new Article($siteInfo['title'], $siteInfo['content'], $user, $siteInfo['date']);
     
     return $art->GetHTMLArticle();

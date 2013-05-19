@@ -23,6 +23,7 @@ $ctrl = new Controller($object);
 $uss = new User();
 $uss->set_id(123);
 $uss->set_nick("loganek");
+
 $mainMenu = new MenuLoader($object);
 $mp = new MainPage($ctrl, $mainMenu, $uss);
 $mp->ShowPage();

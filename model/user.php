@@ -2,13 +2,13 @@
 
 class User
 {
-  private $_id;
-  private $_nick;
-  private $_level;
-  private $_date;
-  private $_firstName;
-  private $_secondName;
-	
+  private $id;
+  private $nick;
+  private $level;
+  private $date;
+  private $first_name;
+  private $second_name;
+ 
   public function __construct($associated_array = null)
   {
     if ( $associated_array == null )
@@ -44,17 +44,17 @@ class User
   public function ToAssociatedArray()
   {
     return array(
-		 "id" => $this->_id,
-		 "nick" => $this->_nick,
-		 "level" => $this->_level,
-		 "date" => $this->_date,
-		 "firstName" => $this->_firstName,
-		 "secondName" => $this->_secondName);
+		 "id" => $this->id,
+		 "nick" => $this->nick,
+		 "level" => $this->level,
+		 "date" => $this->date,
+		 "firstName" => $this->first_name,
+		 "secondName" => $this->second_name);
   }
 
   public function GetDisplayName()
   {
-    return $this->_firstName.' '.$this->_secondName;
+    return $this->getfirst_name().' '.$this->getsecond_name();
   }
 
 }
