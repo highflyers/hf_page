@@ -34,6 +34,14 @@ class MainPage
     return $template->Parsuj();
   }
 
+  private function GetWhereIs()
+  {
+    $template = new Template(CURRENT_TEMPLATE."where_is.htm");
+    $template->Laduj();
+    $template->Dodaj("tpl_url", CURRENT_TEMPLATE);
+    return $template->Parsuj();
+  }
+
   private function GetHeadSection()
   {
     $template = new Template(CURRENT_TEMPLATE."head_section.htm");
@@ -48,6 +56,10 @@ class MainPage
     $template = new Template(CURRENT_TEMPLATE."body_section.htm");
     $template->Laduj();
 
+    $template->Dodaj("tpl_url", CURRENT_TEMPLATE);
+    $template->Dodaj("header", $this->GetHeader());
+    $template->Dodaj("footer", $this->GetFooter());
+    $template->Dodaj("where_is", $this->GetWhereIs());
     return $template->Parsuj();
   }
   
@@ -63,8 +75,7 @@ class MainPage
     $template->DodajWarunek("USER_EXISTS", $this->_user != null);
     $template->Dodaj("head_section", $this->GetHeadSection());
     $template->Dodaj("body_section", $this->GetBodySection());
-    $template->Dodaj("header", $this->GetHeader());
-    $template->Dodaj("footer", $this->GetFooter());
+
     
     echo $template->Parsuj();
     

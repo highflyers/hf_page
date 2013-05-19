@@ -1,3 +1,5 @@
+var tplUrl = "templates/platektemplejt/";
+
 $(document).ready(function() {
 	ddsmoothmenu.init({
 		mainmenuid: "mainMenu", //menu DIV id
@@ -9,17 +11,17 @@ $(document).ready(function() {
 	
 	$(".socialButton img").each(function(index){
 		var id = $(this).parent().get(0).getAttribute("id");
-		$(this).attr("src", "gfx/" + id + ".png");
+		$(this).attr("src", tplUrl + "gfx/" + id + ".png");
 	});
 	
 	$(".socialButton img").hover(
     function(){
         var id = $(this).parent().get(0).getAttribute("id");
-	    $(this).attr("src", "gfx/" + id + "_over.png");
+	    $(this).attr("src", tplUrl + "gfx/" + id + "_over.png");
 	}, 
 	function() {
 	    var id = $(this).parent().get(0).getAttribute("id");
-	    $(this).attr("src", "gfx/" + id + ".png");
+	    $(this).attr("src", tplUrl + "gfx/" + id + ".png");
 	});
 });
 

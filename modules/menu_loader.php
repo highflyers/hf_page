@@ -52,7 +52,7 @@ class MenuLoader
 	
 	$tmp = $this->LoadLayer($row['id']);
 	
-	array_push($arr, new MenuItem($row['title'], $tmp, $row['article_id']));
+	array_push($arr, new MenuItem($row['title'], $tmp, $row['id']));
       }
 
     return $arr;
@@ -73,7 +73,7 @@ class MenuLoader
 	$result->data_seek($i);
 	$row = $result->fetch_assoc();
 	$arr = $this->LoadLayer($row['id']);
-	array_push($this->_structure, new MenuItem($row['title'], $arr, $row['article_id']));
+	array_push($this->_structure, new MenuItem($row['title'], $arr, $row['id']));
       }
   }
 
