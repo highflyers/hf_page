@@ -52,7 +52,7 @@ class MySQL
 	{
 		$this->_lastQuery = $query;
 		
-		if ( ( $this->_lastResult = @mysqli_query( $query ) ) == false )
+		if ( ( $this->_lastResult = $this->_mysqli->query( $query ) ) == false )
 		{
 			$this->MysqlError(ErrorLevel::ERROR);
 			return null;
@@ -73,7 +73,7 @@ class MySQL
 	
 	function NumberOfRows()
 	{
-		return $this->_lastResult->mysqli_num_rows();
+		return $this->_lastResult->num_rows;
 	}
 	
 	function Disconnect()

@@ -1,13 +1,16 @@
 <?php
 require_once './parser_tpl.php';
 require_once './model/user.php';
+require_once './modules/menu_loader.php';
 class MainPage
 {
   private $_user;
-  
-  public function __construct($user = null)
+  private $_menuLoader;
+
+  public function __construct(MenuLoader $loader, $user = null)
   {
     $this->_user = $user;
+    $this->_menuLoader = $loader;
   }	
  
   private function GetHeader()
@@ -17,6 +20,8 @@ class MainPage
 
     if ( $this->_user != null )
       $template->Dodaj("user", $this->_user->ToAssociatedArray());
+
+    $template->Dodaj("main_menu", $this->GetMainMenu());
 
     return $template->Parsuj();
   }
@@ -46,12 +51,9 @@ class MainPage
     return $template->Parsuj();
   }
   
-  private function GetHorizontalMenu()
+  private function GetMainMenu()
   {
-    $template = new Template(CURRENT_TEMPLATE."horizontal_menu.tpl");
-    $template->Laduj();
-
-    return $template->Parsuj();
+    return $this->_menuLoader->GetMenu();
   }
 
   public function ShowPage()

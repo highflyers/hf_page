@@ -58,7 +58,7 @@ class Template
 	$nazwa = substr($tmp, 4, $gdzie_rowna-4);
 	$wartosc = substr($tmp, $gdzie_rowna+1, strpos($tmp, '}')-$gdzie_rowna-1);
         
-	if($this->_warunki[$nazwa] == $wartosc && isset($this->_warunki[$nazwa]))
+	if( isset($this->_warunki[$nazwa]) && $this->_warunki[$nazwa] == $wartosc)
 	  $this->_tresc = str_replace('{IF '.$nazwa.'='.$wartosc.'}', '', $this->_tresc);
             
 	else
@@ -82,7 +82,7 @@ class Template
                 
 	foreach($this->_petle[$id] as $klucz => $wartosc)
 	  {
-	    $s_tmp = new Szablon($tekst_w_petli);
+	    $s_tmp = new Template($tekst_w_petli);
 	    $s_tmp->Laduj();
 	    $s_tmp->Dodaj($id, $wartosc);
 	    $tekst .= $s_tmp->Parsuj();

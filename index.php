@@ -11,17 +11,17 @@ $session->StartSession();
 require_once 'model/bbcode.php';
 require_once 'modules/login.php';
 require_once 'model/mysql.php';
+require_once 'modules/menu_loader.php';
 $object = new Mysql();
 $object->Connect("localhost", "root", "root", "hfdb");
-
 require_once "model/user.php";
 require_once "modules/main_page.php";
 
 $uss = new User();
 $uss->set_id(123);
 $uss->set_nick("loganek");
-
-$mp = new MainPage($uss);
+$mainMenu = new MenuLoader($object);
+$mp = new MainPage($mainMenu, $uss);
 $mp->ShowPage();
-
+$object->Disconnect();
 ?>
