@@ -2,15 +2,19 @@
 require_once './parser_tpl.php';
 require_once './model/user.php';
 require_once './modules/menu_loader.php';
+require_once './main_controller.php';
+
 class MainPage
 {
   private $_user;
   private $_menuLoader;
+  private $_controller;
 
-  public function __construct(MenuLoader $loader, $user = null)
+  public function __construct(Controller $controller, MenuLoader $loader, $user = null)
   {
     $this->_user = $user;
     $this->_menuLoader = $loader;
+    $this->_controller = $controller;
   }	
  
   private function GetHeader()
@@ -51,6 +55,11 @@ class MainPage
     return $template->Parsuj();
   }
 
+  private function GetCurrentContent()
+  {
+    return $this->_controller->Decision();
+  }
+
   private function GetBodySection()
   {
     $template = new Template(CURRENT_TEMPLATE."body_section.htm");
@@ -59,6 +68,7 @@ class MainPage
     $template->Dodaj("tpl_url", CURRENT_TEMPLATE);
     $template->Dodaj("header", $this->GetHeader());
     $template->Dodaj("footer", $this->GetFooter());
+    $template->Dodaj("main_content", $this->GetCurrentContent());
     $template->Dodaj("where_is", $this->GetWhereIs());
     return $template->Parsuj();
   }

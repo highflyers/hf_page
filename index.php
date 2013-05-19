@@ -17,11 +17,14 @@ $object->Connect("localhost", "root", "root", "hfdb");
 require_once "model/user.php";
 require_once "modules/main_page.php";
 
+require_once "./main_controller.php";
+
+$ctrl = new Controller($object);
 $uss = new User();
 $uss->set_id(123);
 $uss->set_nick("loganek");
 $mainMenu = new MenuLoader($object);
-$mp = new MainPage($mainMenu, $uss);
+$mp = new MainPage($ctrl, $mainMenu, $uss);
 $mp->ShowPage();
 $object->Disconnect();
 ?>

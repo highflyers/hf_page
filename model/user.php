@@ -51,6 +51,12 @@ class User
 		 "firstName" => $this->_firstName,
 		 "secondName" => $this->_secondName);
   }
+
+  public function GetDisplayName()
+  {
+    return $this->_firstName.' '.$this->_secondName;
+  }
+
 }
 
 ?>

@@ -35,7 +35,7 @@ class MenuLoader
   private function LoadLayer($parent)
   {
     $arr = array();
-    $result = $this->_mysql_ob->Query("select * from menu where parent = ".intval($parent)." order by position");
+    $result = $this->_mysql_ob->Query("select id, title, parent from menu where parent = ".intval($parent)." order by position");
 
     if ( $result == null )
       throw new Exception("Nie mozna zaladowac menu");
@@ -62,7 +62,7 @@ class MenuLoader
   {
     $this->_structure = array();
 
-    $result = $this->_mysql_ob->Query("select * from menu where parent = -1 order by position");
+    $result = $this->_mysql_ob->Query("select id, title, parent from menu where parent = -1 order by position");
 
     if ( $result == null )
       throw new Exception("Nie mozna zaladowac menu");
@@ -83,7 +83,7 @@ class MenuLoader
 
     for ( $i = 0; $i < count($struct); $i++ )
       {
-	$str .= "<li><a  href='index.php?p=".$struct[$i]->GetSite()."'>".$struct[$i]->GetTitle()."</a>";
+	$str .= "<li><a  href='/page/".$struct[$i]->GetSite()."'>".$struct[$i]->GetTitle()."</a>";
 	if ( $struct[$i]->GetChildren() != null )
 	  $str .= $this->MediumLevelMenu($struct[$i]->GetChildren());
 	$str .= "</li>";
@@ -100,7 +100,7 @@ class MenuLoader
 
     for ( $i = 0; $i < count($this->_structure); $i++ )
       {
-	$str .= "<li><a class=menuItemTopLevel href='index.php?p=".$this->_structure[$i]->GetSite()."'>".$this->_structure[$i]->GetTitle()."</a>";
+	$str .= "<li><a class=menuItemTopLevel href='/page/".$this->_structure[$i]->GetSite()."'>".$this->_structure[$i]->GetTitle()."</a>";
 	if ( $this->_structure[$i]->GetChildren() != null )
 	  $str .= $this->MediumLevelMenu($this->_structure[$i]->GetChildren());
 	$str .= "</li>";

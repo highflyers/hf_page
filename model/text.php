@@ -1,6 +1,6 @@
 <?php
 
-require_once "bbcode.php";
+require_once "./model/bbcode.php";
 
 class Text
 {
@@ -38,7 +38,7 @@ class BBCodedText extends Text
 
   function SetBBCodeText( $text )
   {
-    parent::SetText( BBCodeConvert::BBCodeToHTML($text) );
+    parent::SetText( BBCodeConverter::BBCodeToHTML($text) );
   }
 	
   function SetText( $text )
