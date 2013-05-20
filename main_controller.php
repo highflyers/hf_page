@@ -4,16 +4,19 @@ require_once "./model/article.php";
 require_once "./model/user.php";
 require_once "./model/mysql.php";
 require_once "./model/news_text.php";
+require_once './modules/login.php';
 
 class Controller
 {
   private $_action;
   private $_mysql;
+  private $_login;
 
-  public function __construct(MySQL $mysql)
+  public function __construct(MySQL $mysql, Login $login)
   {
     $this->_action = isset($_GET['action']) ? $_GET['action'] : "index";
     $this->_mysql = $mysql;
+    $this->_login = $login;
   }
   
   public function GetAction()
@@ -29,6 +32,13 @@ class Controller
       return $this->GetNews();
     if ( $this->_action == 'index' )
       return $this->GetShortNewsList();
+    if ( $this->_action == 'login' )
+      return $this->GetLoginForm();
+    if ( $this->_action == 'logout' )
+      {
+	$this->_login->Logout();
+	Header("Location: /");
+      }
   }
   
   private function GetSite()
@@ -116,6 +126,27 @@ class Controller
 
     return $template->Parsuj();
   }
+
+  private function GetLoginForm()
+  {
+    $err = "";
+
+    if ( isset($_POST['logmenow']) )
+      {
+	$username = htmlspecialchars($_POST['nick']);
+	$password = htmlspecialchars($_POST['pass']);
+
+	$this->_login->LoginProcess($username, $password);
+
+	if ( $this->_login->IsLoggedIn() )
+	  Header("Location: /index.php");
+	else
+	  $err = "Niepoprawny login lub hasło.";
+      }
+
+    return $this->_login->GetLoginForm($err);
+  }
+
 }
 
 ?>

@@ -19,6 +19,11 @@
       <h2 id="mainHeader">MIĘDZYWYDZIAŁOWE KOŁO NAUKOWE<br> BEZZAŁOGOWYCH OBIEKTÓW LATAJĄCYCH</h2>
     </a>
     <div id="headerBox">
+      {IF loggedin=1}
+      <div style='background:white; padding:5px; margin:5px'>
+Witaj <b>{user[nick]}</b>! &bull; <a class="hbLink" href='/logout'>Wyloguj</a>
+      </div>
+      {/IF}
       <span class="hbSpan">PL</span>
       <a class="hbLink" href="index.php?lang=pl">EN</a>
       <a class="hbLink" href="http://www.polsl.pl/" target="_blank">Politechnika Śląska</a>

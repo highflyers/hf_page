@@ -41,7 +41,7 @@ class User
       }
   }
   
-  public function ToAssociatedArray()
+  public function ToArray()
   {
     return array(
 		 "id" => $this->id,

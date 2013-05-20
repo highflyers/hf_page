@@ -6,6 +6,7 @@ require_once './main_controller.php';
 require_once './model/news_provider.php';
 require_once './modules/where_is.php';
 require_once './main_controller.php';
+require_once './modules/login.php';
 
 class MainPage
 {
@@ -14,12 +15,15 @@ class MainPage
   private $_controller;
   private $_newsProv;
   private $_mysql;
-  public function __construct(MySQL $mysql, $user = null)
+  private $_login;
+
+  public function __construct(MySQL $mysql, Login $login)
   {
-    $this->_user = $user;
+    $this->_login = $login;
+    $this->_user = $login->GetUser();
     $this->_newsProv = new NewsProvider($mysql);
     $this->_menuLoader = new MenuLoader($mysql);
-    $this->_controller = new Controller($mysql);
+    $this->_controller = new Controller($mysql, $login);
     if ( isset($_GET['id']) )
       $id = intval($_GET['id']);
     else if ( isset($_GET['news_id']) )
@@ -36,6 +40,11 @@ class MainPage
 
     if ( $this->_user != null )
       $template->Dodaj("user", $this->_user->ToAssociatedArray());
+
+    $template->DodajWarunek("loggedin", $this->_login->IsLoggedIn());
+
+    if ( $this->_login->IsLoggedIn() )
+      $template->Dodaj("user", $this->_user->ToArray());
 
     $template->Dodaj("main_menu", $this->GetMainMenu());
 
