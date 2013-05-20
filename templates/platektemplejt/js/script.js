@@ -1,4 +1,4 @@
-var tplUrl = "templates/platektemplejt/";
+var tplUrl = "/templates/platektemplejt/";
 
 $(document).ready(function() {
 	ddsmoothmenu.init({
