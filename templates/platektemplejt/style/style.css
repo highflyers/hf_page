@@ -335,6 +335,13 @@ header form {
 	margin:15px 0px;
 	padding:0px;
 }
+
+.contentHeader a
+{
+    text-decoration: none;
+    color: rgb(0, 69, 119);
+}
+
 .contentBanner {
 	width:100%;
 }

@@ -77,7 +77,7 @@ class NewsText extends BBCodedText implements IMySQLOperationsAble
     $this->_title = $title;
     $this->_author = $author;
     $this->_id = $id;
-    $this->_date = ( $date == null ) ? date("d-m-Y H:i:s") : $date;
+    $this->_date =  $date;
     parent::SetBBCodeText( $text );
   }
 
@@ -124,7 +124,7 @@ class NewsText extends BBCodedText implements IMySQLOperationsAble
     $template->Dodaj("author_id", $this->_author->getid());
     $template->Dodaj("content", $text);
     $template->Dodaj("id", $this->_id);
-    $template->DodajWarunek("was_moore", $pos != -1);
+    $template->DodajWarunek("was_moore", $pos != null);
 
     return $template->Parsuj();
   }
