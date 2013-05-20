@@ -4,20 +4,23 @@ require_once './model/user.php';
 require_once './modules/menu_loader.php';
 require_once './main_controller.php';
 require_once './model/news_provider.php';
+require_once './modules/where_is.php';
+require_once './main_controller.php';
 
 class MainPage
 {
   private $_user;
   private $_menuLoader;
   private $_controller;
-  private $newsProv;
-
-  public function __construct(Controller $controller, MenuLoader $loader, NewsProvider $newsProv, $user = null)
+  private $_newsProv;
+  private $_mysql;
+  public function __construct(MySQL $mysql, $user = null)
   {
     $this->_user = $user;
-    $this->_newsProv = $newsProv;
-    $this->_menuLoader = $loader;
-    $this->_controller = $controller;
+    $this->_newsProv = new NewsProvider($mysql);
+    $this->_menuLoader = new MenuLoader($mysql);
+    $this->_controller = new Controller($mysql);
+    $this->_whereIs = new WhereIs($mysql, isset($_GET['id']) ? intval($_GET['id']) : -1);
   }	
  
   private function GetHeader()
@@ -43,10 +46,7 @@ class MainPage
 
   private function GetWhereIs()
   {
-    $template = new Template(CURRENT_TEMPLATE."where_is.htm");
-    $template->Laduj();
-    $template->Dodaj("tpl_url", CURRENT_TEMPLATE);
-    return $template->Parsuj();
+    return $this->_whereIs->GetWhereIsPanel();
   }
 
   private function GetHeadSection()
