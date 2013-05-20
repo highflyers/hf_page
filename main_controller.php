@@ -109,11 +109,14 @@ class Controller
     foreach ( $tmp as $val )
       array_push($content, $val->GetShortHTMLNews());
 
+    $displayedNums = 18;
+    $dnPerTwo = $displayedNums / 2;
     $nums = array();
-    $cnt = count($content) / 5 + 18;
-    $left = ($current - 9 >= 0) ? $current - 9 : 0;
-    $maxCur = ($current > 9 ) ? $current : 9;
-    $right = ($maxCur + 9 < $cnt ) ? $maxCur + 9 : $cnt;
+    $cnt = count($content) / 5;
+
+    $maxCur = ($current > $dnPerTwo ) ? $current : $dnPerTwo;
+    $right = ($maxCur + $dnPerTwo < $cnt ) ? $maxCur + $dnPerTwo : $cnt;
+    $left = ($right - $displayedNums < 0 ) ? 0 : $right - $displayedNums;
 
     for ( $i = $left; $i < $right; $i++ )
       {
