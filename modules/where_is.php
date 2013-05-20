@@ -30,12 +30,13 @@ class WhereIs
   private $_mysql;
   private $_article_id;
   private $_linksArray;
+  private $_kind;
 
-  public function __construct(MySQL $mysql, $art_id)
+  public function __construct(MySQL $mysql, $art_id, $kind)
   {
     $this->_mysql = $mysql;
     $this->_article_id = $art_id;
-
+    $this->_kind = $kind;
     $this->_linksArray = array();
 
     if ( $art_id != -1 )
@@ -61,6 +62,16 @@ class WhereIs
   {
     $template = new Template(CURRENT_TEMPLATE."where_is.htm");
     $template->Laduj();
+
+    $template->Dodaj("content", $this->_kind == 0 ? $this->GetWhereIsArticle() : $this->GetWhereIsNews());
+
+    return $template->Parsuj();
+  }
+
+  private function GetWhereIsArticle()
+  {
+    $template = new Template(CURRENT_TEMPLATE."where_is_article.htm");
+    $template->Laduj();
     $cnt = count($this->_linksArray);
     
     $med_exists =  $cnt - 2 >= 0;
@@ -83,6 +94,19 @@ class WhereIs
 	$template->Dodaj("med_id", $this->_linksArray[$cnt - 2]->GetId());
       }
     return $template->Parsuj();
+  }
+
+  private function GetWhereIsNews()
+  {
+    $template = new Template(CURRENT_TEMPLATE."where_is_news.htm");
+    $template->Laduj();
+    $result = $this->_mysql->Query('select title from news where id = '.intval($this->_article_id).' limit 0, 1');
+    $row = $result->fetch_assoc();
+    $template->Dodaj('news_t', $row['title']);
+
+
+    return $template->Parsuj();
+    
   }
 }
 

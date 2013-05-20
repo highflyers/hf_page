@@ -16,6 +16,11 @@ class Controller
     $this->_mysql = $mysql;
   }
   
+  public function GetAction()
+  {
+    return $this->_action == "news" && isset($_GET['news_id']) ? "news_concrete" : $this->_action;
+  }
+
   public function Decision()
   {
     if ( $this->_action == 'site' )

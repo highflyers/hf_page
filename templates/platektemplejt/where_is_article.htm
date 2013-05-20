@@ -1,0 +1,16 @@
+<div id="breadscrumbs">
+
+  <a href="/">Strona główna</a>
+  {IF first_exists=1}
+  <div id="breadscrumbsArrow"></div>
+  <a href="/page/{first_id}">{first_t}</a>
+  {/IF}
+  {IF medium_exists=1}
+  <div id="breadscrumbsArrow"></div>
+  <a href="/page/{med_id}">{med_t}</a>
+  {/IF}
+  {IF article=1}
+  <div id="breadscrumbsArrow"></div>
+  <span>{last_level_title}</span>
+  {/IF}
+</div>

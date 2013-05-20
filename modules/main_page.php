@@ -20,7 +20,13 @@ class MainPage
     $this->_newsProv = new NewsProvider($mysql);
     $this->_menuLoader = new MenuLoader($mysql);
     $this->_controller = new Controller($mysql);
-    $this->_whereIs = new WhereIs($mysql, isset($_GET['id']) ? intval($_GET['id']) : -1);
+    if ( isset($_GET['id']) )
+      $id = intval($_GET['id']);
+    else if ( isset($_GET['news_id']) )
+      $id = intval($_GET['news_id']);
+    else 
+      $id = -1;
+    $this->_whereIs = new WhereIs($mysql, $id, $this->_controller->GetAction() == "news_concrete" ? 1 : 0);
   }	
  
   private function GetHeader()
