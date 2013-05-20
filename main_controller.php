@@ -85,19 +85,26 @@ class Controller
     $template = new Template(CURRENT_TEMPLATE."news_short_index.htm");
     $template->Laduj();
     $provider = new NewsProvider($this->_mysql);
-    $tmp = $provider->GetShortNewsList(5);
+
+    $current = isset($_GET['news_list']) ? intval($_GET['news_list']) - 1 : 0;
+    $tmp = $provider->GetShortNewsList(5, $current * 5);
     
     $content = array();
 
     foreach ( $tmp as $val )
       array_push($content, $val->GetShortHTMLNews());
-    
+
     $nums = array();
-    $cnt = count($content) / 5;
-    for ( $i = 0; $i < $cnt; $i++ )
+    $cnt = count($content) / 5 + 18;
+    $left = ($current - 9 >= 0) ? $current - 9 : 0;
+    $maxCur = ($current > 9 ) ? $current : 9;
+    $right = ($maxCur + 9 < $cnt ) ? $maxCur + 9 : $cnt;
+
+    for ( $i = $left; $i < $right; $i++ )
       {
 	array_push($nums, $i + 1);
       }
+
 
     $template->DodajPetle("news_short", $content);
     $template->DodajPetle("numbers", $nums);

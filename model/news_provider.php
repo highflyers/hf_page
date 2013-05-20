@@ -37,11 +37,11 @@ class NewsProvider
     return $result->fetch_assoc();
   }
 
-  public function GetShortNewsList($newsPerList)
+  public function GetShortNewsList($newsPerList, $startNews)
   {
     $newsList = array();
 
-    $result = $this->_mysql->Query('select * from news');
+    $result = $this->_mysql->Query('select * from news limit '.intval($startNews).', '.intval($newsPerList));
     $numCnt = $this->_mysql->NumberOfRows();
     for ( $i = 0; $i < $numCnt; $i++ )
       {
