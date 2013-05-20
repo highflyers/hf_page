@@ -12,6 +12,8 @@ RewriteRule ^adder$ index.php?&site=adder [L]
 
 
 RewriteRule ^page/([0-9]+)$ index.php?action=site&id=$1 [L]
+RewriteRule ^news/([0-9]+)$ index.php?action=news&news_id=$1 [L]
+RewriteRule ^news$ index.php?action=news [L]
 RewriteRule ^uczniowie/([^-]+)$ index.html?akcja=uczniowie&klasa=$1 [L]
 RewriteRule ^wiadomosci/([^-]+)$ index.html?id=$1 [L]
 RewriteRule ^([0-9]+)$ index.html?limit=$1 [L]

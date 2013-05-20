@@ -1,6 +1,7 @@
 <?php
 
 require_once './model/mysql.php';
+require_once './model/news_text.php';
 
 class NewsProvider
 {
@@ -24,6 +25,42 @@ class NewsProvider
       }
 
     return $arr;
+  }
+
+  public function GetNews($id)
+  {
+    $result = $this->_mysql->Query('select * from news where id = '.intval($id));
+    if ($this->_mysql->NumberOfRows() == 0)
+      {
+	return null; // TODO what about exception ?
+      }
+    return $result->fetch_assoc();
+  }
+
+  public function GetShortNewsList($newsPerList)
+  {
+    $newsList = array();
+
+    $result = $this->_mysql->Query('select * from news');
+    $numCnt = $this->_mysql->NumberOfRows();
+    for ( $i = 0; $i < $numCnt; $i++ )
+      {
+	$result->data_seek($i);
+	$row = $result->fetch_assoc();
+	$this->_mysql->Query('select first_name, second_name, id from user where id = '.intval($row['author']));
+	
+	if ( $this->_mysql->NumberOfRows() == 0 )
+	  {
+	    echo "ni ma usera";
+	    continue;
+	  }
+
+	$user = new User($this->_mysql->FetchAssoc());
+
+	array_push($newsList, new NewsText($row['title'], $row['content'], $user, $row['id'], $row['date']));
+      }
+
+    return $newsList;
   }
 }
 ?>
