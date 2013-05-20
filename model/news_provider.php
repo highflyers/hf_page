@@ -41,7 +41,7 @@ class NewsProvider
   {
     $newsList = array();
 
-    $result = $this->_mysql->Query('select * from news limit '.intval($startNews).', '.intval($newsPerList));
+    $result = $this->_mysql->Query('select * from news order by date desc limit '.intval($startNews).', '.intval($newsPerList));
     $numCnt = $this->_mysql->NumberOfRows();
     for ( $i = 0; $i < $numCnt; $i++ )
       {
