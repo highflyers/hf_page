@@ -39,6 +39,8 @@ class Controller
 	$this->_login->Logout();
 	Header("Location: /");
       }
+    if ( $this->_action == 'show_user' )
+      return $this->ShowUser();
   }
   
   private function GetSite()
@@ -150,6 +152,23 @@ class Controller
     return $this->_login->GetLoginForm($err);
   }
 
+  private function ShowUser()
+  {
+    if ( !isset($_GET['user_id']) )
+      return "ni ma takigo usera";
+
+    $id = intval($_GET['user_id']);
+
+    $this->_mysql->Query('select * from user where id = '.$id);
+
+    if ( $this->_mysql->NumberOfRows() == 0 )
+      return "ni ma usera";
+    
+    $user = new User($this->_mysql->FetchAssoc());
+
+    return $user->ShowUserPage($this->_login->IsLoggedIn());
+  }
+  
 }
 
 ?>

@@ -1,0 +1,62 @@
+<h3 class="contentHeader">Profil użytkownika {user[nick]}</h3>
+{IF logged=1}
+<table>
+  <tr>
+    <td>
+      <img src="http://www-03.ibm.com/software/lotus/symphony/gallery.nsf/GalleryClipArtAll/73E72278395F57D985257596002FB590/$File/User02-Green.png" width=100>
+    </td>
+    <td>
+      <table>
+	<tr>
+	  <td>
+	    Nick: 
+	  </td>
+	  <td>
+	    {user[nick]}
+	  </td>
+	</tr>
+	<tr>
+	  <td>
+	    Imię i nazwisko: 
+	  </td>
+	  <td>
+	    {user[firstName]} {user[secondName]}
+	  </td>
+	</tr>
+	<tr>
+	  <td>
+	    Email: 
+	  </td>
+	  <td>
+	    {user[email]}
+	  </td>
+	</tr>
+	<tr>
+	  <td>
+	    W kole od: 
+	  </td>
+	  <td>
+	    {user[joined]}
+	  </td>
+	</tr>
+	<tr>
+	  <td>
+	    Stanowisko:
+	  </td>
+	  <td>
+	    {user[position]}
+	  </td>
+	</tr>
+	<tr>
+	  <td colspan=2>
+	    <input type=button value="Napisz do mnie maila">
+	  </td>
+	</tr>
+      </table>
+    </td>
+  </tr>
+</table>
+{/IF}
+{IF logged=0}
+Musisz być zalogowany aby móc oglądać profil użytkownika.
+{/IF}

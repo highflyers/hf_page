@@ -12,6 +12,7 @@ RewriteRule ^adder$ index.php?&site=adder [L]
 
 
 RewriteRule ^page/([0-9]+)$ index.php?action=site&id=$1 [L]
+RewriteRule ^user/([0-9]+)$ index.php?action=show_user&user_id=$1 [L]
 RewriteRule ^news/([0-9]+)$ index.php?action=news&news_id=$1 [L]
 RewriteRule ^news$ index.php?action=news [L]
 RewriteRule ^logout$ index.php?action=logout [L]
