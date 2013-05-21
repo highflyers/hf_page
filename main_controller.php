@@ -5,6 +5,7 @@ require_once "./model/user.php";
 require_once "./model/mysql.php";
 require_once "./model/news_text.php";
 require_once './modules/login.php';
+require_once './modules/admin.php';
 
 class Controller
 {
@@ -55,7 +56,7 @@ class Controller
       return "ni ma artykulu"; // TODO ??
 
     $siteInfo = $this->_mysql->FetchAssoc();
-    $user_id = $siteInfo['author'];
+    $user_id = $siteInfo['or'];
 
     $this->_mysql->Query('select first_name, second_name, id from user where id = '.$user_id);
 
@@ -175,14 +176,9 @@ class Controller
   
   private function AdminMode()
   {
-    if ( !$this->_login->IsLoggedIn() )
-      return "Nie masz tu wstępu!";
+    $admin = new AdminController($this->_login->GetUserLevel(), $this->_mysql);
 
-    $template = new Template(CURRENT_TEMPLATE."bbcode_editor.htm");
-    $template->Laduj();
-
-    return $template->Parsuj();
-   
+    return $admin->Decision();
   }
 }
 

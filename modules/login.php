@@ -67,6 +67,11 @@ class Login
 
     return $template->Parsuj();
   }
+
+  public function GetUserLevel()
+  {
+    return ($this->_user == null) ? -1 : $this->_user->getlevel();
+  }
 }
 
 ?>
