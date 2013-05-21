@@ -114,8 +114,8 @@ class Controller
     $displayedNums = 18;
     $dnPerTwo = $displayedNums / 2;
     $nums = array();
-    $cnt = count($content) / 5;
-
+    $cnt = $provider->GetNewsCount() / 5;
+    
     $maxCur = ($current > $dnPerTwo ) ? $current : $dnPerTwo;
     $right = ($maxCur + $dnPerTwo < $cnt ) ? $maxCur + $dnPerTwo : $cnt;
     $left = ($right - $displayedNums < 0 ) ? 0 : $right - $displayedNums;
@@ -124,7 +124,7 @@ class Controller
       {
 	array_push($nums, $i + 1);
       }
-
+    
     $template->Dodaj("max_number", ceil($cnt));
     $template->Dodaj("prev", max($current - 1, 1));
     $template->Dodaj("next", min($current + 1, ceil($cnt)));

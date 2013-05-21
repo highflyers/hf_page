@@ -12,6 +12,12 @@ class NewsProvider
     $this->_mysql = $mysql;
   }
 
+  public function GetNewsCount()
+  {
+    $result = $this->_mysql->Query('select count(*) as cnt from news');
+    return $result->fetch_assoc()["cnt"];
+  }
+
   public function GetLastHeaders($count)
   {
     $result = $this->_mysql->Query('select id, title from news order by date desc limit 0, '.intval($count));
