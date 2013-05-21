@@ -41,6 +41,8 @@ class Controller
       }
     if ( $this->_action == 'show_user' )
       return $this->ShowUser();
+    if ( $this->_action == 'admin' )
+      return $this->AdminMode();
   }
   
   private function GetSite()
@@ -171,6 +173,11 @@ class Controller
     return $user->ShowUserPage($this->_login->IsLoggedIn());
   }
   
+  private function AdminMode()
+  {
+    if ( !$this->_login->IsLoggedIn() )
+      return "Nie masz tu wstępu!";
+  }
 }
 
 ?>
