@@ -177,6 +177,12 @@ class Controller
   {
     if ( !$this->_login->IsLoggedIn() )
       return "Nie masz tu wstępu!";
+
+    $template = new Template(CURRENT_TEMPLATE."bbcode_editor.htm");
+    $template->Laduj();
+
+    return $template->Parsuj();
+   
   }
 }
 

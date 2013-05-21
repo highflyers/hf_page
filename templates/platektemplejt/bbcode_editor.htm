@@ -1,0 +1,12 @@
+<script type="text/javascript">
+  bkLib.onDomLoaded(function() 
+  {
+  new nicEditor({fullPanel : true, iconsPath : '/common_js/nicEditorIcons.gif'}).panelInstance('area');
+  });
+</script>
+
+<form method="post" action="{action_url}">
+
+<textarea cols="60" id="area" name="bbcodeText">{init_text}</textarea>
+<br><input type="submit" name="{submit_name}" value="{submit_value}">
+</form>
