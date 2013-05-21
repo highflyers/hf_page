@@ -125,7 +125,9 @@ class Controller
 	array_push($nums, $i + 1);
       }
 
-
+    $template->Dodaj("max_number", ceil($cnt));
+    $template->Dodaj("prev", max($current - 1, 1));
+    $template->Dodaj("next", min($current + 1, ceil($cnt)));
     $template->DodajPetle("news_short", $content);
     $template->DodajPetle("numbers", $nums);
 
