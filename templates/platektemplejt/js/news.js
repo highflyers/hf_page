@@ -32,7 +32,7 @@ function newsLoad(n) {
 	var title = document.getElementById('newsBaseTitle' + n).textContent;
 	var content = document.getElementById('newsBaseContent' + n).innerHTML;
 	var text = document.getElementById('newsBaseContent' + n).textContent;
-	var author = document.getElementById('newsBaseAuthor' + n).textContent;
+	var author = document.getElementById('newsBaseAuthor' + n).innerHTML;
 	var date = document.getElementById('newsBaseDate' + n).textContent;
 	var banner = document.getElementById('newsBaseBanner' + n);
 	var source = banner.getAttribute('src');
@@ -47,7 +47,7 @@ function newsLoad(n) {
 	
 	document.getElementById('newsContent').appendChild(contentTitle);
 	document.getElementById('newsContentTitle').insertAdjacentHTML('afterend', content);
-	document.getElementById('newsInfoAuthor').textContent = author;
+	document.getElementById('newsInfoAuthor').innerHTML = author;
 	document.getElementById('newsInfoDate').textContent = date;
 	
 	$( "#newsBanner" ).animate({ opacity: 0 }, 200 );

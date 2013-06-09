@@ -31,7 +31,7 @@ class MainPage
       $id = intval($_GET['news_id']);
     else 
       $id = -1;
-    $this->_whereIs = new WhereIs($mysql, $id, $this->_controller->GetAction() == "news_concrete" ? 1 : 0);
+    $this->_whereIs = new WhereIs($mysql, $id, $this->_controller->GetAction() == "news_concrete" || $this->_controller->GetAction() == 'news'? 1 : 0);
   }	
  
   private function GetHeader()

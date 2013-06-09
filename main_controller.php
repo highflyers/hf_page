@@ -31,8 +31,6 @@ class Controller
       return $this->GetSite();
     if ( $this->_action == 'news' )
       return $this->GetNews();
-    if ( $this->_action == 'index' )
-      return $this->GetShortNewsList();
     if ( $this->_action == 'login' )
       return $this->GetLoginForm();
     if ( $this->_action == 'logout' )
