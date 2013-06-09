@@ -1,5 +1,5 @@
 <?php
-
+// arst
 error_reporting(E_ALL); 
 
 define('CURRENT_TEMPLATE', "templates/platektemplejt/");
