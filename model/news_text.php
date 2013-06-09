@@ -12,6 +12,7 @@ class NewsText extends BBCodedText implements IMySQLOperationsAble
   protected $_author;
   protected $_title;
   protected $_date;	
+  protected $_banerUrl;
 
   function IsLoadedSQL()
   {
@@ -72,12 +73,13 @@ class NewsText extends BBCodedText implements IMySQLOperationsAble
       } 
   }
 
-  public function __construct($title, $text, $author, $id, $date = null)
+  public function __construct($title, $text, $author, $id, $date = null, $banerUrl = null)
   {
     $this->_title = $title;
     $this->_author = $author;
     $this->_id = $id;
     $this->_date =  $date;
+    $this->_banerUrl = $banerUrl;
     parent::SetBBCodeText( $text );
   }
 
@@ -143,6 +145,7 @@ class NewsText extends BBCodedText implements IMySQLOperationsAble
     $template->Dodaj("content", $text);
     $template->Dodaj("id", $this->_id);
     $template->Dodaj("iterator", $iterator);
+    $template->Dodaj("baner_url", $this->_banerUrl);
 
     return $template->Parsuj();
   }

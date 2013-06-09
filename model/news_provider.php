@@ -52,7 +52,7 @@ class NewsProvider
 
 	$user = new User($this->_mysql->FetchAssoc());
 
-	array_push($newsList, new NewsText($row['title'], $row['content'], $user, $row['id'], $row['date']));
+	array_push($newsList, new NewsText($row['title'], $row['content'], $user, $row['id'], $row['date'], $row['baner_url']));
       }
 
     return $newsList;
