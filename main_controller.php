@@ -54,7 +54,7 @@ class Controller
       return "ni ma artykulu"; // TODO ??
 
     $siteInfo = $this->_mysql->FetchAssoc();
-    $user_id = $siteInfo['or'];
+    $user_id = $siteInfo['author'];
 
     $this->_mysql->Query('select first_name, second_name, id from user where id = '.$user_id);
 
@@ -174,7 +174,7 @@ class Controller
   
   private function AdminMode()
   {
-    $admin = new AdminController($this->_login->GetUserLevel(), $this->_mysql);
+    $admin = new AdminController($this->_login->GetUser(), $this->_mysql);
 
     return $admin->Decision();
   }

@@ -19,6 +19,7 @@ RewriteRule ^logout$ index.php?action=logout [L]
 RewriteRule ^admin$ index.php?action=admin [L]
 RewriteRule ^admin/news/edit$ index.php?action=admin&admin_act=edit_news [L]
 RewriteRule ^admin/news/edit/([0-9]+)$ index.php?action=admin&admin_act=edit_news&news_edit_id=$1 [L]
+RewriteRule ^admin/news/add$ index.php?action=admin&admin_act=add_news [L]
 
 RewriteRule ^([0-9]+)$ index.php?action=news&news_list=$1 [L]
 RewriteRule ^login$ index.php?action=login [L]

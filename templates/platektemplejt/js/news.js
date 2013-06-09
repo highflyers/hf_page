@@ -26,7 +26,7 @@ function newsLoad(n) {
 	for(i = 0; i < circles.length; i++) {
 		circles[i].style.backgroundImage = 'url("/templates/platektemplejt/gfx/newsNavCircleInactive.png")';
 	}
-	
+	if ( circles[n-1] == null )return;
 	circles[n-1].style.backgroundImage = 'url("/templates/platektemplejt/gfx/newsNavCircleActive.png")';
 	
 	var title = document.getElementById('newsBaseTitle' + n).textContent;
