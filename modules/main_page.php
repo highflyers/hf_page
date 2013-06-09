@@ -24,6 +24,7 @@ class MainPage
     $this->_newsProv = new NewsProvider($mysql);
     $this->_menuLoader = new MenuLoader($mysql);
     $this->_controller = new Controller($mysql, $login);
+    $this->_mysql = $mysql;
     if ( isset($_GET['id']) )
       $id = intval($_GET['id']);
     else if ( isset($_GET['news_id']) )
@@ -53,9 +54,54 @@ class MainPage
 
   private function GetCurrentContentTpl()
   {
+    if ( $this->_controller->GetAction() == 'index' )
+      return $this->GetTotalIndexPage();
+    else
+      return $this->GetPage();
+  }
+
+  private function GetPage()
+  {
+    $template = new Template(CURRENT_TEMPLATE."page_content.htm");
+    $template->Laduj();
+
+    $template->Dodaj("main_content", $this->GetCurrentContent());
+    $template->Dodaj("where_is", $this->GetWhereIs());
+    $template->Dodaj("news_short_list", $this->GetNewsShortList());
+    
+    return $template->Parsuj();
+}
+  
+  private function GetTotalIndexPage()
+  {
     $template = new Template(CURRENT_TEMPLATE."index_content.htm");
     $template->Laduj();
 
+    $provider = new NewsProvider($this->_mysql);
+
+    $tmp = $provider->GetLastNewsList(6);
+        
+
+    $content = array();
+    $i = 1;
+    foreach ( $tmp as $val )
+      array_push($content, $val->GetNewsFromIndex($i++));
+
+    $template->DodajPetle("news_expand_list", $content); 
+
+    $dynList = array();
+
+    $result = $this->_mysql->Query('select title from news order by date desc limit 0, 6');
+    $numCnt = $this->_mysql->NumberOfRows();
+    for ( $i = 0; $i < $numCnt; $i++ )
+      {
+	$result->data_seek($i);
+	$row = $result->fetch_assoc();
+	array_push($dynList, array('title' => $row['title'], 'iterator' => $i + 1));
+      }
+
+    $template->DodajPetle("quick_dynamic_list", $dynList);
+    
     return $template->Parsuj();
   }
 
@@ -95,9 +141,6 @@ class MainPage
     $template->Dodaj("header", $this->GetHeader());
     $template->Dodaj("footer", $this->GetFooter());
     $template->Dodaj("current_content_tpl", $this->GetCurrentContentTpl());
-    $template->Dodaj("main_content", $this->GetCurrentContent());
-    $template->Dodaj("where_is", $this->GetWhereIs());
-    $template->Dodaj("news_short_list", $this->GetNewsShortList());
     return $template->Parsuj();
   }
 

@@ -33,6 +33,31 @@ class NewsProvider
     return $arr;
   }
 
+  public function GetLastNewsList($count)
+  {
+    $result = $this->_mysql->Query('select * from news order by date desc limit 0, '.intval($count));
+    $newsList = array();
+    $cnt = $this->_mysql->NumberOfRows();
+    for ( $i = 0; $i < $cnt; $i++ )
+      {
+	$result->data_seek($i);
+	$row = $result->fetch_assoc();
+	$this->_mysql->Query('select first_name, second_name, id from user where id = '.intval($row['author']));
+	
+	if ( $this->_mysql->NumberOfRows() == 0 )
+	  {
+	    echo "ni ma usera";
+	    continue;
+	  }
+
+	$user = new User($this->_mysql->FetchAssoc());
+
+	array_push($newsList, new NewsText($row['title'], $row['content'], $user, $row['id'], $row['date']));
+      }
+
+    return $newsList;
+  }
+
   public function GetNews($id)
   {
     $result = $this->_mysql->Query('select * from news where id = '.intval($id));

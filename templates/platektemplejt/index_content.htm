@@ -23,12 +23,10 @@
             <p class="newsInfoItem" id="newsInfoArchive">Archiwum aktualności</p>
           </div>
           <ul id="newsList">
-            <li><a class="normalLink" href="javascript:void(0)" onclick="dontGo(event); newsLoad(1)">Zdjęcia z sektora 3.0</a></li>
-            <li><a class="normalLink" href="javascript:void(0)" onclick="dontGo(event); newsLoad(2)">Raporty aktywności sekcji</a></li>
-            <li><a class="normalLink" href="javascript:void(0)" onclick="dontGo(event); newsLoad(3)">Współpraca z firmą W-Z</a></li>
-            <li><a class="normalLink" href="javascript:void(0)" onclick="dontGo(event); newsLoad(4)">Forum Technologiczne Sektor 3.0</a></li>
-            <li><a class="normalLink" href="javascript:void(0)" onclick="dontGo(event); newsLoad(5)">Współpraca z Altium</a></li>
-            <li><a class="normalLink" href="javascript:void(0)" onclick="dontGo(event); newsLoad(6)">Wigilia HF</a></li>
+	    {LOOP=quick_dynamic_list}
+
+            <li><a class="normalLink" href="javascript:void(0)" onclick="dontGo(event); newsLoad({quick_dynamic_list[iterator]})">{quick_dynamic_list[title]}</a></li>
+	    {/LOOP}
           </ul>
         </div>
         <div class="clear"></div>
@@ -130,84 +128,8 @@
     </div>
   </div>
 </div>
-  <div id="newsDataBase">
-    	<div class="newsBaseItem">
-        	<div id="newsBaseTitle1">Zdjęcia z sektora 3.0</div>
-        	<img id="newsBaseBanner1" src="http://michalplatek.apnet.pl/hf/gfx/images/news/baner1.jpg">
-            <div id="newsBaseContent1">
-            	<p>Polsko-Amerykańska Fundacja Wolności oraz Fundacja Rozwoju Społeczeństwa Informacyjnego 30 stycznia na Politechnice Śląskiej organizują Forum Technologicznego „Sektor 3.0”. Celem tego wydarzenia jest podniesienie wiedzy w zakresie możliwości wykorzystania technologii informacyjno-komunikacyjnych w pracy organizacji działających w trzecim sektorze.</p>
-				<p>Koło Naukowe High Flyers będzi miało zaszczyt wykonać krótki pokaz, demonstrując możliwość wykorzystania technologii teleinformatycznych (ICT).</p>
-            	<img class="image_1cols_big" alt="alternative text" src="http://michalplatek.apnet.pl/hf/gfx/images/news/sektor.jpg"/></img>
-            	<p>Forum rozpocznie się o godzinie 11:00 na Wydziale Automatyki, Elektroniki i Informatyki Politechniki Śląskiej, natomiast pokaz naszego Koła będzie miał miejsce o godzinie 16:00. Serdecznie zapraszamy.</p>
-            </div>
-            <div id="newsBaseAuthor1">Karol Jabłoński</div>
-            <div id="newsBaseDate1">Śr, 23.01.2013 21:23</div>
-        </div>
-        <div class="newsBaseItem">
-            <div id="newsBaseTitle2">Marcel Smoliński</div>
-        	<img id="newsBaseBanner2" src="http://michalplatek.apnet.pl/hf/gfx/images/news/baner2.jpg">
-            <div id="newsBaseContent2">
-                <p>Lorem ipsum dolor sit amet quam. Nam eget velit. Cum sociis natoque penatibus et ultrices posuere eget, porta est. Curabitur nec pede. Nulla tincidunt nec, ligula. Mauris pretium sit amet neque ut ante ipsum eget massa. Suspendisse a venenatis quis, lacinia porta. Ut eget est iaculis odio, in sapien.</p>
-                <p>Aenean ligula. Nunc a leo tristique velit, a diam. Aenean ut arcu. Suspendisse commodo magna, scelerisque in, mauris. Aliquam erat libero, egestas vulputate, odio et magnis dis parturient montes, nascetur ridiculus mus. Nunc eleifend adipiscing dictum at, tellus. Aenean id lorem urna viverra nunc. Donec ipsum primis in wisi. Phasellus fermentum wisi, ullamcorper augue, id eros. Aliquam ultricies dolor ut urna. Nunc tristique congue. Praesent magna porttitor vel, nisl. Vestibulum ante ipsum pretium felis ut aliquet nulla, at justo nibh, interdum pellentesque non, placerat dui. Integer aliquam.</p>
-                <p>Nunc elementum. Aenean facilisis eget, bibendum metus a dolor cursus wisi sapien tristique senectus et ultrices velit, scelerisque eu, iaculis ut, nonummy risus at erat. Vivamus nibh massa et magnis dis parturient montes, nascetur ridiculus mus. Etiam dapibus aliquam. Nunc a nibh. Ut sit.</p>
-                <p>Aenean ligula. Nunc a leo tristique velit, a diam. Aenean ut arcu. Suspendisse commodo magna, scelerisque in, mauris. Aliquam erat libero, egestas vulputate, odio et magnis dis parturient montes, nascetur ridiculus mus. Nunc eleifend adipiscing dictum at, tellus. Aenean id lorem urna viverra nunc. Donec ipsum primis in wisi. Phasellus fermentum wisi, ullamcorper augue, id eros. Aliquam ultricies dolor ut urna. Nunc tristique congue. Praesent magna porttitor vel, nisl. Vestibulum ante ipsum pretium felis ut aliquet nulla, at justo nibh, interdum pellentesque non, placerat dui. Integer aliquam.</p>
-                <p>Nunc elementum. Aenean facilisis eget, bibendum metus a dolor cursus wisi sapien tristique senectus et ultrices velit, scelerisque eu, iaculis ut, nonummy risus at erat. Vivamus nibh massa et magnis dis parturient montes, nascetur ridiculus mus. Etiam dapibus aliquam. Nunc a nibh. Ut sit.</p>
-            </div>
-            <div id="newsBaseAuthor2">Karol Jabłoński</div>
-            <div id="newsBaseDate2">Czw, 24.01.2013 15:12</div>
-        </div>
-        <div class="newsBaseItem">
-            <div id="newsBaseTitle3">Julia Saville</div>
-        	<img id="newsBaseBanner3" src="http://michalplatek.apnet.pl/hf/gfx/images/news/baner3.jpg">
-            <div id="newsBaseContent3">
-                <p>Lorem ipsum dolor sit amet libero nec magna non enim ac massa. Curabitur gravida eros sem tincidunt mattis vel, consequat sed, ornare egestas non, placerat id, urna. Aliquam nulla. Morbi molestie, neque. Nunc a purus. Quisque nulla. Etiam at quam. Nam ut magna non adipiscing eget, nonummy tempus id, orci. Mauris arcu. Sed ligula turpis, molestie tincidunt. Maecenas pretium, ipsum.</p>
-                <p>Aenean ac tortor. Aliquam malesuada euismod, enim. Duis luctus. Aenean id aliquet ipsum. Duis eu augue leo, suscipit elementum congue, sem vitae fringilla massa sit amet libero wisi, eu fermentum nec, hendrerit nonummy. Sed sed aliquet quis, vestibulum varius. Etiam accumsan placerat eget, wisi. Morbi.</p>
-                <p>Vestibulum tempus. Suspendisse ut condimentum ante. Proin vitae velit a luctus bibendum. Nulla nec pede. Morbi tincidunt. Sed pellentesque adipiscing posuere lobortis, varius nunc, luctus et ultrices augue. Aenean mollis consectetuer. Curabitur vitae metus sed eros viverra ligula. Fusce quam accumsan id, congue sit amet neque. Etiam wisi.</p>
-                <p>Mauris viverra mattis. Aliquam id erat id leo sed laoreet sit amet augue. Fusce gravida, nisl neque vel nulla. Aliquam hendrerit metus at nulla. Phasellus posuere cubilia Curae, Donec commodo, tortor elit rhoncus purus, vehicula sed, aliquam ac, felis. In tempus id, pretium cursus. In hac habitasse platea dictumst. Suspendisse lectus eget felis. Aliquam adipiscing ligula. Mauris eget metus.</p>
-                <p>Suspendisse lectus elit, lobortis laoreet a, pharetra ut, gravida tempor, pulvinar turpis. Vivamus laoreet enim. Cras tincidunt hendrerit nulla ut lacus a diam. Morbi sem semper sed, elementum quis, varius dui. Morbi vitae massa. Donec tempus, neque vitae arcu vel wisi. Suspendisse eu.</p>
-                <p>Aenean ligula. Nunc a leo tristique velit, a diam. Aenean ut arcu. Suspendisse commodo magna, scelerisque in, mauris. Aliquam erat libero, egestas vulputate, odio et magnis dis parturient montes, nascetur ridiculus mus. Nunc eleifend adipiscing dictum at, tellus. Aenean id lorem urna viverra nunc. Donec ipsum primis in wisi. Phasellus fermentum wisi, ullamcorper augue, id eros. Aliquam ultricies dolor ut urna. Nunc tristique congue. Praesent magna porttitor vel, nisl. Vestibulum ante ipsum pretium felis ut aliquet nulla, at justo nibh, interdum pellentesque non, placerat dui. Integer aliquam.</p>
-                <p>Nunc elementum. Aenean facilisis eget, bibendum metus a dolor cursus wisi sapien tristique senectus et ultrices velit, scelerisque eu, iaculis ut, nonummy risus at erat. Vivamus nibh massa et magnis dis parturient montes, nascetur ridiculus mus. Etiam dapibus aliquam. Nunc a nibh. Ut sit.</p>
-            </div>
-            <div id="newsBaseAuthor3">Karol Jabłoński</div>
-            <div id="newsBaseDate3">Pt, 25.01.2013 20:55</div>
-        </div>
-        <div class="newsBaseItem">
-            <div id="newsBaseTitle4">Agnieszka Ziebura</div>
-        	<img id="newsBaseBanner4" src="http://michalplatek.apnet.pl/hf/gfx/images/news/baner4.jpg">
-            <div id="newsBaseContent4">
-                <p>Lorem ipsum dolor sit amet sapien magna ornare eleifend et, faucibus orci quis velit. Praesent quis risus. Nulla vestibulum sapien, non nunc. Donec faucibus, fermentum nonummy dui gravida sit amet purus et metus mi metus, ullamcorper ut, urna. Suspendisse quis erat sem et neque. Sed fringilla mollis. Sed malesuada vitae, tempus arcu. Cum sociis natoque penatibus et ligula.</p>
-                <p>Phasellus lorem a condimentum sed, ultrices posuere arcu. Donec non augue. Cum sociis natoque penatibus et wisi. Morbi sed libero. Donec interdum viverra. Proin ornare a, mauris. Aenean bibendum. Morbi facilisis in, purus. Aenean libero. Pellentesque tellus. Praesent vitae ipsum quis turpis. Fusce eu nisl felis fermentum nonummy ligula. Aliquam tempor vel, magna. Curabitur at libero. Cras consectetuer vulputate vel, ante. Vivamus consequat lacus et ultrices condimentum convallis. Donec in ornare ligula felis, malesuada augue sed metus. Sed venenatis. Sed nonummy at, bibendum nulla orci blandit suscipit, dolor accumsan id, adipiscing wisi at sapien. Praesent ac hendrerit wisi. Phasellus tempor pede nunc vitae turpis augue, vel sodales sed, urna. Nunc sed lorem.</p>
-                <p>Mauris viverra fermentum laoreet, ante ullamcorper id, ullamcorper ligula tempor diam. Vestibulum vestibulum, dolor rhoncus aliquam ut, gravida pulvinar sit amet ligula. Praesent eu ipsum adipiscing metus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per conubia nostra, per conubia nostra, per conubia nostra, per conubia nostra, per conubia nostra, per conubia nostra, per inceptos hymenaeos. Sed nibh ut arcu. Donec porttitor rutrum. In neque eu tortor. Nunc id risus. Ut id nisl. Etiam risus nec felis sit amet, ante. Curabitur magna neque, a neque vitae sem. Sed porta eget, aliquet ipsum adipiscing elit. Donec pulvinar velit. Nunc viverra fermentum wisi, aliquam dolor. Mauris luctus et ligula. Etiam nibh. Curabitur elit. Nam molestie. Donec faucibus, dolor sit amet justo. Proin at quam. Mauris ultrices. Nunc elementum. Nunc.</p>
-                <p>Phasellus lorem a condimentum sed, ultrices posuere arcu. Donec non augue. Cum sociis natoque penatibus et wisi. Morbi sed libero. Donec interdum viverra. Proin ornare a, mauris. Aenean bibendum. Morbi facilisis in, purus. Aenean libero. Pellentesque tellus. Praesent vitae ipsum quis turpis. Fusce eu nisl felis fermentum nonummy ligula. Aliquam tempor vel, magna. Curabitur at libero. Cras consectetuer vulputate vel, ante. Vivamus consequat lacus et ultrices condimentum convallis. Donec in ornare ligula felis, malesuada augue sed metus. Sed venenatis. Sed nonummy at, bibendum nulla orci blandit suscipit, dolor accumsan id, adipiscing wisi at sapien. Praesent ac hendrerit wisi. Phasellus tempor pede nunc vitae turpis augue, vel sodales sed, urna. Nunc sed lorem.</p>
-                <p>Mauris viverra fermentum laoreet, ante ullamcorper id, ullamcorper ligula tempor diam. Vestibulum vestibulum, dolor rhoncus aliquam ut, gravida pulvinar sit amet ligula. Praesent eu ipsum adipiscing metus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per conubia nostra, per conubia nostra, per conubia nostra, per conubia nostra, per conubia nostra, per conubia nostra, per inceptos hymenaeos. Sed nibh ut arcu. Donec porttitor rutrum. In neque eu tortor. Nunc id risus. Ut id nisl. Etiam risus nec felis sit amet, ante. Curabitur magna neque, a neque vitae sem. Sed porta eget, aliquet ipsum adipiscing elit. Donec pulvinar velit. Nunc viverra fermentum wisi, aliquam dolor. Mauris luctus et ligula. Etiam nibh. Curabitur elit. Nam molestie. Donec faucibus, dolor sit amet justo. Proin at quam. Mauris ultrices. Nunc elementum. Nunc.</p>
-            </div>
-            <div id="newsBaseAuthor4">Karol Jabłoński</div>
-            <div id="newsBaseDate4">Sob, 26.01.2013 09:34</div>
-        </div>
-        <div class="newsBaseItem">
-            <div id="newsBaseTitle5">Tomasz Siwy</div>
-        	<img id="newsBaseBanner5" src="http://michalplatek.apnet.pl/hf/gfx/images/news/baner5.jpg">
-            <div id="newsBaseContent5">
-                <p>Lorem ipsum dolor sit amet sapien massa sit amet, est. Vestibulum vestibulum, dolor rhoncus dolor sit amet mauris. Pellentesque malesuada.</p>
-                <p>Proin rhoncus eget, eros. Nullam pharetra pede. Aliquam consequat lobortis condimentum est vitae orci. In hac habitasse platea dictumst. Aenean dui odio eu bibendum wisi diam elit, interdum dapibus nisl. Etiam dolor. Suspendisse.</p>
-                <p>Donec vitae urna. Aenean ac eros. Etiam fringilla id, felis. Curabitur lobortis ut, lectus. Vestibulum nibh vel turpis. Nullam et felis. Donec tempus vitae, semper risus vel massa.</p>
-                <p>Phasellus lorem a condimentum sed, ultrices posuere arcu. Donec non augue. Cum sociis natoque penatibus et wisi. Morbi sed libero. Donec interdum viverra. Proin ornare a, mauris. Aenean bibendum. Morbi facilisis in, purus. Aenean libero. Pellentesque tellus. Praesent vitae ipsum quis turpis. Fusce eu nisl felis fermentum nonummy ligula. Aliquam tempor vel, magna. Curabitur at libero. Cras consectetuer vulputate vel, ante. Vivamus consequat lacus et ultrices condimentum convallis. Donec in ornare ligula felis, malesuada augue sed metus. Sed venenatis. Sed nonummy at, bibendum nulla orci blandit suscipit, dolor accumsan id, adipiscing wisi at sapien. Praesent ac hendrerit wisi. Phasellus tempor pede nunc vitae turpis augue, vel sodales sed, urna. Nunc sed lorem.</p>
-                <p>Mauris viverra fermentum laoreet, ante ullamcorper id, ullamcorper ligula tempor diam. Vestibulum vestibulum, dolor rhoncus aliquam ut, gravida pulvinar sit amet ligula. Praesent eu ipsum adipiscing metus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per conubia nostra, per conubia nostra, per conubia nostra, per conubia nostra, per conubia nostra, per conubia nostra, per inceptos hymenaeos. Sed nibh ut arcu. Donec porttitor rutrum. In neque eu tortor. Nunc id risus. Ut id nisl. Etiam risus nec felis sit amet, ante. Curabitur magna neque, a neque vitae sem. Sed porta eget, aliquet ipsum adipiscing elit. Donec pulvinar velit. Nunc viverra fermentum wisi, aliquam dolor. Mauris luctus et ligula. Etiam nibh. Curabitur elit. Nam molestie. Donec faucibus, dolor sit amet justo. Proin at quam. Mauris ultrices. Nunc elementum. Nunc.</p>
-                <p>Cum sociis natoque penatibus et pede cursus dignissim non, porttitor auctor, ante mollis tempor elit justo luctus et ultrices consectetuer. Sed diam in nulla erat volutpat. Nam molestie. Nulla posuere cubilia Curae, In et ultrices urna, mattis at, malesuada ultricies porta. Vivamus faucibus tempor, sapien sodales neque ultrices nulla. Integer.</p>
-            </div>
-            <div id="newsBaseAuthor5">Karol Jabłoński</div>
-            <div id="newsBaseDate5">Niedz, 27.01.2013 23:21</div>
-        </div>
-        <div class="newsBaseItem">
-            <div id="newsBaseTitle6">Marcin Kolny</div>
-        	<img id="newsBaseBanner6" src="http://michalplatek.apnet.pl/hf/gfx/images/news/baner6.jpg">
-            <div id="newsBaseContent6">
-                <p>Lorem ipsum dolor sit amet libero a placerat tempus, fringilla metus, vulputate adipiscing. Duis quam in augue. Nam dolor tincidunt congue. Maecenas pretium, diam placerat eget, sagittis ac, mollis varius, quam porta tincidunt. Nullam consequat eu, rhoncus vel, wisi. Suspendisse adipiscing. Vestibulum ante ipsum pretium magna. Quisque orci. Morbi vel neque placerat ornare ac, auctor vel, urna. Nam feugiat pulvinar. Pellentesque habitant morbi tristique dapibus, libero nunc, nonummy sed, elementum nunc. Nam rhoncus, dui turpis at justo a pellentesque adipiscing iaculis. Curabitur magna ac turpis egestas. Proin dui dolor, rhoncus at, egestas quis, rhoncus eget, lacinia quis.</p>
-                <p>Phasellus lorem a condimentum sed, ultrices posuere arcu. Donec non augue. Cum sociis natoque penatibus et wisi. Morbi sed libero. Donec interdum viverra. Proin ornare a, mauris. Aenean bibendum. Morbi facilisis in, purus. Aenean libero. Pellentesque tellus. Praesent vitae ipsum quis turpis. Fusce eu nisl felis fermentum nonummy ligula. Aliquam tempor vel, magna. Curabitur at libero. Cras consectetuer vulputate vel, ante. Vivamus consequat lacus et ultrices condimentum convallis. Donec in ornare ligula felis, malesuada augue sed metus. Sed venenatis. Sed nonummy at, bibendum nulla orci blandit suscipit, dolor accumsan id, adipiscing wisi at sapien. Praesent ac hendrerit wisi. Phasellus tempor pede nunc vitae turpis augue, vel sodales sed, urna. Nunc sed lorem.</p>
-                <p>Mauris viverra fermentum laoreet, ante ullamcorper id, ullamcorper ligula tempor diam. Vestibulum vestibulum, dolor rhoncus aliquam ut, gravida pulvinar sit amet ligula. Praesent eu ipsum adipiscing metus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per conubia nostra, per conubia nostra, per conubia nostra, per conubia nostra, per conubia nostra, per conubia nostra, per inceptos hymenaeos. Sed nibh ut arcu. Donec porttitor rutrum. In neque eu tortor. Nunc id risus. Ut id nisl. Etiam risus nec felis sit amet, ante. Curabitur magna neque, a neque vitae sem. Sed porta eget, aliquet ipsum adipiscing elit. Donec pulvinar velit. Nunc viverra fermentum wisi, aliquam dolor. Mauris luctus et ligula. Etiam nibh. Curabitur elit. Nam molestie. Donec faucibus, dolor sit amet justo. Proin at quam. Mauris ultrices. Nunc elementum. Nunc.</p>
-                <p>Curabitur blandit quis, placerat ornare dolor sit amet augue. Duis vehicula viverra, enim molestie mauris. Nam interdum augue. Sed diam eu eros. Nullam laoreet hendrerit vitae, nibh. Ut eget felis augue euismod nonummy. Nam cursus, lacus pretium eget, lacinia quis, lacinia lacus. Nunc convallis pellentesque, wisi. Vestibulum semper leo. In justo a wisi. Sed ut nonummy at, metus. Donec est. Sed ornare, erat volutpat. Curabitur sit amet, consectetuer congue dolor. Pellentesque placerat. Vivamus iaculis, dui gravida vitae, faucibus orci imperdiet vel, urna. Vestibulum consectetuer condimentum velit. Cras tincidunt nec, sem. Pellentesque laoreet purus vitae massa vel ipsum.</p>
-            </div>
-            <div id="newsBaseAuthor6">Karol Jabłoński</div>
-            <div id="newsBaseDate6">Pon, 28.01.2013 11:41</div>
-        </div>
-    </div>
+<div id="newsDataBase">
+{LOOP=news_expand_list}
+{news_expand_list}
+{/LOOP}
+</div>

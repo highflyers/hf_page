@@ -128,6 +128,24 @@ class NewsText extends BBCodedText implements IMySQLOperationsAble
 
     return $template->Parsuj();
   }
+
+  public function GetNewsFromIndex($iterator)
+  {
+    $template = new Template(CURRENT_TEMPLATE."index_expand_news.htm");
+    $template->Laduj();
+
+    $text = $this->GetHTMLText();
+    
+    $template->Dodaj("title", $this->_title);
+    $template->Dodaj("date", $this->_date);
+    $template->Dodaj("author_display_name", $this->_author->GetDisplayName());
+    $template->Dodaj("author_id", $this->_author->getid());
+    $template->Dodaj("content", $text);
+    $template->Dodaj("id", $this->_id);
+    $template->Dodaj("iterator", $iterator);
+
+    return $template->Parsuj();
+  }
 }
 
 ?>
