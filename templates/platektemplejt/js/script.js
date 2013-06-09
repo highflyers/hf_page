@@ -1,4 +1,12 @@
-var tplUrl = "/templates/platektemplejt/";
+var $buoop = {vs:{i:7,f:4,o:10.5,s:4,n:9}};
+$buoop.ol = window.onload; 
+window.onload = function() { 
+	try {if ($buoop.ol) $buoop.ol();}catch (e) {} 
+	var e = document.createElement("script"); 
+	e.setAttribute("type", "text/javascript"); 
+	e.setAttribute("src", "http://browser-update.org/update.js"); 
+	document.body.appendChild(e); 
+};
 
 $(document).ready(function() {
 	ddsmoothmenu.init({
@@ -9,19 +17,20 @@ $(document).ready(function() {
 		contentsource: "markup" //"markup" or ["container_id", "path_to_menu_file"]
 	});
 	
+	!window.jQuery && document.write(unescape('%3Cscript src="jquery/minified/jquery-1.9.1.min.js"%3E%3C/script%3E'));
+	
 	$(".socialButton img").each(function(index){
 		var id = $(this).parent().get(0).getAttribute("id");
-		$(this).attr("src", tplUrl + "gfx/" + id + ".png");
+		$(this).attr("src", "gfx/" + id + ".png");
 	});
 	
 	$(".socialButton img").hover(
     function(){
         var id = $(this).parent().get(0).getAttribute("id");
-	    $(this).attr("src", tplUrl + "gfx/" + id + "_over.png");
+	    $(this).attr("src", "gfx/" + id + "_over.png");
 	}, 
 	function() {
 	    var id = $(this).parent().get(0).getAttribute("id");
-	    $(this).attr("src", tplUrl + "gfx/" + id + ".png");
+	    $(this).attr("src", "gfx/" + id + ".png");
 	});
 });
-

@@ -6,6 +6,8 @@ body {
 }
 img {
 	border:0px;
+	margin:0px;
+	padding:0px;
 }
 h2, h3, h4, h5, h6 {
 	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
@@ -16,25 +18,25 @@ h2, h3, h4, h5, h6 {
 	padding:0px;
 }
 #backgroundQuadro {
-	background:url(../gfx/quadro.jpg) center bottom no-repeat;
+	background:url("../gfx/quadro.jpg") center bottom no-repeat;
 }
 #backgroundStripe {
-	background:url(../gfx/bg_stripe.png) left top repeat-x;
+	background:url("../gfx/bg_stripe.png") left top repeat-x;
 }
 #backgroundClouds {
-	background:url(../gfx/bg_clouds.jpg) center top no-repeat;
+	background:url("../gfx/bg_clouds.jpg") center top no-repeat;
 }
 #backgroundSeparator {
-	background:url(../gfx/bg_separator.png) left 550px repeat-x;
+	background:url("../gfx/bg_separator.png") 0px 550px repeat-x;
 }
-#backgroundSeparator {
-	background:url(../gfx/bg_footer.png) left bottom repeat-x;
+#backgroundFooter {
+	background:url("../gfx/bg_footer.png") left bottom repeat-x;
 }
 #container {
 	width:1012px;
 	margin:0px auto 0px auto;
 	padding:0px;
-	background:url(../gfx/bg_clouds.jpg) center top no-repeat;
+	background:url("../gfx/bg_clouds.jpg") center top no-repeat;
 }
 #top {
 	width:1012px;
@@ -59,17 +61,17 @@ h2, h3, h4, h5, h6 {
 #backgroundNavBoxCornerLeft {
 	width:1012px;
 	height:61px;
-	background:url(../gfx/shadow_corner_nav_left.png) 0px 0px no-repeat;
+	background:url("../gfx/shadow_corner_nav_left.png") 0px 0px no-repeat;
 }
 #backgroundNavBoxCornerRight {
 	width:1012px;
 	height:61px;
-	background:url(../gfx/shadow_corner_nav_right.png) 980px 0px no-repeat;
+	background:url("../gfx/shadow_corner_nav_right.png") 980px 0px no-repeat;
 }
 #backgroundNavBoxEdge {
 	width:1012px;
 	height:61px;
-	background:url(../gfx/shadow_edge_nav.png) 32px 45px no-repeat;
+	background:url("../gfx/shadow_edge_nav.png") 32px 45px no-repeat;
 }
 #top h1 {
 	display:block;
@@ -176,15 +178,20 @@ header form {
 	background:url("../gfx/shadow_edge_main.png") center 0px no-repeat;
 }
 #backgroundContentLeft {
-	background:url(../gfx/shadow_side.png) 224px 0px repeat-y;
+	background:url("../gfx/shadow_side.png") 224px 0px repeat-y;
 }
 #backgroundContentRight {
-	background:url(../gfx/shadow_side.png) 764px 0px repeat-y;
+	background:url("../gfx/shadow_side.png") 764px 0px repeat-y;
+}
+#backgroundMainNewsBox {
+	background:url("../gfx/newsBoxHead.png") 0px 0px no-repeat;
 }
 #mainBody {
 	width:1012px;
-	background:url(../gfx/background_content.gif) 236px 0px repeat-y;
+	background:url("../gfx/background_content.gif") 236px 0px repeat-y;
 }
+
+
 #contentTop {
 	width:980px; 
 	height:35px;
@@ -227,7 +234,7 @@ header form {
 	height:13px;
 	margin:11px 5px;
 	padding:0px;
-	background:url(../gfx/icons/arrow_blue.png) left top no-repeat;
+	background:url("../gfx/icons/arrow_blue.png") left top no-repeat;
 }
 .socialButton {
 	display:block;
@@ -243,13 +250,13 @@ header form {
 	float:left;
 	width:220px;
 	margin:0px 0px 0px 16px;
-	background:url(../gfx/bg_side_box_header_left.png) right top no-repeat;
+	background:url("../gfx/bg_side_box_header_left.png") right top no-repeat;
 }
 #colRight {
 	float:right;
 	width:220px;
 	margin:0px 16px 0px 0px;
-	background:url(../gfx/bg_side_box_header_right.png) left top no-repeat;
+	background:url("../gfx/bg_side_box_header_right.png") left top no-repeat;
 }
 .sideBox {
 	width:220px;
@@ -258,12 +265,12 @@ header form {
 .sideBoxLeft .sideBoxHeader {
 	width:220px;
 	height:35px;
-	background:url(../gfx/shadow_side.png) 208px 0px repeat-y;
+	background:url("../gfx/shadow_side.png") 208px 0px repeat-y;
 }
 .sideBoxRight .sideBoxHeader {
 	width:220px;
 	height:35px;
-	background:url(../gfx/shadow_side.png) -12px 0px repeat-y;
+	background:url("../gfx/shadow_side.png") -12px 0px repeat-y;
 }
 .sideBox .sideBoxHeader h4 {
 	display:block;
@@ -278,18 +285,20 @@ header form {
 .sideBoxLeft .sideBoxHeader h4 {
 	padding:9px 20px 9px 0px;
 	text-align:right;
-	background:url(../gfx/bg_side_box_header_left.png) right top no-repeat;
+	background:url("../gfx/bg_side_box_header_left.png") right top no-repeat;
 }
 .sideBoxRight .sideBoxHeader h4 {
 	padding:9px 0px 9px 20px;
 	text-align:left;
-	background:url(../gfx/bg_side_box_header_right.png) left top no-repeat;
+	background:url("../gfx/bg_side_box_header_right.png") left top no-repeat;
 }
-.sideBoxLeft .sideBoxContent {
-	background:url(../gfx/shadow_side.png) 208px 0px repeat-y;
+.sideBoxLeft .sideBoxContent {}
+.sideBoxRight .sideBoxContent {}
+.sideBoxLeft .withShadow {
+	background:url("../gfx/shadow_side.png") 208px 0px repeat-y;
 }
-.sideBoxRight .sideBoxContent {
-	background:url(../gfx/shadow_side.png) -12px 0px repeat-y;
+.sideBoxRight .withShadow {
+	background:url("../gfx/shadow_side.png") -12px 0px repeat-y;
 }
 .sideBoxContent {
 	line-height:1.75em;
@@ -313,20 +322,24 @@ header form {
 	padding:0px;
 }
 #colLeftFooter {
-	background:url(../gfx/shadow_end.png) 208px 0px repeat-y;
+	background:url("../gfx/shadow_end.png") 208px 0px repeat-y;
 }
 #colRightFooter {
-	background:url(../gfx/shadow_end.png) -12px 0px repeat-y;
+	background:url("../gfx/shadow_end.png") -12px 0px repeat-y;
 }
 #contentBox {
 	float:left;
 	width:540px;
 	margin:0px;
+	padding:0px;
 	background:white;
+}
+.withTopBorder {
 	border-top:8px solid rgb(0,50,100);
 }
 #content {
-	margin:0px 20px;
+	margin:0px;
+	padding:0px 20px;;
 	width:500px;
 	color:rgb(0,69,119);
 }
@@ -335,13 +348,6 @@ header form {
 	margin:15px 0px;
 	padding:0px;
 }
-
-.contentHeader a
-{
-    text-decoration: none;
-    color: rgb(0, 69, 119);
-}
-
 .contentBanner {
 	width:100%;
 }
@@ -351,6 +357,8 @@ header form {
 .clear {
 	width:100%;
 	clear:both;
+	margin:0px;
+	padding:0px;
 }
 div.center {
 	margin:0px auto 0px auto;
@@ -399,7 +407,7 @@ div.center {
 	color:black;
 }
 .linkTypeDownload {
-	background:url(../gfx/icons/download.png) 15px 7px no-repeat;
+	background:url("../gfx/icons/download.png") 15px 7px no-repeat;
 }
 .actionLink p {
 	display:block;
@@ -415,21 +423,21 @@ div.center {
 	padding:0px;
 }
 #backgroundBottomLeft {
-	background:url(../gfx/shadow_end_left.png) 224px 0px no-repeat;
+	background:url("../gfx/shadow_end_left.png") 224px 0px no-repeat;
 }
 #backgroundBottomRight {
-	background:url(../gfx/shadow_end_right.png) 776px 0px no-repeat;
+	background:url("../gfx/shadow_end_right.png") 776px 0px no-repeat;
 }
 #bottom {
 	width:980px;
 	padding:40px 16px 20px 16px;
+	margin:0px;
 	clear:both;
 	text-align:center;
 }
 #footer {
 	width:980px;
 	height:100px;
-	background:url(../gfx/bg_footer.png) left top repeat-x;
 	font-size:11px;
 	line-height:18px;
 	text-align:center;
@@ -454,4 +462,167 @@ div.center {
 	width:980px;
 	margin-top:10px;
 	clear:both;
+}
+#newsBox {
+	width:1012px; 
+	margin:0px 0px;
+	padding:0px;
+	clear:both;
+}
+#newsBoxHead {
+	width:980px;
+	height:350px;
+	margin:0px 16px;
+	background:white;
+}
+#newsBanner {
+	width:980px;
+	height:350px;
+}
+#newsBannerShadow {
+	background:url("../gfx/newsContentShadow.png") left bottom no-repeat;
+}
+.newsArrow {
+	display:block;
+	margin:0px;
+	padding:0px;
+	width:490px;
+	height:350px;
+	border:0px;
+}
+#newsArrowPrev:link, #newsArrowPrev:visited {
+	background:url("../gfx/newsArrowLeft.png") 15px 115px no-repeat;
+	float:left;
+}
+#newsArrowPrev:hover {
+	background:url("../gfx/newsArrowLeft.png") 14px 115px no-repeat;
+}
+#newsArrowNext:link, #newsArrowNext:visited {
+	background:url("../gfx/newsArrowRight.png") 435px 115px no-repeat;
+	float:right;
+}
+#newsArrowNext:hover {
+	background:url("../gfx/newsArrowRight.png") 436px 115px no-repeat;
+}
+#newsBoxBody {
+	width:980px;
+	padding:0px 16px;
+	background:url("../gfx/newsBoxBody.png") left top repeat-y;
+	display:none;
+}
+#newsBodyColLeft {
+	position:relative;
+	width:710px;
+	height:250px;
+	float:left;
+	padding:0px 20px 0px 20px;
+}
+#newsContent {
+	width:720px;
+	height:250px;
+	overflow:hidden;
+}
+#newsContentShadow {
+	width:720px;
+	height:250px;
+	background:url("../gfx/newsContentShadow.png") left bottom no-repeat;
+	position:absolute;
+	left:0px;
+	top:0px;
+	z-index:10;
+}
+.mCSB_scrollTools {
+	position:absolute;
+	top:0;
+	left:705px; 
+}
+#newsBodyColRight {
+	width:230px;
+	float:right;
+}
+#newsInfo {
+	width:230px;
+	padding-top:15px;
+}
+#newsInfo p {
+	width:174px;
+	height:13px;
+	line-height:13px;
+	font-size:13px;
+	padding:6px 15px 6px 41px;
+	margin:0px 0px 4px 0px;
+}
+#newsInfoAuthor {
+	background:url("../gfx/newsIconUser.png") 10px 0px no-repeat; 
+}
+#newsInfoDate {
+	background:url("../gfx/newsIconArticle.png") 10px 0px no-repeat; 
+}
+#newsInfoArchive {
+	background:url("../gfx/newsIconFolder.png") 10px 0px no-repeat; 
+}
+#newsList {
+	margin-left:0px;
+	padding-left:20px;
+}
+#newsBoxFoot {
+	width:980px;
+	height:80px;
+	padding:0px 16px 16px 16px;
+	background:url("../gfx/newsBoxFoot.png") left top no-repeat;
+}
+#newsFootColLeft {
+	width:750px;
+	float:left;
+}
+#newsFootColRight {
+	width:230px;
+	float:right;
+}
+#newsTitle {
+	display:block;
+	width:710px;
+	height:18px;
+	line-height:18px;
+	font-size:18px;
+	margin:17px 20px 7px 20px;
+}
+#newsExcerpt {
+	display:block;
+	width:710px;
+	height:15px;
+	line-height:15px;
+	font-size:15ps;
+	margin:0px 20px 23px 20px;
+	overflow:hidden;
+}
+#newsDataBase {
+	display:none;	
+}
+.image_1cols_big {
+	width:60%;
+	margin:0px auto;
+}
+#newsCircleNav {
+	width:108px;
+	height:18px;
+	padding:5px 5px 29px 117px;
+}
+a.newsCircleButton:link, a.newsCircleButton:visited{
+	display:block;
+	width:18px;
+	height:18px;
+	float:left;
+	background:url("../gfx/newsNavCircleInactive.png") left top no-repeat;
+}
+a.newsCircleButton:hover {
+	background:url("../gfx/newsNavCircleActive.png") left top no-repeat;
+}
+
+#newsButtonRead {
+	display:block;
+	width:110px;
+	height:16px;
+	padding:6px 0px 6px 120px;
+	font-weight:bold;
 }

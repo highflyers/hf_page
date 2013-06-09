@@ -51,6 +51,14 @@ class MainPage
     return $template->Parsuj();
   }
 
+  private function GetCurrentContentTpl()
+  {
+    $template = new Template(CURRENT_TEMPLATE."index_content.htm");
+    $template->Laduj();
+
+    return $template->Parsuj();
+  }
+
   private function GetFooter()
   {
     $template = new Template(CURRENT_TEMPLATE."footer.htm");
@@ -86,6 +94,7 @@ class MainPage
     $template->Dodaj("tpl_url", CURRENT_TEMPLATE);
     $template->Dodaj("header", $this->GetHeader());
     $template->Dodaj("footer", $this->GetFooter());
+    $template->Dodaj("current_content_tpl", $this->GetCurrentContentTpl());
     $template->Dodaj("main_content", $this->GetCurrentContent());
     $template->Dodaj("where_is", $this->GetWhereIs());
     $template->Dodaj("news_short_list", $this->GetNewsShortList());
