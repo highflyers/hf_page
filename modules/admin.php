@@ -68,7 +68,7 @@ class AdminController
 
     if ( isset($_POST['editNewsP']) )
       {
-	$this->_mysql->Query("update news set content='".str_replace("'", "\'", $_POST['bbcodeText'])."' where id=".$id);
+	$this->_mysql->Query("update news set title='".str_replace("'", "\'", $_POST['title'])."', content='".str_replace("'", "\'", $_POST['bbcodeText'])."' where id=".$id);
 
 	$template->Dodaj("MSG", "Zapisano zmiany!");
       }
