@@ -1,0 +1,38 @@
+<?php
+$lang = array(
+	      "page_project" => "projekt strony",
+	      "official_website" => "oficjalna strona internetowa",
+	      "students_r&d" => "MIĘDZYWYDZIAŁOWE KOŁO NAUKOWE",
+	      "unmanned_flyers" => "BEZZAŁOGOWYCH OBIEKTÓW LATAJĄCYCH",
+	      "logout" => "Wyloguj",
+	      "hello" => "Witaj",
+	      "our_university" => "Politechnika Śląska",
+	      "search" => "Szukaj",
+	      "news_arch" => "Archiwum aktualności",
+	      "hello_here" => "Witaj na oficjalnej stronie High Flyers",
+	      "hello_message" => "Kąt natarcia skrzydeł. Algorytm regulacji. Biegunowa prędkości. Lot autonomiczny. <b>Programowanie do późnych godzin nocnych</b>. Jeśli któreś z tych wyrażeń wywołało u Ciebie dreszcz ekscytacji lub zwyczajnie interesujesz się elektroniką, informatyką czy też modelarstwem, świetnie trafiłeś! Mamy zaszczyt powitać Cię na stronie Międzywydziałowego Koła Naukowego Bezzałogowych Obiektów Latających High Flyers.",
+	      "you_re_logged_in" => "Hej, ty juz jestes przeciez zalogowany",
+	      "login" => "Login",
+	      "password" => "Hasło",
+	      "log_in" => "Zaloguj",
+	      "log_mod" => "Logowanie",
+	      "next" => "Następna",
+	      "prev" => "Poprzednia",
+	      "total_count_p" => "wszystkich stron",
+	      "partners" => "PARTNERZY",
+	      "online" => "ONLINE",
+	      "info" => "INFORMACJE",
+	      "more" => "więcej",
+	      "name" => "imię",
+	      "second_name" => "nazwisko",
+	      "and" => "i",
+	      "email" => "e-mail",
+	      "slave_duration" => "w kole od",
+	      "position" => "stanowisko",
+	      "must_be_logged_alert" => "Musisz być zalogowany aby móc oglądać tę stronę.",
+	      "main_page" => "Strona główna",
+	      "news" => "Newsy",
+	      "read_more" => "czytaj dalej"
+);
+
+?>
