@@ -121,7 +121,11 @@ class AdminController
   {
 
     $editor->Additional('Nagłówek: <input type=text name=title value=\''.$headerDefault.'\'><br />
-Baner: <input type=text name=baner value=\''.$banerDefault.'\'><br />
+<fieldset><legend>Baner</legend>'.($banerDefault != '' ? '
+<img src="'.$banerDefault.'" width=400><br />' : '').'
+<input id=cbaner type=checkbox name=changeBaner onclick="document.getElementById(\'hbaner1\').disabled=document.getElementById(\'hbaner2\').disabled=!document.getElementById(\'cbaner\').checked">Zastosuj baner<br />
+<input type="radio" checked disabled=true id=hbaner1 name="banerFromWhere" value="local">Z dysku: <input id=nbaner disabled=true type=file name=fbaner ><br />
+<input type="radio" id=hbaner2 disabled=true name="banerFromWhere" value="extern">Link z zewnętrznego serwera: <input name=sbaner><br /><span id=ibaner style="font-size:9px">Zmiana banera spowoduje usunięcie z dysku starego banera.</span><br /></fieldset><br />
 ');
     $template->DodajWarunek('listmode', 0);
     $template->Dodaj('bbcode_editor', $editor->GetEditor());    

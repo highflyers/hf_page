@@ -35,7 +35,8 @@ class MenuLoader
   private function LoadLayer($parent)
   {
     $arr = array();
-    $result = $this->_mysql_ob->Query("select id, title, parent from menu where parent = ".intval($parent)." order by position");
+    global $langID;
+    $result = $this->_mysql_ob->Query("select id, (select ".$langID." from translable_element where id=menu.title) as title, parent from menu where parent = ".intval($parent)." order by position");
 
     if ( $result == null )
       throw new Exception("Nie mozna zaladowac menu");
@@ -60,9 +61,10 @@ class MenuLoader
 
   public function LoadStructure()
   {
+    global $langID;
     $this->_structure = array();
 
-    $result = $this->_mysql_ob->Query("select id, title, parent from menu where parent = -1 order by position");
+    $result = $this->_mysql_ob->Query("select id, (select ".$langID." from translable_element where id=menu.title) as title, parent from menu where parent = -1 order by position");
 
     if ( $result == null )
       throw new Exception("Nie mozna zaladowac menu");

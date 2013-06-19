@@ -9,7 +9,7 @@
       <table>
 	<tr>
 	  <td>
-	    Nick: 
+	    {lang[login]}: 
 	  </td>
 	  <td>
 	    {user[nick]}
@@ -17,7 +17,7 @@
 	</tr>
 	<tr>
 	  <td>
-	    Imię i nazwisko: 
+	    {lang[name]} {lang[and]} {lang[second_name]}: 
 	  </td>
 	  <td>
 	    {user[firstName]} {user[secondName]}
@@ -25,7 +25,7 @@
 	</tr>
 	<tr>
 	  <td>
-	    Email: 
+	    {lang[email]}: 
 	  </td>
 	  <td>
 	    {user[email]}
@@ -33,7 +33,7 @@
 	</tr>
 	<tr>
 	  <td>
-	    W kole od: 
+	    {lang[slave_duration]}: 
 	  </td>
 	  <td>
 	    {user[joined]}
@@ -41,7 +41,7 @@
 	</tr>
 	<tr>
 	  <td>
-	    Stanowisko:
+	    {lang[position]}:
 	  </td>
 	  <td>
 	    {user[position]}
@@ -58,5 +58,5 @@
 </table>
 {/IF}
 {IF logged=0}
-Musisz być zalogowany aby móc oglądać profil użytkownika.
+{lang[must_be_logged_alert]}
 {/IF}

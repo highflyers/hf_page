@@ -20,7 +20,7 @@
           <div id="newsInfo">
             <p class="newsInfoItem" id="newsInfoAuthor"></p>
             <p class="newsInfoItem" id="newsInfoDate"></p>
-            <p class="newsInfoItem" id="newsInfoArchive"><a href='/news'>Archiwum aktualności</a></p>
+            <p class="newsInfoItem" id="newsInfoArchive"><a href='/news'>{lang[news_arch]}</a></p>
           </div>
           <ul id="newsList">
 	    {LOOP=quick_dynamic_list}
@@ -47,7 +47,7 @@
             <a class="newsCircleButton" href="javascript: void(0)" onclick="dontGo(event); newsLoad(5)"></a>
             <a class="newsCircleButton" href="javascript: void(0)" onclick="dontGo(event); newsLoad(6)"></a>
           </div>
-          <a id="newsButtonRead" class="normalLink" href="javascript: void(0)" onclick="newsExpand()">czytaj dalej</a>
+          <a id="newsButtonRead" class="normalLink" href="javascript: void(0)" onclick="newsExpand()">{lang[read_more]}</a>
         </div>
         <div class="clear"></div>
       </div>
@@ -95,8 +95,10 @@
       </div>
       <div id="contentBox">
         <div id="content">
-          <h3 class="contentHeader">Witaj na oficjalnej stronie High Flyers!</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at leo enim. Vestibulum sed pharetra tortor. Cras eget leo vel sem lobortis congue vel non est. Donec auctor nibh mi. Pellentesque urna est, mattis nec mollis vitae, auctor at elit. Duis id mi felis. Donec cursus vehicula mauris id hendrerit. Aenean feugiat nulla eget urna mattis egestas. Aliquam elit arcu, condimentum nec consequat at, feugiat a turpis.</p>
+          <h3 class="contentHeader">{lang[hello_here]}!</h3>
+          <p>
+	    {lang[hello_message]}
+	  </p>
         </div>
       </div>
       

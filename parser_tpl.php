@@ -105,9 +105,15 @@ class Template
   {
     if(file_exists($this->_plik))
       $this->_tresc = @file_get_contents($this->_plik);
-        
     else
       $this->_tresc = $this->_plik;
+    
+    global $lang;
+
+    if ( isset($lang) )
+      {
+	$this->Dodaj("lang", $lang);
+      }
   }
     
   public function Dodaj($nazwa, $zmienna)

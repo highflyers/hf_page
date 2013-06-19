@@ -16,19 +16,19 @@
   <div id="header">
     <a id="headerLink" href="/index.php">
       <img id="logo" src="/templates/platektemplejt/gfx/logo_hf.png" alt="High Flyers logo">
-      <h2 id="mainHeader">MIĘDZYWYDZIAŁOWE KOŁO NAUKOWE<br> BEZZAŁOGOWYCH OBIEKTÓW LATAJĄCYCH</h2>
+      <h2 id="mainHeader">{lang[students_r&d]}<br> {lang[unmanned_flyers]}</h2>
     </a>
     <div id="headerBox">
       {IF loggedin=1}
       <div style='background:white; padding:5px; margin:5px'>
-Witaj <b>{user[nick]}</b>! &bull; <a class="hbLink" href='/logout'>Wyloguj</a>
+	{lang[hello]}<b>{user[nick]}</b>! &bull; <a class="hbLink" href='/logout'>{lang[logout]}</a>
       </div>
       {/IF}
       <span class="hbSpan">PL</span>
       <a class="hbLink" href="index.php?lang=pl">EN</a>
-      <a class="hbLink" href="http://www.polsl.pl/" target="_blank">Politechnika Śląska</a>
+      <a class="hbLink" href="http://www.polsl.pl/" target="_blank">{lang[our_university]}</a>
       <form action="index.php" method="get">
-        <input type="text" name="q" class="search" placeholder="Szukaj...">
+        <input type="text" name="q" class="search" placeholder="{lang[search]}...">
       </form>
     </div>
   </div>

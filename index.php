@@ -1,6 +1,18 @@
 <?php
-// arst
 error_reporting(E_ALL); 
+
+define('DEFAULT_LANG', 'pl');
+
+$langID = isset($_COOKIE["hf_lang"]) ? $_COOKIE['hf_lang'] : DEFAULT_LANG;
+
+if ( $langID == 'pl' )
+  require_once 'lang/pl.php';
+else
+  {
+  require_once 'lang/pl.php';
+  setcookie("lang_cookie", 'pl');
+  }
+
 
 define('CURRENT_TEMPLATE', "templates/platektemplejt/");
 require_once 'model/session.php';
