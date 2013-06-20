@@ -62,7 +62,9 @@ class AdminController
 
   private function GetEditNewsList(&$template)
   {
-    $result = $this->_mysql->Query("select id, title, date from news order by date desc");
+    global $langID;
+
+    $result = $this->_mysql->Query("select id, (select ".$langID." from translable_element where id=news.title) as title, date from news order by date desc");
     
     $rowCount = $this->_mysql->NumberOfRows();
     $newsArr = array();
@@ -80,6 +82,7 @@ class AdminController
 
   private function GetNewsEditorEdit(&$template)
   {
+    global $langID;
     $id = intval($_GET['news_edit_id']);
 
     if ( isset($_POST['editNewsP']) )
@@ -91,7 +94,7 @@ class AdminController
     else
       $template->Dodaj("MSG", "");
 
-    $result = $this->_mysql->Query('select title,baner_url, content, date from news where id='.$id);
+    $result = $this->_mysql->Query('select (select '.$langID.' from translable_element where id=news.title) as title,baner_url,  (select '.$langID.' from translable_element where id=news.content) as content, date from news where id='.$id);
 
     if ( $this->_mysql->NumberOfRows() != 1 )
       return;
@@ -105,7 +108,12 @@ class AdminController
   {
     if ( isset($_POST['addNewsP']) )
       {
-	$this->_mysql->Query("insert into news values(NULL, '".str_replace("'", "\'", $_POST['title'])."', '".str_replace("'", "\'", $_POST['bbcodeText'])."', ".intval($this->_user->getid()).", NOW(), '".str_replace("'", "\'", $_POST['baner'])."')");
+	global $langID;
+	$this->_mysql->Query("insert into translable_element(id, ".$langID.") values(NULL, '".str_replace("'", "\'", $_POST['title'])."')");
+	$idTit = $this->_mysql->LastID();
+	$this->_mysql->Query("insert into translable_element(id, ".$langID.") values(NULL, '".str_replace("'", "\'", $_POST['bbcodeText'])."')");
+	$idTex = $this->_mysql->LastID();
+	$this->_mysql->Query("insert into news values(NULL, ".$idTit.", ".$idTex.", ".intval($this->_user->getid()).", NOW(), '".str_replace("'", "\'", $_POST['banner'])."')");
 
 	$template->Dodaj("MSG", "Zapisano zmiany!");
       }

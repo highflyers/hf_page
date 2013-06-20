@@ -1,9 +1,10 @@
 {IF listmode=1}
 <h3>Wybierz news do edycji</h3>
-
+<ul>
 {LOOP=news}
-<a href="/admin/news/edit/{news[id]}">{news[title]}</a> <br />
+<li><a href="/admin/news/edit/{news[id]}">{news[title]}</a> <br /></li>
 {/LOOP}
+</ul>
 {/IF}
 {IF listmode=0}
 <span style="color:green; font-wegiht:bold">{MSG}</span><br />
