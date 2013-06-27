@@ -25,6 +25,12 @@ class MySQL
 	{
 		$this->Disconnect();
 	}
+
+	function GetLangStr($id)
+	{
+	  global $langID;
+	  return "(select ".$langID." from translable_element where id=".$id.") as ";
+	}
 	
 	private function MysqlError( $errLvl )
 	{

@@ -91,7 +91,7 @@ class MainPage
 
     $dynList = array();
 
-    $result = $this->_mysql->Query('select title from news order by date desc limit 0, 6');
+    $result = $this->_mysql->Query('select '.$this->_mysql->GetLangStr('news.title').'title from news order by date desc limit 0, 6');
     $numCnt = $this->_mysql->NumberOfRows();
     for ( $i = 0; $i < $numCnt; $i++ )
       {
