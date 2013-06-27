@@ -22,8 +22,8 @@ class MenuItem
 
 class MenuLoader
 {
-  private $_mysql_ob;
-  private $_structure;
+  protected $_mysql_ob;
+  protected $_structure;
 
   public function __construct(MySQL $mysql_ob)
   {

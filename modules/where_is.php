@@ -45,7 +45,7 @@ class WhereIs
 
   private function FillArray($id)
   {
-    $result = $this->_mysql->Query('select id, title, parent from menu where id = '.intval($id).' limit 0, 1');
+    $result = $this->_mysql->Query('select id, '.$this->_mysql->GetLangStr("menu.title").'title, parent from menu where id = '.intval($id).' limit 0, 1');
 
     if ( $this->_mysql->NumberOfRows() == 0 )
       return ""; // TODO !!
@@ -100,7 +100,7 @@ class WhereIs
   {
     $template = new Template(CURRENT_TEMPLATE."where_is_news.htm");
     $template->Laduj();
-    $result = $this->_mysql->Query('select title from news where id = '.intval($this->_article_id).' limit 0, 1');
+    $result = $this->_mysql->Query('select '.$this->_mysql->GetLangStr("news.title").'title from news where id = '.intval($this->_article_id).' limit 0, 1');
     $row = $result->fetch_assoc();
     $template->Dodaj('news_t', $row['title']);
 
