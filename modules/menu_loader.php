@@ -82,10 +82,11 @@ class MenuLoader
   public function MediumLevelMenu($struct)
   {
     $str = "<ul>";
+    global $langID;
 
     for ( $i = 0; $i < count($struct); $i++ )
       {
-	$str .= "<li><a  href='/page/".$struct[$i]->GetSite()."'>".$struct[$i]->GetTitle()."</a>";
+	$str .= "<li><a  href='/".$langID."/page/".$struct[$i]->GetSite()."'>".$struct[$i]->GetTitle()."</a>";
 	if ( $struct[$i]->GetChildren() != null )
 	  $str .= $this->MediumLevelMenu($struct[$i]->GetChildren());
 	$str .= "</li>";
@@ -99,10 +100,11 @@ class MenuLoader
   public function GetMenu()
   {
     $str = "<ul>";
+    global $langID;
 
     for ( $i = 0; $i < count($this->_structure); $i++ )
       {
-	$str .= "<li><a class=menuItemTopLevel href='/page/".$this->_structure[$i]->GetSite()."'>".$this->_structure[$i]->GetTitle()."</a>";
+	$str .= "<li><a class=menuItemTopLevel href='/".$langID."/page/".$this->_structure[$i]->GetSite()."'>".$this->_structure[$i]->GetTitle()."</a>";
 	if ( $this->_structure[$i]->GetChildren() != null )
 	  $str .= $this->MediumLevelMenu($this->_structure[$i]->GetChildren());
 	$str .= "</li>";

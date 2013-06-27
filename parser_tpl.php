@@ -109,11 +109,13 @@ class Template
       $this->_tresc = $this->_plik;
     
     global $lang;
-
+    global $langID;
     if ( isset($lang) )
       {
 	$this->Dodaj("lang", $lang);
       }
+    if ( isset($langID) )
+      $this->Dodaj("langID", $langID);
   }
     
   public function Dodaj($nazwa, $zmienna)

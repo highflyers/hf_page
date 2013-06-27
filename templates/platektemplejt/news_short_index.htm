@@ -3,8 +3,8 @@
 {/LOOP}
 <br /><br />
 <div style='text-align:center'>
-<a href='/{prev}'>« {lang[prev]}</a>
+<a href='/{langID}/{prev}'>« {lang[prev]}</a>
 {LOOP=numbers}
-<a href='/{numbers}'>{numbers}</a>
-{/LOOP} <a href='/{next}'>{lang[next]} »</a> ({lang[total_count_p]}: {max_number})
+<a href='/{langID}/{numbers}'>{numbers}</a>
+{/LOOP} <a href='/{langID}/{next}'>{lang[next]} »</a> ({lang[total_count_p]}: {max_number})
 </div>

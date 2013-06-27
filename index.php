@@ -3,7 +3,7 @@ error_reporting(E_ALL);
 
 define('DEFAULT_LANG', 'pl');
 
-$langID = isset($_COOKIE["hf_lang"]) ? $_COOKIE['hf_lang'] : DEFAULT_LANG;
+$langID = isset($_GET["hf_lang"]) ? $_GET['hf_lang'] : DEFAULT_LANG;
 
 if ( $langID == 'pl' )
   require_once 'lang/pl.php';
@@ -11,8 +11,9 @@ else
   {
   require_once 'lang/pl.php';
   setcookie("lang_cookie", 'pl');
+  $langID = DEFAULT_LANG;
   }
-
+//echo $langID;
 
 define('CURRENT_TEMPLATE', "templates/platektemplejt/");
 require_once 'model/session.php';

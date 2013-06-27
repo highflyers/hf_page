@@ -10,24 +10,33 @@ RewriteRule ^kontakt$ index.php?&site=kontakt [L]
 RewriteRule ^dolacz$ index.php?&site=dolacz [L]
 RewriteRule ^adder$ index.php?&site=adder [L]
 
-
 RewriteRule ^page/([0-9]+)$ index.php?action=site&id=$1 [L]
-RewriteRule ^user/([0-9]+)$ index.php?action=show_user&user_id=$1 [L]
-RewriteRule ^news/([0-9]+)$ index.php?action=news&news_id=$1 [L]
-RewriteRule ^news$ index.php?action=news [L]
-RewriteRule ^logout$ index.php?action=logout [L]
-RewriteRule ^admin$ index.php?action=admin [L]
-RewriteRule ^admin/news/edit$ index.php?action=admin&admin_act=edit_news [L]
-RewriteRule ^admin/news/edit/([0-9]+)$ index.php?action=admin&admin_act=edit_news&news_edit_id=$1 [L]
-RewriteRule ^admin/news/add$ index.php?action=admin&admin_act=add_news [L]
+RewriteRule ^([a-z]{2})/page/([0-9]+)$ index.php?action=site&id=$2&hf_lang=$1 [L]
 
-RewriteRule ^([0-9]+)$ index.php?action=news&news_list=$1 [L]
-RewriteRule ^login$ index.php?action=login [L]
-RewriteRule ^uczniowie/([^-]+)$ index.html?akcja=uczniowie&klasa=$1 [L]
-RewriteRule ^wiadomosci/([^-]+)$ index.html?id=$1 [L]
-RewriteRule ^([0-9]+)$ index.html?limit=$1 [L]
-RewriteRule ^oceny$ index.html?akcja=uczen&id=-1 [L]
-RewriteRule ^nowa_wiadomosc$ index.html?akcja=dodaj_wiadomosc [L]
-RewriteRule ^haslo$ index.html?akcja=zmiana_hasla [L]
-RewriteRule ^([a-zA-Z-_0-9]+)$ index.html?akcja=$1 [L]
+RewriteRule ^user/([0-9]+)$ index.php?action=show_user&user_id=$1 [L]
+RewriteRule ^([a-z]{2})/user/([0-9]+)$ index.php?action=show_user&user_id=$2&hf_lang=$1 [L]
+
+RewriteRule ^news/([0-9]+)$ index.php?action=news&news_id=$1 [L]
+RewriteRule ^([a-z]{2})/news/([0-9]+)$ index.php?action=news&news_id=$2&hf_lang=$1 [L]
+
+RewriteRule ^news$ index.php?action=news [L]
+RewriteRule ^([a-z]{2})/news$ index.php?action=news&hf_lang=$1 [L]
+
+RewriteRule ^logout$ index.php?action=logout [L]
+RewriteRule ^([a-z]{2})/logout$ index.php?action=logout&hf_lang=$1 [L]
+
+RewriteRule ^admin$ index.php?action=admin [L]
+RewriteRule ^([a-z]{2})/admin$ index.php?action=admin&hf_lang=$1 [L]
+
+RewriteRule ^admin/news/edit$ index.php?action=admin&admin_act=edit_news [L]
+RewriteRule ^([a-z]{2})/admin/news/edit$ index.php?action=admin&admin_act=edit_news&hf_lang=$1 [L]
+
+RewriteRule ^admin/news/edit/([0-9]+)$ index.php?action=admin&admin_act=edit_news&news_edit_id=$1 [L]
+RewriteRule ^([a-z]{2})/admin/news/edit/([0-9]+)$ index.php?action=admin&admin_act=edit_news&news_edit_id=$2&hf_lang=$1 [L]
+
+RewriteRule ^admin/news/add$ index.php?action=admin&admin_act=add_news [L]
+RewriteRule ^([a-z]{2})/admin/news/add$ index.php?action=admin&admin_act=add_news&hf_lang=$1 [L]
+
+RewriteRule ^(pl|en) index.php?hf_lang=$1 [L]
+
 RewriteCond %{REQUEST_FILENAME} !\.(zip|pdf|css|jpg|gif|js|png)$ [NC]  
