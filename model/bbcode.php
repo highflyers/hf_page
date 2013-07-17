@@ -4,7 +4,7 @@ class BBCodeConverter
 	
   public static function BBCodeToHTML( $text )
   {
-    $text = nl2br($text);
+    //$text = nl2br($text);
 	
     $text = preg_replace("#\[code\](.*?)\[/code\]#si", '<div class=kod>\\1</div>', $text);
     $text = preg_replace("#\[b\](.*?)\[/b\]#si", '<b>\\1</b>', $text);

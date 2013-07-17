@@ -20,8 +20,12 @@ class MySQL {
 		global $langID;
 		return "(select " . $langID . " from translable_element where id=" . $id . ") as ";
 	}
-	function GetImprovedLang($id) {
+	function GetImprovedLang($id, $forceDefaultLang = false) {
 		global $langID;
+		
+		if ($forceDefaultLang)
+			return '(select '.DEFAULT_LANG.' from translable_element where id='.$id.') as '; 
+		
 		// SOO UGLY!
 		return '(case
 					(select length('.$langID.') from translable_element where id='.$id.') 
