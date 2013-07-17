@@ -41,7 +41,7 @@ class AdminMenu extends MenuLoader
     else if ( isset($_GET['edit']) )
       {
 	$id = intval($_GET['edit']);
-	$result = $this->_mysql_ob->Query('select '.$this->_mysql_ob->GetLangStr("menu.title").'langtitle, title, '.$this->_mysql_ob->GetLangStr('menu.content').'langcontent, content from menu where id='.$id);
+	$result = $this->_mysql_ob->Query('select '.$this->_mysql_ob->GetImprovedLang("menu.title").'langtitle, title, '.$this->_mysql_ob->GetLangStr('menu.content').'langcontent, content from menu where id='.$id);
 
 	if ( $this->_mysql_ob->NumberOfRows() != 1 )
 	  $case = 6;
@@ -119,7 +119,7 @@ class AdminMenu extends MenuLoader
   private function GenerateMenuList()
   {
     $arr = array();
-    $result = $this->_mysql_ob->Query('select id, '.$this->_mysql_ob->GetLangStr("menu.title").'title from menu');
+    $result = $this->_mysql_ob->Query('select id, '.$this->_mysql_ob->GetImprovedLang("menu.title").'title from menu');
 
     $rowCount = $this->_mysql_ob->NumberOfRows();
 

@@ -21,7 +21,7 @@ class NewsProvider
   public function GetLastHeaders($count)
   {
     global $langID;
-    $result = $this->_mysql->Query('select id, '.$this->_mysql->GetLangStr("news.title").'title from news order by date desc limit 0, '.intval($count));
+    $result = $this->_mysql->Query('select id, '.$this->_mysql->GetImprovedLang("news.title").'title from news order by date desc limit 0, '.intval($count));
     $arr = array();
 
     for ( $i = 0; $i < $this->_mysql->NumberOfRows(); $i++ )
@@ -36,7 +36,7 @@ class NewsProvider
 
   public function GetLastNewsList($count)
   {
-    $result = $this->_mysql->Query('select id, author, date, baner_url, '.$this->_mysql->GetLangStr("news.title").'title, '.$this->_mysql->GetLangStr("news.content").'content from news order by date desc limit 0, '.intval($count));
+    $result = $this->_mysql->Query('select id, author, date, baner_url, '.$this->_mysql->GetImprovedLang("news.title").'title, '.$this->_mysql->GetImprovedLang("news.content").'content from news order by date desc limit 0, '.intval($count));
     $newsList = array();
     $cnt = $this->_mysql->NumberOfRows();
     for ( $i = 0; $i < $cnt; $i++ )
@@ -61,7 +61,7 @@ class NewsProvider
 
   public function GetNews($id)
   {
-    $result = $this->_mysql->Query('select id, author, date, baner_url, '.$this->_mysql->GetLangStr("news.title").'title, '.$this->_mysql->GetLangStr("news.content").'content from news where id = '.intval($id));
+    $result = $this->_mysql->Query('select id, author, date, baner_url, '.$this->_mysql->GetImprovedLang("news.title").'title, '.$this->_mysql->GetImprovedLang("news.content").'content from news where id = '.intval($id));
     if ($this->_mysql->NumberOfRows() == 0)
       {
 	return null; // TODO what about exception ?
@@ -73,7 +73,7 @@ class NewsProvider
   {
     $newsList = array();
     
-    $result = $this->_mysql->Query('select id, author, date, baner_url, '.$this->_mysql->GetLangStr("news.title").'title, '.$this->_mysql->GetLangStr("news.content").'content from news order by date desc limit '.intval($startNews).', '.intval($newsPerList));
+    $result = $this->_mysql->Query('select id, author, date, baner_url, '.$this->_mysql->GetImprovedLang("news.title").'title, '.$this->_mysql->GetImprovedLang("news.content").'content from news order by date desc limit '.intval($startNews).', '.intval($newsPerList));
     $numCnt = $this->_mysql->NumberOfRows();
     for ( $i = 0; $i < $numCnt; $i++ )
       {

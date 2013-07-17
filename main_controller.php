@@ -48,7 +48,7 @@ class Controller
   {
     $id = intval($_GET['id']);
     
-    $this->_mysql->Query('select *, '.$this->_mysql->GetLangStr('menu.title').'title, '.$this->_mysql->GetLangStr('menu.content').'content from menu where id='.$id);
+    $this->_mysql->Query('select *, '.$this->_mysql->GetImprovedLang('menu.title').'title, '.$this->_mysql->GetImprovedLang('menu.content').'content from menu where id='.$id);
 
     if ( $this->_mysql->NumberOfRows() == 0 )
       return "ni ma artykulu"; // TODO ??

@@ -46,7 +46,9 @@ class Session
   }
   function Clear()
   {
+  	$language = $_SESSION['hf_lang'];
     $_SESSION = array();
+    $_SESSION['hf_lang'] = $language;
   }
 	
 }
