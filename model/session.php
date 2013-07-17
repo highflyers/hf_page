@@ -1,31 +1,17 @@
 <?php
 require_once "common.php";
 class Session {
-	function SessionStarted() {
-		return false; // return ( session_status() == PHP_SESSION_ACTIVE );
-	}
 	function StartSession() {
-		if (! $this->SessionStarted ())
-			session_start ();
+		session_start ();
 	}
 	function RegisterVar($varName, $varValue) {
-		if ($this->SessionStarted ())
-			$_SESSION [$varName] = $varValue;
-		else {
-			ShowError ( "Sesja nie zostala rozpoczeta." );
-			return ErrorLevel::ERROR;
-		}
+		$_SESSION [$varName] = $varValue;
 	}
 	function GetSessionVar($varName) {
-		if ($this->SessionStarted ()) {
-			if (isset ( $_SESSION [$varName] )) {
-				return $_SESSION [$varName];
-			} else {
-				return ErrorLevel::WARNING;
-			}
+		if (isset ( $_SESSION [$varName] )) {
+			return $_SESSION [$varName];
 		} else {
-			ShowError ( "Sesja nie zostala rozpoczeta." );
-			return ErrorLevel::ERROR;
+			return ErrorLevel::WARNING;
 		}
 	}
 	function Clear() {
