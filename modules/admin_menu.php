@@ -26,7 +26,8 @@ class AdminMenu extends MenuLoader {
 			$titleId = $this->_mysql_ob->LastID ();
 			$this->_mysql_ob->Query ( 'insert into translable_element(' . DEFAULT_LANG . ') values("")' );
 			$result = $this->_mysql_ob->Query ( 'SELECT position from menu ORDER BY position DESC LIMIT 1' );
-			$this->_mysql_ob->Query ( 'insert into menu values(NULL, ' . $titleId . ', ' . $_POST ['menuVal'] . ', ' . (mysql_fetch_array($result)['position'] + 1) . ', ' . $this->_mysql_ob->LastID () . ', 1, NOW())' );
+			$tmpOut = mysql_fetch_array($result);
+			$this->_mysql_ob->Query ( 'insert into menu values(NULL, ' . $titleId . ', ' . $_POST ['menuVal'] . ', ' . ($tmpOut['position'] + 1) . ', ' . $this->_mysql_ob->LastID () . ', 1, NOW())' );
 			$template->Dodaj ( 'menu_id', $this->_mysql_ob->LastID () );
 			$case = 5;
 		} else if (isset ( $_GET ['edit'] )) {
