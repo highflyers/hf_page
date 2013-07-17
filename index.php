@@ -30,8 +30,8 @@ define ( 'CURRENT_TEMPLATE', "templates/platektemplejt/" );
 require_once 'modules/login.php';
 require_once 'model/mysql.php';
 $object = new Mysql ();
-
-$object->Connect ( "localhost", "root", "root", "hfdb" );
+require_once 'config.php';
+$object->Connect ( $dbhost, $dbuser, $dbpassword, $dbname );
 $login = new Login ( $session, $object );
 $login->ValidateLogin ();
 
