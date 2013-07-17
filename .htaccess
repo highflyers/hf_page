@@ -55,6 +55,12 @@ RewriteRule ^([a-z]{2})/admin/menu/([0-9]+)/edit index.php?action=admin&admin_ac
 RewriteRule ^admin/menu/([0-9]+)/moveup(up|down)$ index.php?action=admin&admin_act=menu_mod&move=$2&position=$1 [L]
 RewriteRule ^([a-z]{2})/admin/menu/([0-9]+)/move(up|down) index.php?action=admin&admin_act=menu_mod&hf_lang=$1&position=$2&move=$3 [L]
 
+RewriteRule ^admin/translator/untranslated index.php?action=admin&admin_act=translator&untranslated=1 [L]
+RewriteRule ^([a-z]{2})/admin/translator/untranslated index.php?action=admin&admin_act=translator&untranslated=1&hf_lang=$1 [L]
+
+RewriteRule ^admin/translator index.php?action=admin&admin_act=translator [L]
+RewriteRule ^([a-z]{2})/admin/translator index.php?action=admin&admin_act=translator&hf_lang=$1 [L]
+
 RewriteRule ^(pl|en) index.php?hf_lang=$1 [L]
 
 RewriteCond %{REQUEST_FILENAME} !\.(zip|pdf|css|jpg|gif|js|png)$ [NC]  

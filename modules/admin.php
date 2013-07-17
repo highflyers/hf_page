@@ -3,18 +3,21 @@
 require_once './modules/wysiwyg_editor.php';
 require_once './modules/admin_news.php';
 require_once './modules/admin_menu.php';
+require_once './modules/admin_translator.php';
 
 class AdminController
 {
   private $_user;
   private $_newsManager;
   private $_menuManager;
+  private $_translatorManager;
 
   public function __construct($user, $mysql)
   {
     $this->_user = $user;
     $this->_newsManager = new AdminNews($mysql);
     $this->_menuManager = new AdminMenu($mysql);
+    $this->_translatorManager = new AdminTranslator($mysql);
   }
 
   private function IsLoggedIn()
@@ -37,6 +40,8 @@ class AdminController
       $add = $this->_newsManager->GetAddNews();
     else if ( $act == 'menu_mod' )
       $add = $this->_menuManager->ShowMenuMod();
+    else if ( $act == 'translator' )
+      $add = $this->_translatorManager->ShowTranslator();
 
     return $this->GetMasterPage().$add;
   }
