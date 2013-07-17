@@ -40,10 +40,7 @@ class MenuLoader {
 		if ($rowCount == 0)
 			return null;
 		
-		for($i = 0; $i < $rowCount; $i ++) {
-			$result->data_seek ( $i );
-			$row = $result->fetch_assoc ();
-			
+		while ($row = mysql_fetch_array($result)) {
 			$tmp = $this->LoadLayer ( $row ['id'] );
 			
 			array_push ( $arr, new MenuItem ( $row ['title'], $tmp, $row ['id'] ) );
@@ -60,10 +57,7 @@ class MenuLoader {
 		if ($result == null)
 			throw new Exception ( "Nie mozna zaladowac menu" );
 		
-		$rowCount = $this->_mysql_ob->NumberOfRows ();
-		for($i = 0; $i < $rowCount; $i ++) {
-			$result->data_seek ( $i );
-			$row = $result->fetch_assoc ();
+		while ($row = mysql_fetch_array($result)) {
 			$arr = $this->LoadLayer ( $row ['id'] );
 			array_push ( $this->_structure, new MenuItem ( $row ['title'], $arr, $row ['id'] ) );
 		}

@@ -55,12 +55,9 @@ class AdminNews {
 		
 		$result = $this->_mysql->Query ( "select id, (select " . DEFAULT_LANG . " from translable_element where id=news.title) as title, date from news order by date desc" );
 		
-		$rowCount = $this->_mysql->NumberOfRows ();
 		$newsArr = array ();
 		
-		for($i = 0; $i < $rowCount; $i ++) {
-			$result->data_seek ( $i );
-			$row = $result->fetch_assoc ();
+		while ($row = mysql_fetch_array($result)) {
 			array_push ( $newsArr, $row );
 		}
 		
@@ -73,7 +70,7 @@ class AdminNews {
 		
 		if (isset ( $_POST ['editNewsP'] )) {
 			$result = $this->_mysql->Query ( "select title, content from news where id = " . $id );
-			$row = $result->fetch_assoc ();
+			$row = mysql_fetch_array($result);
 			
 			$this->_mysql->Query ( "update news set baner_url='" . str_replace ( "'", "\'", $_POST ['baner'] ) . "' where id=" . $id );
 			$this->_mysql->Query ( "update translable_element set " . DEFAULT_LANG . "='" . str_replace ( "'", "\'", $_POST ['bbcodeText'] ) . "' where id=" . $row ['content'] );
@@ -89,7 +86,7 @@ class AdminNews {
 		if ($this->_mysql->NumberOfRows () != 1)
 			return;
 		
-		$row = $result->fetch_assoc ();
+		$row = mysql_fetch_array($result);
 		$editor = new WysiwygEditor ( '/admin/news/edit/' . $id, 'editNewsP', 'Zakończ edycję', $row ['content'] );
 		$this->GetTextEditor ( $template, $editor, $row ['title'], $row ['baner_url'] );
 	}

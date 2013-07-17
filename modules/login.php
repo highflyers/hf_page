@@ -26,7 +26,7 @@ class Login
 	return;
       }
 
-    $this->_user = new User($result->fetch_assoc());
+    $this->_user = new User(mysql_fetch_array($result));
     $this->_sess->Clear();
     $this->_sess->RegisterVar("nick", $nick);
     $this->_sess->RegisterVar("pass", $password);

@@ -50,7 +50,7 @@ class WhereIs
     if ( $this->_mysql->NumberOfRows() == 0 )
       return ""; // TODO !!
 
-    $row = $result->fetch_assoc();
+    $row = mysql_fetch_array($result);
 
     if ( $row['parent'] != -1 )
       $this->FillArray($row['parent']);
@@ -101,7 +101,7 @@ class WhereIs
     $template = new Template(CURRENT_TEMPLATE."where_is_news.htm");
     $template->Laduj();
     $result = $this->_mysql->Query('select '.$this->_mysql->GetImprovedLang("news.title").'title from news where id = '.intval($this->_article_id).' limit 0, 1');
-    $row = $result->fetch_assoc();
+    $row = mysql_fetch_array($result);
     $template->Dodaj('news_t', $row['title']);
 
 

@@ -42,9 +42,10 @@ class MySQL {
 		return $errLvl;
 	}
 	function Connect($host, $login, $password, $database) {
-		$this->_mysqli = @new mysqli ( $host, $login, $password, $database );
+		mysql_connect( $host, $login, $password);
+		mysql_select_db( $database );
 		
-		if (@mysqli_connect_errno ()) {
+		if (false) {
 			$this->_mysqli = null;
 			$this->MysqlError ( ErrorLevel::CRITICAL_ERROR );
 		}
@@ -52,7 +53,7 @@ class MySQL {
 	function Query($query) {
 		$this->_lastQuery = $query;
 		
-		if (($this->_lastResult = $this->_mysqli->query ( $query )) == false) {
+		if (($this->_lastResult = mysql_query ( $query )) == false) {
 			$this->MysqlError ( ErrorLevel::ERROR );
 			return null;
 		}
@@ -60,13 +61,13 @@ class MySQL {
 		return $this->_lastResult;
 	}
 	function FetchAssoc($result = null) {
-		return $this->_lastResult->fetch_assoc ();
+		return mysql_fetch_array($this->_lastResult);
 	}
 	function LastID() {
 		return $this->_mysqli->insert_id;
 	}
 	function NumberOfRows() {
-		return $this->_lastResult->num_rows;
+		return mysql_num_rows($this->_lastResult);
 	}
 	function Disconnect() {
 		if ($this->_mysqli != null) {

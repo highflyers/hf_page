@@ -26,7 +26,7 @@ class AdminMenu extends MenuLoader {
 			$titleId = $this->_mysql_ob->LastID ();
 			$this->_mysql_ob->Query ( 'insert into translable_element(' . DEFAULT_LANG . ') values("")' );
 			$result = $this->_mysql_ob->Query ( 'SELECT position from menu ORDER BY position DESC LIMIT 1' );
-			$this->_mysql_ob->Query ( 'insert into menu values(NULL, ' . $titleId . ', ' . $_POST ['menuVal'] . ', ' . ($result->fetch_assoc ()['position'] + 1) . ', ' . $this->_mysql_ob->LastID () . ', 1, NOW())' );
+			$this->_mysql_ob->Query ( 'insert into menu values(NULL, ' . $titleId . ', ' . $_POST ['menuVal'] . ', ' . (mysql_fetch_array($result)['position'] + 1) . ', ' . $this->_mysql_ob->LastID () . ', 1, NOW())' );
 			$template->Dodaj ( 'menu_id', $this->_mysql_ob->LastID () );
 			$case = 5;
 		} else if (isset ( $_GET ['edit'] )) {
@@ -37,7 +37,7 @@ class AdminMenu extends MenuLoader {
 				$case = 6;
 			else {
 				$case = 4;
-				$row = $result->fetch_assoc ();
+				$row = mysql_fetch_array($result);
 				
 				if (isset ( $_POST ['editMenuElement'] )) {
 					$this->_mysql_ob->Query ( 'update translable_element set ' . DEFAULT_LANG . '="' . addslashes($_POST ['menuElementTitle']) . '" where id=' . $row ['title'] );
@@ -46,7 +46,7 @@ class AdminMenu extends MenuLoader {
 				}
 
 				$result = $this->_mysql_ob->Query ( 'select ' . $this->_mysql_ob->GetImprovedLang ( "menu.title", true ) . 'langtitle, title, ' . $this->_mysql_ob->GetLangStr ( 'menu.content' ) . 'langcontent, content from menu where id=' . $id );
-				$row = $result->fetch_assoc ();
+				$row = mysql_fetch_array($result);
 					
 				$editor = new WysiwygEditor ( "/admin/menu/" . $id . "/edit", 'editMenuElement', "Zapisz zmiany", $row ['langcontent'] );
 				$editor->Additional ( "Tytuł: <input name='menuElementTitle' value='" . $row ['langtitle'] . "'><br />" );
@@ -66,38 +66,32 @@ class AdminMenu extends MenuLoader {
 	}
 	private function MoveUp($position) {
 		$result = $this->_mysql_ob->Query ( 'select id from menu where position=' . $position );
-		$row = $result->fetch_assoc ();
+		$row = mysql_fetch_array($result);
 		
 		$this->_mysql_ob->Query ( 'update menu set position = position + 1 where position = ' . ($position - 1) );
 		$this->_mysql_ob->Query ( 'update menu set position = position - 1 where id = ' . $row ['id'] );
 	}
 	private function MoveDown($position) {
 		$result = $this->_mysql_ob->Query ( 'select id from menu where position=' . $position );
-		$row = $result->fetch_assoc ();
+		$row = mysql_fetch_array($result);
 		
 		$this->_mysql_ob->Query ( 'update menu set position = position - 1 where position = ' . ($position + 1) );
 		$this->_mysql_ob->Query ( 'update menu set position = position + 1 where id = ' . $row ['id'] );
 	}
 	private function RegenerateMenuOrder($parent) {
 		$result = $this->_mysql_ob->Query ( 'select id from menu where parent=' . $parent );
-		
-		$rowCount = $this->_mysql_ob->NumberOfRows ();
-		
-		for($i = 1; $i <= $rowCount; $i ++) {
-			$result->data_seek ( $i - 1 );
-			$row = $result->fetch_assoc ();
+		$i = 0;
+		while ($row = mysql_fetch_array($result)) {
 			$this->_mysql_ob->Query ( 'update menu set position=' . $i . ' where id=' . $row ['id'] );
+			$i++;
 		}
 	}
 	private function GenerateMenuList() {
 		$arr = array ();
 		$result = $this->_mysql_ob->Query ( 'select id, ' . $this->_mysql_ob->GetImprovedLang ( "menu.title", true ) . 'title from menu' );
 		
-		$rowCount = $this->_mysql_ob->NumberOfRows ();
-		
-		for($i = 0; $i < $rowCount; $i ++) {
-			$result->data_seek ( $i );
-			$row = $result->fetch_assoc ();
+		while ($row = mysql_fetch_array($result)) {
+			$row = mysql_fetch_array($result);
 			
 			array_push ( $arr, $row );
 		}
@@ -114,7 +108,7 @@ class AdminMenu extends MenuLoader {
 		if ($this->_mysql_ob->NumberOfRows () == 0)
 			return true;
 		
-		$row = $result->fetch_assoc ();
+		$row = mysql_fetch_array($result);
 		$this->_mysql_ob->Query ( 'delete from translable_element where id=' . $row ['title'] );
 		$this->_mysql_ob->Query ( 'delete from translable_element where id=' . $row ['content'] );
 		$this->_mysql_ob->Query ( 'delete from menu where id=' . $id );
