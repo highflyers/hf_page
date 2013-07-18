@@ -2,8 +2,10 @@
 require_once './modules/wysiwyg_editor.php';
 class AdminNews {
 	private $_mysql;
-	public function __construct($mysql) {
+	private $_user;
+	public function __construct($mysql, $user) {
 		$this->_mysql = $mysql;
+		$this->_user = $user;
 	}
 	private function GetNewsEditorAdd(&$template) {
 		if (isset ( $_POST ['addNewsP'] )) {

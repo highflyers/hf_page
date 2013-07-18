@@ -21,8 +21,6 @@ class AdminTranslator {
 		
 		$result = $this->_mysql->Query ( 'show columns from translable_element' );
 		while ($row = mysql_fetch_array($result)) {
-			$row = mysql_fetch_array ( $result );
-			
 			array_push ( $langs, $row ['Field'] );
 		}
 		
@@ -32,20 +30,19 @@ class AdminTranslator {
 		global $langID;
 		$elements = array ();
 		$result = $this->_mysql->Query ( 'select * from translable_element' );
-		$rowCount = $this->_mysql->NumberOfRows ();
+		
 		$untr = isset ( $_GET ['untranslated'] );
 		
-		for($i = 0; $i < $rowCount; $i ++) {
-			$result->data_seek ( $i );
-			$row = mysql_fetch_array ( $result );
+		while ($row = mysql_fetch_assoc($result)) {
 			$template = new Template ( CURRENT_TEMPLATE . "admin_trans_element.htm" );
 			$template->Laduj ();
-			$tmpF = strlen ( $row [$langID] ) > 45;
-			$row [$langID] = substr ( $row [$langID], 0, 45 );
+			$tmpF = strlen ( strip_tags($row [$langID] )) > 45;
+			$row [$langID] = substr ( strip_tags($row [$langID]), 0, 45 );
 			if ($tmpF)
 				$row [$langID] .= ' ...';
 			$affected = false;
 			foreach ( $row as $key => $e )
+			{
 				if ($key != $langID && $key != 'id') {
 					if (strlen ( $e ) > 0)
 						$img = 'tak';
@@ -55,6 +52,7 @@ class AdminTranslator {
 					}
 					$row [$key] = "<img src='/images/" . $img . ".png'>";
 				}
+			}
 			if (! $affected && $untr)
 				continue;
 			$template->DodajPetle ( 'single_element', $row );

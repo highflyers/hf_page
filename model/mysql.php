@@ -64,7 +64,7 @@ class MySQL {
 		return mysql_fetch_array($this->_lastResult);
 	}
 	function LastID() {
-		return $this->_mysqli->insert_id;
+		return mysql_insert_id();
 	}
 	function NumberOfRows() {
 		return mysql_num_rows($this->_lastResult);

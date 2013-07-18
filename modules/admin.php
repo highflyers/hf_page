@@ -15,7 +15,7 @@ class AdminController
   public function __construct($user, $mysql)
   {
     $this->_user = $user;
-    $this->_newsManager = new AdminNews($mysql);
+    $this->_newsManager = new AdminNews($mysql, $user);
     $this->_menuManager = new AdminMenu($mysql);
     $this->_translatorManager = new AdminTranslator($mysql);
   }

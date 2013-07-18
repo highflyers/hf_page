@@ -21,7 +21,7 @@ class AdminMenu extends MenuLoader {
 		
 		$this->LoadStructure ();
 		
-		if (isset ( $_POST ['newMenuElement'] )) {
+		if (isset ( $_POST ['newMenuElement'] )) {print_r($_POST);
 			$this->_mysql_ob->Query ( 'insert into translable_element(' . DEFAULT_LANG . ') values("' . $_POST ['menuTitle'] . '")' );
 			$titleId = $this->_mysql_ob->LastID ();
 			$this->_mysql_ob->Query ( 'insert into translable_element(' . DEFAULT_LANG . ') values("")' );
@@ -92,8 +92,6 @@ class AdminMenu extends MenuLoader {
 		$result = $this->_mysql_ob->Query ( 'select id, ' . $this->_mysql_ob->GetImprovedLang ( "menu.title", true ) . 'title from menu' );
 		
 		while ($row = mysql_fetch_array($result)) {
-			$row = mysql_fetch_array($result);
-			
 			array_push ( $arr, $row );
 		}
 		return $arr;
@@ -141,7 +139,7 @@ class AdminMenu extends MenuLoader {
 			$curLink = "/" . DEFAULT_LANG . "/admin/menu/" . $struct [$i]->GetSite ();
 			$str .= "<li>";
 			$str .= $this->GenerateUpDownButton ( $i, $struct );
-			echo $struct [$i]->GetTitle () . " - <a  href='" . $curLink . "/edit'>Edytuj</a>";
+			$str .= $struct [$i]->GetTitle () . " - <a  href='" . $curLink . "/edit'>Edytuj</a>";
 			$str .= " - <a onclick='confirmMe(\"Czy na pewno chcesz to zrobic? Nie ma odwrotu!\", \"" . $curLink . "/rm\")' >Usuń</a>";
 			if ($struct [$i]->GetChildren () != null)
 				$str .= $this->MediumLevelMenu ( $struct [$i]->GetChildren () );
