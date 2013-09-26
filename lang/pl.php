@@ -32,7 +32,8 @@ $lang = array(
 	      "must_be_logged_alert" => "Musisz być zalogowany aby móc oglądać tę stronę.",
 	      "main_page" => "Strona główna",
 	      "news" => "Newsy",
-	      "read_more" => "czytaj dalej"
+	      "read_more" => "czytaj dalej",
+	      "user_panel" => "Panel użytkownika"
 );
 
 ?>

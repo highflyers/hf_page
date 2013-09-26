@@ -20,12 +20,14 @@
     </a>
     <div id="headerBox">
       {IF loggedin=1}
-      <div style='background:white; padding:5px; margin:5px'>
-	{lang[hello]}<b>{user[nick]}</b>! &bull; <a class="hbLink" href='/logout'>{lang[logout]}</a>
-      </div>
+      {lang[hello]}<b>{user[nick]}</b>! &bull; <a class="hbLink" href='/logout'>{lang[logout]}</a>
+      {/IF}
+      {IF loggedin=0}
+
       {/IF}
       <a class="hbLink" href="/pl">PL</a>
       <a class="hbLink" href="/en">EN</a>
+      <br />
       <a class="hbLink" href="http://www.polsl.pl/" target="_blank">{lang[our_university]}</a>
       <form action="index.php" method="get">
         <input type="text" name="q" class="search" placeholder="{lang[search]}...">
