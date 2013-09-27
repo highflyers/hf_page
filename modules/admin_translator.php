@@ -53,7 +53,7 @@ class AdminTranslator {
 						$img = 'nie';
 						$affected = true;
 					}
-					$row [$key] = "<img src='/images/" . $img . ".png'>";
+					$row [$key] = "<a href='/admin/translator/".$key."/".$row['id']."'><img src='/images/" . $img . ".png'></a>";
 				}
 			}
 			if (! $affected && $untr)
