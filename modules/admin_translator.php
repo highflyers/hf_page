@@ -34,6 +34,9 @@ class AdminTranslator {
 		$untr = isset ( $_GET ['untranslated'] );
 		
 		while ($row = mysql_fetch_assoc($result)) {
+			if (strlen($row[$langID]) == 0)
+				continue;
+			
 			$template = new Template ( CURRENT_TEMPLATE . "admin_trans_element.htm" );
 			$template->Laduj ();
 			$tmpF = strlen ( strip_tags($row [$langID] )) > 45;
