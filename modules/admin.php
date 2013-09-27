@@ -4,6 +4,7 @@ require_once './modules/wysiwyg_editor.php';
 require_once './modules/admin_news.php';
 require_once './modules/admin_menu.php';
 require_once './modules/admin_translator.php';
+require_once './model/user.php';
 
 class AdminController
 {
@@ -22,7 +23,7 @@ class AdminController
 
   private function IsLoggedIn()
   {
-    return $this->_user->getlevel() >= 0;
+    return $this->_user != null && $this->_user->getlevel() >= 0;
   }
 
   public function Decision()
