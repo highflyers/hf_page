@@ -67,7 +67,7 @@ class MenuLoader {
 		global $langID;
 		
 		for($i = 0; $i < count ( $struct ); $i ++) {
-			$str .= "<li><a  href='/" . $langID . "/page/" . $struct [$i]->GetSite () . "'>" . $struct [$i]->GetTitle () . "</a>";
+			$str .= "<li><a  href='/?hf_page" . $langID . "&action=site&id=" . $struct [$i]->GetSite () . "'>" . $struct [$i]->GetTitle () . "</a>";
 			if ($struct [$i]->GetChildren () != null)
 				$str .= $this->MediumLevelMenu ( $struct [$i]->GetChildren () );
 			$str .= "</li>";
@@ -81,7 +81,7 @@ class MenuLoader {
 		global $langID;
 		
 		for($i = 0; $i < count ( $this->_structure ); $i ++) {
-			$str .= "<li><a class=menuItemTopLevel href='/" . $langID . "/page/" . $this->_structure [$i]->GetSite () . "'>" . $this->_structure [$i]->GetTitle () . "</a>";
+			$str .= "<li><a class=menuItemTopLevel href='/?hf_lang=" . $langID . "&action=site&id=" . $this->_structure [$i]->GetSite () . "'>" . $this->_structure [$i]->GetTitle () . "</a>";
 			if ($this->_structure [$i]->GetChildren () != null)
 				$str .= $this->MediumLevelMenu ( $this->_structure [$i]->GetChildren () );
 			$str .= "</li>";

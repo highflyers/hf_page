@@ -20,13 +20,13 @@
     </a>
     <div id="headerBox">
       {IF loggedin=1}
-      {lang[hello]} <b>{user[nick]}</b>! &bull; <a class="hbLink" href='/logout'>{lang[logout]}</a>
+      {lang[hello]} <b>{user[nick]}</b>! &bull; <a class="hbLink" href='/?action=logout'>{lang[logout]}</a>
       {/IF}
       {IF loggedin=0}
 
       {/IF}
-      <a class="hbLink" href="/pl">PL</a>
-      <a class="hbLink" href="/en">EN</a>
+      <a class="hbLink" href="/?hf_lang=pl">PL</a>
+      <a class="hbLink" href="/?hf_lang=en">EN</a>
       <br />
       <a class="hbLink" href="http://www.polsl.pl/" target="_blank">{lang[our_university]}</a>
       <form action="index.php" method="get">

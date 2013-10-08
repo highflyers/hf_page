@@ -5,8 +5,8 @@
 
   <ul>
     {LOOP=news_short}
-    <li><a class="normalLink" href="/{langID}/news/{news_short[id]}">{news_short[title]}</a></li>
+    <li><a class="normalLink" href="/?hf_lang={langID}&action=news&news_id={news_short[id]}">{news_short[title]}</a></li>
     {/LOOP}  
   </ul>
-  <a class="boldLink" href="/{langID}/news">Więcej newsów...</a>
+  <a class="boldLink" href="/?hf_lang={langID}&action=news">Więcej newsów...</a>
 </div>
