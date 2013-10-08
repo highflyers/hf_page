@@ -79,11 +79,11 @@ class MainPage {
 		$dynList = array ();
 		
 		$result = $this->_mysql->Query ( 'select ' . $this->_mysql->GetImprovedLang ( 'news.title' ) . 'title from news order by date desc limit 0, 6' );
-
+		$i=1;
 		while ($row = mysql_fetch_array($result)) {
 			array_push ( $dynList, array (
 					'title' => $row ['title'],
-					'iterator' => $i + 1 
+					'iterator' => $i ++ 
 			) );
 		}
 		
