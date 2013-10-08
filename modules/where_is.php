@@ -78,7 +78,7 @@ class WhereIs
     $first_exists = $cnt - 3 >= 0;
     $template->DodajWarunek("medium_exists", $med_exists);
     $template->DodajWarunek("first_exists", $first_exists );
-    $template->DodajWarunek("article", $this->_article_id != -1);
+    $template->DodajWarunek("article", intval($this->_article_id) != -1);
 
     if ( $this->_article_id != -1 )
       $template->Dodaj("last_level_title", $this->_linksArray[$cnt - 1]->GetTitle());
