@@ -144,7 +144,7 @@ class Controller
 	$username = htmlspecialchars($_POST['nick']);
 	$password = htmlspecialchars($_POST['pass']);
 
-	$this->_login->LoginProcess($username, $password);
+	$this->_login->LoginProcess($username, md5($password));
 
 	if ( $this->_login->IsLoggedIn() )
 	  Header("Location: /index.php");

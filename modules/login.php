@@ -17,7 +17,6 @@ class Login
 	
   function LoginProcess($nick, $password)
   {
-  	$password = md5($password);
     $result = $this->_mysql->Query("select * from user where nick='".htmlspecialchars($nick)."' and password='".($password)."'");
 
     if ( $this->_mysql->NumberOfRows() == 0 )
@@ -26,7 +25,6 @@ class Login
 	$this->_sess->Clear();
 	return;
       }
-
     $this->_user = new User(mysql_fetch_array($result));
     $this->_sess->Clear();
     $this->_sess->RegisterVar("nick", $nick);
