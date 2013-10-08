@@ -41,8 +41,8 @@ class AdminMenu extends MenuLoader {
 				$row = mysql_fetch_array($result);
 				
 				if (isset ( $_POST ['editMenuElement'] )) {
-					$this->_mysql_ob->Query ( 'update translable_element set ' . DEFAULT_LANG . '="' . addslashes($_POST ['menuElementTitle']) . '" where id=' . $row ['title'] );
-					$this->_mysql_ob->Query ( 'update translable_element set ' . DEFAULT_LANG . '="' . addslashes($_POST ['bbcodeText']) . '" where id=' . $row ['content'] );
+					$this->_mysql_ob->Query ( 'update translable_element set ' . DEFAULT_LANG . '="' . ($_POST ['menuElementTitle']) . '" where id=' . $row ['title'] );
+					$this->_mysql_ob->Query ( 'update translable_element set ' . DEFAULT_LANG . '="' . ($_POST ['bbcodeText']) . '" where id=' . $row ['content'] );
 					$template->DodajWarunek ( "was_edited", 1 );
 				}
 
