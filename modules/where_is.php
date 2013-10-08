@@ -80,7 +80,7 @@ class WhereIs
     $template->DodajWarunek("first_exists", $first_exists );
     $template->DodajWarunek("article", intval($this->_article_id) != -1);
 
-    if ( $this->_article_id != -1 )
+    if ( $this->_article_id != -1 && $cnt > 0)
       $template->Dodaj("last_level_title", $this->_linksArray[$cnt - 1]->GetTitle());
 
     if ( $first_exists )
