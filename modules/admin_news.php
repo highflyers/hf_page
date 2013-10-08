@@ -19,7 +19,7 @@ class AdminNews {
 		} else
 			$template->Dodaj ( "MSG", "" );
 		
-		$editor = new WysiwygEditor ( '/admin/news/add', 'addNewsP', 'Dodaj newsa' );
+		$editor = new WysiwygEditor ( 'action=admin&admin_act=add_news', 'addNewsP', 'Dodaj newsa' );
 		$this->GetTextEditor ( $template, $editor );
 	}
 	private function GetTextEditor(&$template, WysiwygEditor $editor, $headerDefault = '', $banerDefault = '') {
@@ -89,7 +89,7 @@ class AdminNews {
 			return;
 		
 		$row = mysql_fetch_array($result);
-		$editor = new WysiwygEditor ( '/admin/news/edit/' . $id, 'editNewsP', 'Zakończ edycję', $row ['content'] );
+		$editor = new WysiwygEditor ( 'action=admin&admin_act=edit_news&news_edit_id=' . $id, 'editNewsP', 'Zakończ edycję', $row ['content'] );
 		$this->GetTextEditor ( $template, $editor, $row ['title'], $row ['baner_url'] );
 	}
 }

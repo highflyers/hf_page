@@ -2,7 +2,7 @@
 <h3>Wybierz news do edycji</h3>
 <ul>
 {LOOP=news}
-<li><a href="/{langID}/admin/news/edit/{news[id]}">{news[title]}</a> <br /></li>
+<li><a href="/?hf_page={langID}&action=admin&admin_act=edit_news&news_edit_id={news[id]}">{news[title]}</a> <br /></li>
 {/LOOP}
 </ul>
 {/IF}

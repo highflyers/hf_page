@@ -14,7 +14,7 @@
 <br />
 <fieldset>
   <legend>Dodawanie elementu menu</legend>
-  <form action="/{langID}/admin/menu" method="post">
+  <form action="/?hf_lang={langID}&action=admin&admin_act=menu_mod" method="post">
     Tytuł: <input name="menuTitle"> 
     <br />Nadmenu: <select name="menuVal">
       <option value="-1">--- brak ---</option>
@@ -36,5 +36,5 @@
 
 {IF case=5}
 <span style="color:green; font-weight:bold">Pomyślnie dodano element menu</span><br />
-<a href="/{langID}/admin/menu/{menu_id}/edit">Przejdź do edycji tego elementu</a>
+<a href="/?hf_lang={langID}&action=admin&admin_act=menu_mod&edit={menu_id}">Przejdź do edycji tego elementu</a>
 {/IF}

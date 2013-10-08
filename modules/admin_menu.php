@@ -49,7 +49,7 @@ class AdminMenu extends MenuLoader {
 				$result = $this->_mysql_ob->Query ( 'select ' . $this->_mysql_ob->GetImprovedLang ( "menu.title", true ) . 'langtitle, title, ' . $this->_mysql_ob->GetLangStr ( 'menu.content' ) . 'langcontent, content from menu where id=' . $id );
 				$row = mysql_fetch_array($result);
 					
-				$editor = new WysiwygEditor ( "/admin/menu/" . $id . "/edit", 'editMenuElement', "Zapisz zmiany", $row ['langcontent'] );
+				$editor = new WysiwygEditor ( "action=admin&admin_act=menu_mod&edit=" . $id, 'editMenuElement', "Zapisz zmiany", $row ['langcontent'] );
 				$editor->Additional ( "Tytuł: <input name='menuElementTitle' value='" . $row ['langtitle'] . "'><br />" );
 				$template->Dodaj ( 'editor', $editor->GetEditor () );
 			}
@@ -119,11 +119,11 @@ class AdminMenu extends MenuLoader {
 		$str = "<ul>";
 		
 		for($i = 0; $i < count ( $this->_structure ); $i ++) {
-			$curLink = "/" . DEFAULT_LANG . "/admin/menu/" . $this->_structure [$i]->GetSite ();
+			$curLink = "/?hf_lang=" . DEFAULT_LANG . "&action=admin&admin_act=menu_mod&";
 			$str .= "<li>";
 			$str .= $this->GenerateUpDownButton ( $i, $this->_structure );
-			$str .= $this->_structure [$i]->GetTitle () . " - <a href='" . $curLink . "/edit'>Edytuj</a> ";
-			$str .= " - <a onclick='confirmMe(\"Czy na pewno chcesz to zrobic? Nie ma odwrotu!\", \"" . $curLink . "/rm\")' >Usuń</a>";
+			$str .= $this->_structure [$i]->GetTitle () . " - <a href='" . $curLink . "edit=" . $this->_structure [$i]->GetSite ()."'>Edytuj</a> ";
+			$str .= " - <a onclick='confirmMe(\"Czy na pewno chcesz to zrobic? Nie ma odwrotu!\", \"" . $curLink . "&rm=" . $this->_structure [$i]->GetSite () ."\")' >Usuń</a>";
 			if ($this->_structure [$i]->GetChildren () != null)
 				$str .= $this->GetSubItems ( $this->_structure [$i]->GetChildren () );
 			$str .= "</li>";
@@ -136,11 +136,11 @@ class AdminMenu extends MenuLoader {
 		$str = "<ul>";
 		
 		for($i = 0; $i < count ( $struct ); $i ++) {
-			$curLink = "/" . DEFAULT_LANG . "/admin/menu/" . $struct [$i]->GetSite ();
+			$curLink = "/?hf_lang=" . DEFAULT_LANG . "&action=admin&admin_act=menu_mod&";
 			$str .= "<li>";
 			$str .= $this->GenerateUpDownButton ( $i, $struct );
-			$str .= $struct [$i]->GetTitle () . " - <a  href='" . $curLink . "/edit'>Edytuj</a>";
-			$str .= " - <a onclick='confirmMe(\"Czy na pewno chcesz to zrobic? Nie ma odwrotu!\", \"" . $curLink . "/rm\")' >Usuń</a>";
+			$str .= $struct [$i]->GetTitle () . " - <a  href='" . $curLink . "edit=".$struct [$i]->GetSite ()."'>Edytuj</a>";
+			$str .= " - <a onclick='confirmMe(\"Czy na pewno chcesz to zrobic? Nie ma odwrotu!\", \"" . $curLink . "rm=".$struct [$i]->GetSite ()."\")' >Usuń</a>";
 			if ($struct [$i]->GetChildren () != null)
 				$str .= $this->MediumLevelMenu ( $struct [$i]->GetChildren () );
 			$str .= "</li>";
@@ -153,12 +153,12 @@ class AdminMenu extends MenuLoader {
 		$str = '';
 		$i ++;
 		if ($i != 1)
-			$str .= " <a href='/" . DEFAULT_LANG . "/admin/menu/" . $i . "/moveup'>";
+			$str .= " <a href='/?hf_page" . DEFAULT_LANG . "&action=admin&admin_act=menu_mod&move=up&position=" . $i . "'>";
 		$str .= "<img src='/images/up.png'>";
 		if ($i != 1)
 			$str .= "</a> ";
 		if ($i < count ( $struct ))
-			$str .= " <a href='/" . DEFAULT_LANG . "/admin/menu/" . $i . "/movedown'>";
+			$str .= " <a href='/?hf_page" . DEFAULT_LANG . "&action=admin&admin_act=menu_mod&move=down&position=" . $i . "'>";
 		$str .= "<img src='/images/down.png'>";
 		if ($i < count ( $struct ))
 			$str .= "</a> ";

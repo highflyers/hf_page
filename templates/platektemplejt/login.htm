@@ -4,7 +4,7 @@
 {/IF}
 {IF IS_LOGGED_IN=0}
 <div style="font-wegiht:bold; color:red">{error}</div>
-<form method=post action="/login">
+<form method=post action="/?action=login">
   <br>{lang[login]}: <input name="nick"><br>
   {lang[password]}: <input name="pass" type="password"><br>
   <input type="submit" value="{lang[log_in]}" name='logmenow'>
