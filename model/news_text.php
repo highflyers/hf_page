@@ -23,7 +23,7 @@ class NewsText extends BBCodedText implements IMySQLOperationsAble
   {
     if ( $this->_isLoadedSQL )
       {
-	ShowError( 'Nie mo¿na dodac newsa do bazy. News ju¿ istnieje.' );
+	ShowError( 'Nie moï¿½na dodac newsa do bazy. News juï¿½ istnieje.' );
       }
     else
       {
@@ -34,7 +34,7 @@ class NewsText extends BBCodedText implements IMySQLOperationsAble
 	
   function LoadFromMySQL( MySQL $mysql )
   {
-    //:TODO ³adowanie z mysql
+    //:TODO ï¿½adowanie z mysql
 		
     $this->_isLoadedSQL = true;
   }
@@ -43,11 +43,11 @@ class NewsText extends BBCodedText implements IMySQLOperationsAble
   {
     if ( $this->_isLoadedSQL == false )
       {
-	ShowError( 'Nie mo¿na zaktualizowac rekordu. Rekord nie zostal zaladowany z bazy danych.');
+	ShowError( 'Nie moï¿½na zaktualizowac rekordu. Rekord nie zostal zaladowany z bazy danych.');
       }
     else
       {
-	//:TODO aktualizacja newsów do mysql
+	//:TODO aktualizacja newsï¿½w do mysql
       }
   }
 	
@@ -65,7 +65,7 @@ class NewsText extends BBCodedText implements IMySQLOperationsAble
   {
     if ( !is_numeric( $userId ) )
       {
-	ShowError( 'Nie poprawny user id przy dodawaniu newsów. ' );
+	ShowError( 'Nie poprawny user id przy dodawaniu newsï¿½w. ' );
       }
     else 
       {
@@ -145,7 +145,7 @@ class NewsText extends BBCodedText implements IMySQLOperationsAble
     $template->Dodaj("content", $text);
     $template->Dodaj("id", $this->_id);
     $template->Dodaj("iterator", $iterator);
-    $template->Dodaj("baner_url", $this->_banerUrl);
+    $template->Dodaj("baner_url", (strlen($this->_banerUrl) < 1)?'/'.CURRENT_TEMPLATE.'gfx/default_baner.jpg' : $this->_banerUrl);
 
     return $template->Parsuj();
   }
