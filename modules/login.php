@@ -17,7 +17,8 @@ class Login
 	
   function LoginProcess($nick, $password)
   {
-    $result = $this->_mysql->Query("select * from user where nick='".htmlspecialchars($nick)."' and password='".htmlspecialchars($password)."'");
+  	$password = md5($password);
+    $result = $this->_mysql->Query("select * from user where nick='".htmlspecialchars($nick)."' and password='".($password)."'");
 
     if ( $this->_mysql->NumberOfRows() == 0 )
       {
