@@ -2,7 +2,7 @@
 	display:block;
 	margin-left:210px;
 	background:white; /*background of menu bar (default state)*/
-	width:771px;
+	width:770px;
 	height:45px;
 	z-index:1000;
 }
@@ -28,7 +28,7 @@
 /*Top level menu link items style*/
 .ddsmoothmenu ul li a{
 	display:block;
-	width:108px;
+	width:107px;
 	padding:15px 0px 17px 0px;  /*overall height:45px */
 	font-family:Tahoma, Geneva, sans-serif;
 	font-size:13px;
