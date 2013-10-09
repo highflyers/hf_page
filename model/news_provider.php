@@ -8,7 +8,8 @@ class NewsProvider {
 	}
 	public function GetNewsCount() {
 		$result = $this->_mysql->Query ( 'select count(*) as cnt from news' );
-		return $this->_mysql->FetchAssoc()['cnt'];
+		$tmp = $this->_mysql->FetchAssoc();
+		return $tmp['cnt'];
 	}
 	public function GetLastHeaders($count) {
 		global $langID;
