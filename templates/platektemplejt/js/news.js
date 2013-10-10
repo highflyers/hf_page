@@ -1,10 +1,11 @@
 
 var newsLoaded = 1;
 var newsAutoScroll = 1;
+var newsScr = 0;
 
 $(document).ready(function() {
 	newsLoad(1);
-	setInterval(function() {newsScroll()}, 5000);
+	newsScr = setInterval(function() {newsScroll()}, 5000);
 });
 
 function newsScroll() {
@@ -24,15 +25,15 @@ function newsLoad(n) {
 	var i;
 	var circles = $('.newsCircleButton');
 	for(i = 0; i < circles.length; i++) {
-		circles[i].style.backgroundImage = 'url("/templates/platektemplejt/gfx/newsNavCircleInactive.png")';
+		circles[i].style.backgroundImage = 'url("gfx/newsNavCircleInactive.png")';
 	}
-	if ( circles[n-1] == null )return;
-	circles[n-1].style.backgroundImage = 'url("/templates/platektemplejt/gfx/newsNavCircleActive.png")';
+	
+	circles[n-1].style.backgroundImage = 'url("gfx/newsNavCircleActive.png")';
 	
 	var title = document.getElementById('newsBaseTitle' + n).textContent;
 	var content = document.getElementById('newsBaseContent' + n).innerHTML;
 	var text = document.getElementById('newsBaseContent' + n).textContent;
-	var author = document.getElementById('newsBaseAuthor' + n).innerHTML;
+	var author = document.getElementById('newsBaseAuthor' + n).textContent;
 	var date = document.getElementById('newsBaseDate' + n).textContent;
 	var banner = document.getElementById('newsBaseBanner' + n);
 	var source = banner.getAttribute('src');
@@ -47,7 +48,7 @@ function newsLoad(n) {
 	
 	document.getElementById('newsContent').appendChild(contentTitle);
 	document.getElementById('newsContentTitle').insertAdjacentHTML('afterend', content);
-	document.getElementById('newsInfoAuthor').innerHTML = author;
+	document.getElementById('newsInfoAuthor').textContent = author;
 	document.getElementById('newsInfoDate').textContent = date;
 	
 	$( "#newsBanner" ).animate({ opacity: 0 }, 200 );
@@ -83,6 +84,8 @@ function newsExpand() {
 	else {
 		//alert('Close');
 		newsAutoScroll = 1;
+		clearInterval(newsScr);
+		newsScr = setInterval(function() {newsScroll()}, 5000);
 		document.getElementById('newsButtonRead').textContent = "czytaj dalej";
 		$('#newsBoxBody').slideUp(500);
 		setTimeout(function() {
@@ -94,6 +97,8 @@ function newsExpand() {
 
 function newsNext(evt) {
 	evt.preventDefault();
+	clearInterval(newsScr);
+	newsScr = setInterval(function() {newsScroll()}, 5000);
 	if(newsLoaded < 6) newsLoad(newsLoaded + 1);
 	else newsLoad(1);
 };
@@ -105,6 +110,8 @@ function newsNext2() {
 
 function newsPrev(evt) {
 	evt.preventDefault();
+	clearInterval(newsScr);
+	newsScr = setInterval(function() {newsScroll()}, 5000);
 	if(newsLoaded > 1) newsLoad(newsLoaded - 1);
 	else newsLoad(6);
 };
