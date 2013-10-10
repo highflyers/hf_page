@@ -30,9 +30,10 @@ class MainPage {
 		$this->_whereIs = new WhereIs ( $mysql, $id, $this->_controller->GetAction () == "news_concrete" || $this->_controller->GetAction () == 'news' ? 1 : 0 );
 	}
 	private function GetHeader() {
+		global $langID;
 		$template = new Template ( CURRENT_TEMPLATE . "header.htm" );
 		$template->Laduj ();
-		
+		$template->Dodaj("polsl_website", $langID == 'pl' ? 'http://www.polsl.pl/' : 'http://www.polsl.pl/en');
 		if ($this->_user != null)
 			$template->Dodaj ( "user", $this->_user->ToAssociatedArray () );
 		
