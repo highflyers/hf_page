@@ -123,6 +123,9 @@ class MainPage {
 		$template = new Template ( CURRENT_TEMPLATE . "body_section.htm" );
 		$template->Laduj ();
 		
+		if ( $this->_controller->GetAction () == 'index' ) {
+			$template->Dodaj ( "backgroundQuadro", "<div class=\"background\" id=\"backgroundQuadro\">" );
+		}
 		$template->Dodaj ( "tpl_url", CURRENT_TEMPLATE );
 		$template->Dodaj ( "header", $this->GetHeader () );
 		$template->Dodaj ( "footer", $this->GetFooter () );
