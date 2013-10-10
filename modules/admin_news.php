@@ -74,7 +74,8 @@ class AdminNews {
 			$result = $this->_mysql->Query ( "select title, content from news where id = " . $id );
 			$row = mysql_fetch_array($result);
 			
-			$this->_mysql->Query ( "update news set baner_url='" . str_replace ( "'", "\'", $_POST ['baner'] ) . "' where id=" . $id );
+			$baner = isset($_POST['baner']) ? $_POST['baner'] : '';
+			$this->_mysql->Query ( "update news set baner_url='" . str_replace ( "'", "\'", $baner ) . "' where id=" . $id );
 			$this->_mysql->Query ( "update translable_element set " . DEFAULT_LANG . "='" . str_replace ( "'", "\'", $_POST ['bbcodeText'] ) . "' where id=" . $row ['content'] );
 			
 			$this->_mysql->Query ( "update translable_element set " . DEFAULT_LANG . "='" . str_replace ( "'", "\'", $_POST ['title'] ) . "' where id=" . $row ['title'] );
