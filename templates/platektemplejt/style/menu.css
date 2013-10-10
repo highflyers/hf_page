@@ -10,7 +10,6 @@
 	z-index:100;
 	margin:0;
 	padding:0;
-	padding-left: 4px;
 	list-style-type:none;
 	list-style:none;
 }
@@ -28,7 +27,7 @@
 /*Top level menu link items style*/
 .ddsmoothmenu ul li a{
 	display:block;
-	width:106px;
+	width:110px;
 	padding:15px 0px 17px 0px;  /*overall height:45px */
 	font-family:Tahoma, Geneva, sans-serif;
 	font-size:13px;
