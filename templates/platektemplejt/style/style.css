@@ -40,9 +40,14 @@ h2, h3, h4, h5, h6 {
 }
 #top {
 	width:1012px;
-	height:254px;
 	margin:0px auto 0px auto;
 	padding:0px;
+}
+.topMain {
+	height:254px;
+}
+.topPage {
+	height:184px;
 }
 #navBox {
 	width:1012px;
@@ -103,10 +108,15 @@ h1 a:hover {
 	left:0px;
 	top:0px;
 	width:980px;
-	height:193px;
 	margin:0px 16px;
 	padding:0px;
 	z-index:0;
+}
+.headerMain {
+	height:193px;
+}
+.headerPage {
+	height:123px;
 }
 #logo {
 	position:absolute;
@@ -250,13 +260,13 @@ header form {
 	float:left;
 	width:220px;
 	margin:0px 0px 0px 16px;
-	background:url("../gfx/bg_side_box_header_left.png") right top no-repeat;
+	/*background:url("../gfx/bg_side_box_header_left.png") right top no-repeat;*/
 }
 #colRight {
 	float:right;
 	width:220px;
 	margin:0px 16px 0px 0px;
-	background:url("../gfx/bg_side_box_header_right.png") left top no-repeat;
+	/*background:url("../gfx/bg_side_box_header_right.png") left top no-repeat;*/
 }
 .sideBox {
 	width:220px;
@@ -285,12 +295,14 @@ header form {
 .sideBoxLeft .sideBoxHeader h4 {
 	padding:9px 20px 9px 0px;
 	text-align:right;
-	background:url("../gfx/bg_side_box_header_left.png") right top no-repeat;
+	background: rgb(0,50,100);
+	/*background:url("../gfx/bg_side_box_header_left.png") right top no-repeat;*/
 }
 .sideBoxRight .sideBoxHeader h4 {
 	padding:9px 0px 9px 20px;
 	text-align:left;
-	background:url("../gfx/bg_side_box_header_right.png") left top no-repeat;
+	background: rgb(0,50,100);
+	/*background:url("../gfx/bg_side_box_header_right.png") left top no-repeat;*/
 }
 .sideBoxLeft .sideBoxContent {}
 .sideBoxRight .sideBoxContent {}
@@ -386,11 +398,11 @@ div.center {
 .boldLink:hover {
 	color:black;
 }
-.normalLink:link, .normalLink:visited {
+#content a:link, #content a:visited, .normalLink:link, .normalLink:visited {
 	text-decoration:underline;
 	color:rgb(0,69,119);
 }
-.normalLink:hover {
+#content a:hover, .normalLink:hover {
 	color:black;
 }
 .actionLink:link, .actionLink:visited {
@@ -524,11 +536,11 @@ div.center {
 }
 #newsContentShadow {
 	width:720px;
-	height:250px;
+	height:20px;
 	background:url("../gfx/newsContentShadow.png") left bottom no-repeat;
 	position:absolute;
 	left:0px;
-	top:0px;
+	top:230px;
 	z-index:10;
 }
 .mCSB_scrollTools {
@@ -608,7 +620,7 @@ div.center {
 	height:18px;
 	padding:5px 5px 29px 117px;
 }
-a.newsCircleButton:link, a.newsCircleButton:visited{
+a.newsCircleButton:link, a.newsCircleButton:visited {
 	display:block;
 	width:18px;
 	height:18px;
@@ -618,7 +630,6 @@ a.newsCircleButton:link, a.newsCircleButton:visited{
 a.newsCircleButton:hover {
 	background:url("../gfx/newsNavCircleActive.png") left top no-repeat;
 }
-
 #newsButtonRead {
 	display:block;
 	width:110px;

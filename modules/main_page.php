@@ -42,6 +42,14 @@ class MainPage {
 		if ($this->_login->IsLoggedIn ())
 			$template->Dodaj ( "user", $this->_user->ToArray () );
 		
+		if ( $this->_controller->GetAction () == 'index' ) {
+			$template->Dodaj ( "classTop", "topMain" );
+			$template->Dodaj ( "classHeader", "headerMain" );
+		}
+		else {
+			$template->Dodaj ( "classTop", "topPage" );
+			$template->Dodaj ( "classHeader", "headerPage" );
+		}
 		$template->Dodaj ( "main_menu", $this->GetMainMenu () );
 		
 		return $template->Parsuj ();
