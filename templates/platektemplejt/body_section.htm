@@ -1,6 +1,7 @@
 <body>
-
-  {backgroundQuadro}
+{IF is_index=1}
+  <div class="background" id="backgroundQuadro">
+{/IF}
     <div class="background" id="backgroundStripe">
       <div class="background" id="backgroundClouds">
 	<div class="background" id="backgroundSeparator">
@@ -30,5 +31,8 @@
       </div>
     </div>
   </div>
+  {IF is_index=1}
+  <div class="background" id="backgroundQuadro">
+  {/IF}
 </body>
 
