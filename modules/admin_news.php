@@ -13,7 +13,9 @@ class AdminNews {
 			$idTit = $this->_mysql->LastID ();
 			$this->_mysql->Query ( "insert into translable_element(id, " . DEFAULT_LANG . ") values(NULL, '" . str_replace ( "'", "\'", $_POST ['bbcodeText'] ) . "')" );
 			$idTex = $this->_mysql->LastID ();
-			$this->_mysql->Query ( "insert into news values(NULL, " . $idTit . ", " . $idTex . ", " . intval ( $this->_user->getid () ) . ", NOW(), '" . str_replace ( "'", "\'", $_POST ['banner'] ) . "')" );
+			if ($_POST['changeBaner'] != 'on')
+				$_POST ['sbaner'] = '';
+			$this->_mysql->Query ( "insert into news values(NULL, " . $idTit . ", " . $idTex . ", " . intval ( $this->_user->getid () ) . ", NOW(), '" . str_replace ( "'", "\'", $_POST ['sbaner'] ) . "')" );
 			
 			$template->Dodaj ( "MSG", "Zapisano zmiany!" );
 		} else
@@ -22,13 +24,12 @@ class AdminNews {
 		$editor = new WysiwygEditor ( 'action=admin&admin_act=add_news', 'addNewsP', 'Dodaj newsa' );
 		$this->GetTextEditor ( $template, $editor );
 	}
-	private function GetTextEditor(&$template, WysiwygEditor $editor, $headerDefault = '', $banerDefault = '') {
+ 	private function GetTextEditor(&$template, WysiwygEditor $editor, $headerDefault = '', $banerDefault = '') {
 		$editor->Additional ( 'Nagłówek: <input type=text name=title value=\'' . $headerDefault . '\'><br />
 <fieldset><legend>Baner</legend>' . ($banerDefault != '' ? '
 <img src="' . $banerDefault . '" width=400><br />' : '') . '
-<input id=cbaner type=checkbox name=changeBaner onclick="document.getElementById(\'hbaner1\').disabled=document.getElementById(\'hbaner2\').disabled=!document.getElementById(\'cbaner\').checked">Zastosuj baner<br />
-<input type="radio" checked disabled=true id=hbaner1 name="banerFromWhere" value="local">Z dysku: <input id=nbaner disabled=true type=file name=fbaner ><br />
-<input type="radio" id=hbaner2 disabled=true name="banerFromWhere" value="extern">Link z zewnętrznego serwera: <input name=sbaner><br /><span id=ibaner style="font-size:9px">Zmiana banera spowoduje usunięcie z dysku starego banera.</span><br /></fieldset><br />
+<input id=cbaner type=checkbox name=changeBaner '.($banerDefault != '' ? 'checked' : '').'>Zastosuj baner<br />
+Link do pliku: <input name=sbaner id=sbaner value="'.$banerDefault.'"><br /></fieldset><br />
 ' );
 		$template->DodajWarunek ( 'listmode', 0 );
 		$template->Dodaj ( 'bbcode_editor', $editor->GetEditor () );
@@ -74,7 +75,10 @@ class AdminNews {
 			$result = $this->_mysql->Query ( "select title, content from news where id = " . $id );
 			$row = mysql_fetch_array($result);
 			
-			$baner = isset($_POST['baner']) ? $_POST['baner'] : '';
+			if ($_POST['changeBaner'] != 'on')
+				$_POST ['sbaner'] = '';
+			
+			$baner = isset($_POST['sbaner']) ? $_POST['sbaner'] : '';
 			$this->_mysql->Query ( "update news set baner_url='" . str_replace ( "'", "\'", $baner ) . "' where id=" . $id );
 			$this->_mysql->Query ( "update translable_element set " . DEFAULT_LANG . "='" . str_replace ( "'", "\'", $_POST ['bbcodeText'] ) . "' where id=" . $row ['content'] );
 			
