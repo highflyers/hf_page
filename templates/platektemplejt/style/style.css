@@ -143,14 +143,14 @@ h1 a:hover {
 	top:30px;
 	text-align:right;
 }
-#headerBox a, #headerBox span {
+.hbLink, .hbLink span {
 	margin:0px 5px 10px 5px;
 }
-#headerBox a:link, #headerBox a:visited {
+.hbLink :link, .hbLink :visited {
 	color:black;
 	text-decoration:underline;
 }
-#headerBox a:hover {
+.hbLink:hover {
 	color:rgb(0,36,96);
 }
 header form {
