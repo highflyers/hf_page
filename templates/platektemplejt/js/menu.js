@@ -34,16 +34,22 @@
 //** Feb 23rd, 2013 move CSS3 shadow adjustment for IE 9+ to the script, add resize event for all browsers to reposition open toggle 
 //** menus and shadows in window if they would have gone to a different position at the new window dimensions
 //** Feb 25th, 2013 (v2.0) All unofficial updates by John merged into official and now called v2.0. Changed "method" option's default value to "hover"
+//** May 14th, 2013 (v2.1) Adds class 'repositioned' to menus moved due to being too close to the browser's right edge
+//** May 30th, 2013 (v2.1) Change from version sniffing to means testing for jQuery versions which require added code for click toggle event handling
+//** Sept 15th, 2013 add workaround for false positives for touch on Chrome
+//** Sept 22nd, 2013 (v2.2) Add vertical repositioning if sub menu will not fit in the viewable vertical area. May be turned off by setting
+// 	repositionv: false,
+//** in the init. Sub menus that are vertically repositioned will have the class 'repositionedv' added to them.
 
 var ddsmoothmenu = {
 
 ///////////////////////// Global Configuration Options: /////////////////////////
 
 //Specify full URL to down and right arrow images (23 is padding-right for top level LIs with drop downs, 6 is for vertical top level items with fly outs):
-arrowimages: {down:['downarrowclass', '/templates/platektemplejt/gfx/icons/none/down.gif', 0], right:['rightarrowclass', '/templates/platektemplejt/gfx/icons/right.gif', 0]},
-transition: {overtime:50, outtime:50}, //duration of slide in/ out animation, in milliseconds
+arrowimages: {down:['downarrowclass', 'down.gif', 0], right:['rightarrowclass', 'right.gif', 6]},
+transition: {overtime:300, outtime:300}, //duration of slide in/ out animation, in milliseconds
 shadow: true, //enable shadow? (offsets now set in ddsmoothmenu.css stylesheet)
-showhidedelay: {showdelay: 25, hidedelay: 50}, //set delay in milliseconds before sub menus appear and disappear, respectively
+showhidedelay: {showdelay: 100, hidedelay: 200}, //set delay in milliseconds before sub menus appear and disappear, respectively
 zindexvalue: 1000, //set z-index value for menus
 closeonnonmenuclick: true, //when clicking outside of any "toggle" method menu, should all "toggle" menus close? 
 closeonmouseout: false, //when leaving a "toggle" menu, should all "toggle" menus close? Will not work on touchscreen
@@ -52,7 +58,7 @@ closeonmouseout: false, //when leaving a "toggle" menu, should all "toggle" menu
 
 overarrowre: /(?=\.(gif|jpg|jpeg|png|bmp))/i,
 overarrowaddtofilename: '_over',
-detecttouch: !!('ontouchstart' in window) || !!('ontouchstart' in document.documentElement) || !!window.ontouchstart || !!window.Touch || !!window.onmsgesturechange || (window.DocumentTouch && window.document instanceof window.DocumentTouch),
+detecttouch: !!('ontouchstart' in window) || !!('ontouchstart' in document.documentElement) || !!window.ontouchstart || (!!window.Touch && !!window.Touch.length) || !!window.onmsgesturechange || (window.DocumentTouch && window.document instanceof window.DocumentTouch),
 detectwebkit: navigator.userAgent.toLowerCase().indexOf("applewebkit") > -1, //detect WebKit browsers (Safari, Chrome etc)
 idevice: /ipad|iphone/i.test(navigator.userAgent),
 detectie6: (function(){var ie; return (ie = /MSIE (\d+)/.exec(navigator.userAgent)) && ie[1] < 7;})(),
@@ -66,7 +72,7 @@ executelink: function($, prevobjs, e){
 	while(--prevscount > -1){
 		if(prevobjs[prevscount] === this){
 			prevobjs.splice(prevscount, 1);
-			if(link.href !== ddsmoothmenu.emptyhash && link.href && $(link).is('a') && !$(link).children('span.' + ddsmoothmenu.arrowimages.down[0] +', span.' + ddsmoothmenu.arrowimages.right[0]).size()){
+			if(link.href !== ddsmoothmenu.emptyhash && link.href && $(link).is('a') && !$(link).children('span.' + ddsmoothmenu.arrowimages.down[0] +', span.' + ddsmoothmenu.arrowimages.right[0]).length){
 				if(link.target && link.target !== '_self'){
 					window.open(link.href, link.target);
 				} else {
@@ -76,6 +82,22 @@ executelink: function($, prevobjs, e){
 			}
 		}
 	}
+},
+
+repositionv: function($subul, $link, newtop, winheight, doctop, method, menutop){
+	menutop = menutop || 0;
+	var topinc = 0, doclimit = winheight + doctop;
+	$subul.css({top: newtop, display: 'block'});
+	while($subul.offset().top < doctop) {
+		$subul.css({top: ++newtop});
+		++topinc;
+	}
+	if(!topinc && $link.offset().top + $link.outerHeight() < doclimit && $subul.data('height') + $subul.offset().top > doclimit){
+		$subul.css({top: doctop - $link.parents('ul').last().offset().top - $link.position().top});
+	}
+	method === 'toggle' && $subul.css({display: 'none'});
+	if(newtop !== menutop){$subul.addClass('repositionedv');}
+	return [topinc, newtop];
 },
 
 updateprev: function($, prevobjs, $curobj){
@@ -91,7 +113,7 @@ updateprev: function($, prevobjs, $curobj){
 
 subulpreventemptyclose: function(e){
 	var link = e.target;
-	if(link.href === ddsmoothmenu.emptyhash && $(link).parent('li').find('ul').size() < 1){
+	if(link.href === ddsmoothmenu.emptyhash && $(link).parent('li').find('ul').length < 1){
 		e.preventDefault();
 		e.stopPropagation();
 	}
@@ -133,11 +155,10 @@ buildmenu: function($, setting){
 	var zsub = 0; //subtractor to be incremented so that each top level menu can be covered by previous one's drop downs
 	var prevobjs = smoothmenu.globaltrackopen? smoothmenu.prevobjs : [];
 	var $mainparent = $("#"+setting.mainmenuid).removeClass("ddsmoothmenu ddsmoothmenu-v").addClass(setting.classname || "ddsmoothmenu");
-	//setting.$mainparent = $mainparent;
+	setting.repositionv = setting.repositionv !== false;
 	var $mainmenu = $mainparent.find('>ul'); //reference main menu UL
 	var method = smoothmenu.detecttouch? 'toggle' : setting.method === 'toggle'? 'toggle' : 'hover';
 	var $topheaders = $mainmenu.find('>li>ul').parent();//has('ul');
-	//$mainparent.data('$headers', $topheaders);
 	var orient = setting.orientation!='v'? 'down' : 'right', $parentshadow = $(document.body);
 	$mainmenu.click(function(e){e.target.href === smoothmenu.emptyhash && e.preventDefault();});
 	if(method === 'toggle') {
@@ -165,11 +186,11 @@ buildmenu: function($, setting){
 			var $leaveobj = orient === 'down'? $mainparent : $mainmenu;
 			$leaveobj.bind('mouseleave.smoothmenu', function(){$mainmenu.find('li>a.selected').parent().trigger('click');});
 		}
-		if(!$('style[title="ddsmoothmenushadowsnone"]').size()){
+		if(!$('style[title="ddsmoothmenushadowsnone"]').length){
 			$('head').append('<style title="ddsmoothmenushadowsnone" type="text/css">.ddsmoothmenushadowsnone{display:none!important;}</style>');
 		}
 		var shadowstimer;
-		$(window).resize(function(){
+		$(window).bind('resize scroll', function(){
 			clearTimeout(shadowstimer);
 			var $selected = $mainmenu.find('li>a.selected').parent(),
 			$shadows = $('.ddshadow').addClass('ddsmoothmenushadowsnone');
@@ -191,22 +212,34 @@ buildmenu: function($, setting){
 			subulw	: $subul.outerWidth(),
 			subulh	: $subul.outerHeight()
 		};
-		$subul.css({top: orient === 'down'? dimensions.h : 0});
+		var menutop = orient === 'down'? dimensions.h : 0;
+		$subul.css({top: menutop});
 		function restore(){$link.removeClass('selected');}
 		method === 'toggle' && $subul.click(smoothmenu.subulpreventemptyclose);
 		$curobj[method](
 			function(e){
 				if(!$curobj.data('headers')){
 					smoothmenu.buildsubheaders($, $subul.find('>li>ul').parent(), setting, method, prevobjs);
-					$curobj.data('headers', true).find('>ul').css({display:'none', visibility:'visible'});
+					$curobj.data('headers', true).find('>ul').each(function(i, ul){
+						var $ul = $(ul);
+						$ul.data('height', $ul.outerHeight());
+					}).css({display:'none', visibility:'visible'});
 				}
 				method === 'toggle' && smoothmenu.updateprev.call(this, $, prevobjs, $curobj);
 				clearTimeout($subul.data('timers').hidetimer);
 				$link.addClass('selected');
 				$subul.data('timers').showtimer=setTimeout(function(){
 					var menuleft = orient === 'down'? 0 : dimensions.w;
+					var menumoved = menuleft, newtop, doctop, winheight, topinc = 0;
 					menuleft=($curobj.offset().left+menuleft+dimensions.subulw>$(window).width())? (orient === 'down'? -dimensions.subulw+dimensions.w : -dimensions.w) : menuleft; //calculate this sub menu's offsets from its parent
+					menumoved = menumoved !== menuleft;
+					$subul.css({top: menutop}).removeClass('repositionedv');
+					if(setting.repositionv && $link.offset().top + menutop + $subul.data('height') > (winheight = $(window).height()) + (doctop = $(document).scrollTop())){
+						newtop = (orient === 'down'? 0 : $link.outerHeight()) - $subul.data('height');
+						topinc = smoothmenu.repositionv($subul, $link, newtop, winheight, doctop, method, menutop)[0];
+					}
 					$subul.css({left:menuleft, width:dimensions.subulw}).stop(true, true).animate({height:'show',opacity:'show'}, smoothmenu.transition.overtime, function(){this.style.removeAttribute && this.style.removeAttribute('filter');});
+					if(menumoved){$subul.addClass('repositioned');} else {$subul.removeClass('repositioned');}
 					if (setting.shadow){
 						if(!$curobj.data('$shadow')){
 							$curobj.data('$shadow', $('<div></div>').addClass('ddshadow toplevelshadow').prependTo($parentshadow).css({zIndex: $curobj.css('zIndex')}));  //insert shadow DIV and set it to parent node for the next shadow div
@@ -259,23 +292,36 @@ buildsubheaders: function($, $headers, setting, method, prevobjs){
 			function(e){
 				if(!$curobj.data('headers')){
 					smoothmenu.buildsubheaders($, $subul.find('>li>ul').parent(), setting, method, prevobjs);
-					$curobj.data('headers', true).find('>ul').css({display:'none', visibility:'visible'});
+					$curobj.data('headers', true).find('>ul').each(function(i, ul){
+						var $ul = $(ul);
+						$ul.data('height', $ul.height());
+					}).css({display:'none', visibility:'visible'});
 				}
 				method === 'toggle' && smoothmenu.updateprev.call(this, $, prevobjs, $curobj);
 				clearTimeout($subul.data('timers').hidetimer);
 				$link.addClass('selected');
 				$subul.data('timers').showtimer=setTimeout(function(){
 					var menuleft= dimensions.w;
+					var menumoved = menuleft, newtop, doctop, winheight, topinc = 0;
 					menuleft=($curobj.offset().left+menuleft+dimensions.subulw>$(window).width())? -dimensions.w : menuleft; //calculate this sub menu's offsets from its parent
+					menumoved = menumoved !== menuleft;
+					$subul.css({top: 0}).removeClass('repositionedv');
+					if(setting.repositionv && $link.offset().top + $subul.data('height') > (winheight = $(window).height()) + (doctop = $(document).scrollTop())){
+						newtop = $link.outerHeight() - $subul.data('height');
+						topinc = smoothmenu.repositionv($subul, $link, newtop, winheight, doctop, method);
+						newtop = topinc[1];
+						topinc = topinc[0];
+					}
 					$subul.css({left:menuleft, width:dimensions.subulw}).stop(true, true).animate({height:'show',opacity:'show'}, smoothmenu.transition.overtime, function(){this.style.removeAttribute && this.style.removeAttribute('filter');});
+					if(menumoved){$subul.addClass('repositioned');} else {$subul.removeClass('repositioned');}
 					if (setting.shadow){
 						if(!$curobj.data('$shadow')){
 							$parentshadow = $curobj.parents("li:eq(0)").data('$shadow');
 							$curobj.data('$shadow', $('<div></div>').addClass('ddshadow').prependTo($parentshadow).css({zIndex: $parentshadow.css('z-index')}));  //insert shadow DIV and set it to parent node for the next shadow div
 						}
 						var offsets = $subul.offset();
-						var shadowleft= menuleft;
-						var shadowtop= $curobj.position().top;
+						var shadowleft = menuleft;
+						var shadowtop = $curobj.position().top - (newtop? $subul.data('height') - $link.outerHeight() - topinc : 0);
 						if (smoothmenu.detectwebkit && !smoothmenu.css3support){ //in WebKit browsers, restore shadow's opacity to full
 							$curobj.data('$shadow').css({opacity:1});
 						}
@@ -314,7 +360,7 @@ init: function(setting){
 		};
 		jQuery('link[href*="ddsmoothmenu"]').attr('disabled', true);
 		jQuery(function($){
-			alert('You Seriously Need to Update Your Browser!\n\nNavigational Menu\n\nDEVELOPER\'s NOTE: This script will run in IE 6 when using jQuery 1.3.2 or less,\nbut not really well.');
+			alert('You Seriously Need to Update Your Browser!\n\nDynamic Drive Smooth Navigational Menu Showing Text Only Menu(s)\n\nDEVELOPER\'s NOTE: This script will run in IE 6 when using jQuery 1.3.2 or less,\nbut not real well.');
 				$('link[href*="ddsmoothmenu"]').attr('disabled', true);
 		});
 		return this.init(setting);
@@ -383,9 +429,17 @@ init: function(setting){
 }; //end ddsmoothmenu variable
 
 
-// Patch for jQuery 1.9+ which lack click toggle (deprecated in 1.8, removed in 1.9).
-// Will not run if using jQuery Migrate - v1.0.0 - 2013-01-14, which also takes care of this
-if(parseFloat(jQuery.fn.jquery) > 1.8 && !!!jQuery.migrateWarnings){
+// Patch for jQuery 1.9+ which lack click toggle (deprecated in 1.8, removed in 1.9)
+// Will not run if using another patch like jQuery Migrate, which also takes care of this
+if(
+	(function($){
+		var clicktogglable = false;
+		try {
+			$('<a href="#"></a>').toggle(function(){}, function(){clicktogglable = true;}).trigger('click').trigger('click');
+		} catch(e){}
+		return !clicktogglable;
+	})(jQuery)
+){
 	(function(){
 		var toggleDisp = jQuery.fn.toggle; // There's an animation/css method named .toggle() that toggles display. Save a reference to it.
 		jQuery.extend(jQuery.fn, {
@@ -455,20 +509,20 @@ if(ddsmoothmenu.detectie9){
 		$.extend($.fn, {
 			height: function(){
 				var obj = this.get(0);
-				if(this.size() < 1 || arguments.length || obj === window || obj === document){
+				if(this.length < 1 || arguments.length || obj === window || obj === document){
 					return jqheight.apply(this, arguments);
 				}
 				return parseFloat(document.defaultView.getComputedStyle(obj, null).getPropertyValue('height'));
 			},
 			innerHeight: function(){
-				if(this.size() < 1){return null;}
+				if(this.length < 1){return null;}
 				var val = this.height(), obj = this.get(0), getter = document.defaultView.getComputedStyle(obj, null);
 				val += parseInt(getter.getPropertyValue('padding-top'));
 				val += parseInt(getter.getPropertyValue('padding-bottom'));
 				return val;
 			},
 			outerHeight: function(bool){
-				if(this.size() < 1){return null;}
+				if(this.length < 1){return null;}
 				var val = this.innerHeight(), obj = this.get(0), getter = document.defaultView.getComputedStyle(obj, null);
 				val += parseInt(getter.getPropertyValue('border-top-width'));
 				val += parseInt(getter.getPropertyValue('border-bottom-width'));
@@ -480,20 +534,20 @@ if(ddsmoothmenu.detectie9){
 			},
 			width: function(){
 				var obj = this.get(0);
-				if(this.size() < 1 || arguments.length || obj === window || obj === document){
+				if(this.length < 1 || arguments.length || obj === window || obj === document){
 					return jqwidth.apply(this, arguments);
 				}
 				return parseFloat(document.defaultView.getComputedStyle(obj, null).getPropertyValue('width'));
 			},
 			innerWidth: function(){
-				if(this.size() < 1){return null;}
+				if(this.length < 1){return null;}
 				var val = this.width(), obj = this.get(0), getter = document.defaultView.getComputedStyle(obj, null);
 				val += parseInt(getter.getPropertyValue('padding-right'));
 				val += parseInt(getter.getPropertyValue('padding-left'));
 				return val;
 			},
 			outerWidth: function(bool){
-				if(this.size() < 1){return null;}
+				if(this.length < 1){return null;}
 				var val = this.innerWidth(), obj = this.get(0), getter = document.defaultView.getComputedStyle(obj, null);
 				val += parseInt(getter.getPropertyValue('border-right-width'));
 				val += parseInt(getter.getPropertyValue('border-left-width'));

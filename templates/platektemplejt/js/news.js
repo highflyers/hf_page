@@ -4,6 +4,9 @@ var newsAutoScroll = 1;
 var newsScr = 0;
 
 $(document).ready(function() {
+	if(document.getElementById('newsBox') == null) {
+		return 0;
+	}
 	newsLoad(1);
 	newsScr = setInterval(function() {newsScroll()}, 5000);
 });
