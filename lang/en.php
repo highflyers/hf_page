@@ -1,18 +1,18 @@
 <?php
 $lang = array(
-	      "page_project" => "projekt strony",
-	      "official_website" => "officiaj website",
-	      "students_r&d" => "MIĘDZYWYDZIAŁOWE KOŁO NAUKOWE",
-	      "unmanned_flyers" => "BEZZAŁOGOWYCH OBIEKTÓW LATAJĄCYCH",
+	      "page_project" => "web design",
+	      "official_website" => "official website",
+	      "students_r&d" => "INTER-FACULTY SCIENTIFIC CIRCLE",
+	      "unmanned_flyers" => "OF UNMANNED AERIAL VEHICLES",
 	      "logout" => "Log out",
 	      "hello" => "Hello",
 	      "our_university" => "Silesian University of Technology",
 	      "search" => "Search",
 	      "news_arch" => "News archive",
-	      "hello_here" => "Witaj na oficjalnej stronie High Flyers",
-	      "hello_message" => "Rok 2010. Listopadowy wieczór. Laboratorium 935 na Wydziale Automatyki, Elektroniki i Informatyki.
-Pośród szelestu szkiców rodem z pracowni Leonarda da Vinci, w migotliwym świetle projektora zgromadziła się grupka młodych ludzi. Kąt natarcia skrzydeł. Algorytmy regulacji. Loty zwiadowcze. Autonomia. Kod źródłowy. Wideo rejestracja z lotu ptaka. Systemy embedded. Z użyciem tego typu określeń porozumiewali się między sobą. W takich właśnie warunkach narodziło się Międzywydziałowe Koło Naukowe Bezzałogowych Obiektów Latających High Flyers.
-Dziś jesteśmy organizacją zrzeszającą 60 studentów z 3 Wydziałów Politechniki Śląskiej. Nasze główne cele to poszerzanie specjalistycznej wiedzy w zakresie projektowania, budowy i eksploatacji autonomicznie sterowanych obiektów latających typu UAV (ang. Unmanned Aerial Vehicle), udział w zawodach międzynarodowych oraz współpraca z firmami różnych branż poczynając od biur projektowych, dystrybutorów sprzętu i oprogramowania po producentów i dostawców usług. Jeśli więc interesujesz się elektroniką, mechaniką, informatyką, modelarstwem, analizą obrazów, zarządzaniem lub public relations w organizacji to świetnie trafiłeś/aś!",
+	      "hello_here" => "Welcome to the official website of High Flyers!",
+	      "hello_message" => "Year 2010. November evening. Laboratory 935 in the faculty of Automation, Electronics and Information Technology.
+Amongst rustling sketches like those from Leonardo da Vinci's workshop, in the flickering light of a projector, gathered a small group of students. Angle of attack. Control algorithm. Reconnaissance flights. Autonomy. Source code. Aerial video registration. Embedded systems. Using those expressions, they communicated. In these circumstances the Inter-faculty Scientific Circle of Unmanned Aerial Vehicles was born.
+Today we are an organization consociating over 60 students from 3 faculties of the Silesian Institute of Technology. Our main objectives are widening the specialistic knowledge in the area of design, duilding and exploitation of autonomously controlled aerial vehicles (Unmanned Aerial Vehicles), taking part in international competitions and cooperation with companies from various branches raging from design offices, equipment and software distributors to producers and service providers. If you are interested in electronics, mechanics, IT, model making, image analysis, management or public relations in an organization, then you are in the right place!",
 	      "you_re_logged_in" => "Hey, you're already logged in!",
 	      "login" => "Nick",
 	      "password" => "Password",
@@ -20,7 +20,7 @@ Dziś jesteśmy organizacją zrzeszającą 60 studentów z 3 Wydziałów Politec
 	      "log_mod" => "Log In",
 	      "next" => "Next",
 	      "prev" => "Previous",
-	      "total_count_p" => "wszystkich stron",
+	      "total_count_p" => "pages total",
 	      "partners" => "PARTNERS",
 	      "online" => "ONLINE",
 	      "info" => "INFORMATIONS",
@@ -29,13 +29,18 @@ Dziś jesteśmy organizacją zrzeszającą 60 studentów z 3 Wydziałów Politec
 	      "second_name" => "second name",
 	      "and" => "and",
 	      "email" => "e-mail",
-	      "slave_duration" => "w kole od",
+	      "slave_duration" => "in the Circle since",
 	      "position" => "position",
-	      "must_be_logged_alert" => "Musisz być zalogowany aby móc oglądać tę stronę.",
+	      "must_be_logged_alert" => "You must be logged in to see this page.",
 	      "main_page" => "Start",
 	      "news" => "News",
 	      "read_more" => "read more",
-	      "user_panel" => "Panel użytkownika"
+	      "user_panel" => "Use panel",
+		  "news" => "Lateset news",
+		  "shortcut" => "SHORTCUTS",
+		  "media" => "Media about us",
+		  "sponsors" => "Become a sponsor",
+		  "joinUs" => "Join us!"
 );
 
 ?>

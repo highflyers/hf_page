@@ -35,7 +35,12 @@ Dziś jesteśmy organizacją zrzeszającą 60 studentów z 3 Wydziałów Politec
 	      "main_page" => "Strona główna",
 	      "news" => "Newsy",
 	      "read_more" => "czytaj dalej",
-	      "user_panel" => "Panel użytkownika"
+	      "user_panel" => "Panel użytkownika",
+		  "news" => "Aktualności",
+		  "shortcut" => "NA SKRÓTY",
+		  "media" => "Media o nas",
+		  "sponsors" => "Zostań sponsorem",
+		  "joinUs" => "Dołącz do nas!"
 );
 
 ?>
