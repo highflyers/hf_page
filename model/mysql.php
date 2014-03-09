@@ -42,7 +42,7 @@ class MySQL {
 		return $errLvl;
 	}
 	function Connect($host, $login, $password, $database) {
-		mysql_connect( $host, $login, $password);
+		@mysql_connect( $host, $login, $password);
 		mysql_select_db( $database );
 		
 		if (false) {

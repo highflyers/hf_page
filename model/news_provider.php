@@ -25,6 +25,7 @@ class NewsProvider {
 		
 		return $arr;
 	}
+	
 	public function GetLastNewsList($count) {
 		$result = $this->_mysql->Query ( 'select id, author, date, baner_url, ' . $this->_mysql->GetImprovedLang ( "news.title" ) . 'title, ' . $this->_mysql->GetImprovedLang ( "news.content" ) . 'content from news order by date desc limit 0, ' . intval ( $count ) );
 		$newsList = array ();
@@ -44,6 +45,7 @@ class NewsProvider {
 		
 		return $newsList;
 	}
+	
 	public function GetNews($id) {
 		$result = $this->_mysql->Query ( 'select id, author, date, baner_url, ' . $this->_mysql->GetImprovedLang ( "news.title" ) . 'title, ' . $this->_mysql->GetImprovedLang ( "news.content" ) . 'content from news where id = ' . intval ( $id ) );
 		if ($this->_mysql->NumberOfRows () == 0) {
@@ -51,6 +53,7 @@ class NewsProvider {
 		}
 		return mysql_fetch_array ( $result );
 	}
+	
 	public function GetShortNewsList($newsPerList, $startNews) {
 		$newsList = array ();
 		

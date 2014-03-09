@@ -27,7 +27,7 @@ class MainPage {
 			$id = intval ( $_GET ['news_id'] );
 		else
 			$id = - 1;
-		$this->_whereIs = new WhereIs ( $mysql, $id, $this->_controller->GetAction () == "news_concrete" || $this->_controller->GetAction () == 'news' ? 1 : 0 );
+		$this->_whereIs = new WhereIs ( $mysql, $id, $this->_controller->GetAction () == "news_concrete" || $this->_controller->GetAction () == 'news' || $this->_controller->getAction () == 'index' ? 1 : 0 );
 	}
 	private function GetHeader() {
 		global $langID;
@@ -41,16 +41,8 @@ class MainPage {
 		
 		if ($this->_login->IsLoggedIn ())
 			$template->Dodaj ( "user", $this->_user->ToArray () );
-		
-		if ( $this->_controller->GetAction () == 'index' ) {
-			$template->Dodaj ( "classTop", "topMain" );
-			$template->Dodaj ( "classHeader", "headerMain" );
-		}
-		else {
-			$template->Dodaj ( "classTop", "topPage" );
-			$template->Dodaj ( "classHeader", "headerPage" );
-		}
-		$template->Dodaj ( "main_menu", $this->GetMainMenu () );
+
+		$template->Dodaj ( "main_menu", $this->GetMainMenu ("") );
 		
 		return $template->Parsuj ();
 	}
@@ -74,7 +66,13 @@ class MainPage {
 		$template = new Template ( CURRENT_TEMPLATE . "index_content.htm" );
 		$template->Laduj ();
 		
-		$provider = new NewsProvider ( $this->_mysql );
+		$template->Dodaj ( "main_content", $this->GetCurrentContent () );
+		$template->Dodaj ( "where_is", $this->GetWhereIs () );
+		$template->Dodaj ( "news_short_list", $this->GetNewsShortList () );
+		
+		return $template->Parsuj ();
+		
+		/*$provider = new NewsProvider ( $this->_mysql );
 		
 		$tmp = $provider->GetLastNewsList ( 6 );
 		
@@ -98,7 +96,7 @@ class MainPage {
 		
 		$template->DodajPetle ( "quick_dynamic_list", $dynList );
 		
-		return $template->Parsuj ();
+		return $template->Parsuj ();*/
 	}
 	private function GetFooter() {
 		$template = new Template ( CURRENT_TEMPLATE . "footer.htm" );

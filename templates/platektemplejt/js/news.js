@@ -7,8 +7,8 @@ $(document).ready(function() {
 	if(document.getElementById('newsBox') == null) {
 		return 0;
 	}
-	newsLoad(1);
-	newsScr = setInterval(function() {newsScroll()}, 5000);
+	//newsLoad(1);
+	//newsScr = setInterval(function() {newsScroll()}, 5000);
 });
 
 function newsScroll() {

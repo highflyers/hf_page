@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 require_once './model/mysql.php';
 require_once './parser_tpl.php';
 

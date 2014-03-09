@@ -43,7 +43,7 @@ class NewsText extends BBCodedText implements IMySQLOperationsAble
   {
     if ( $this->_isLoadedSQL == false )
       {
-	ShowError( 'Nie mo�na zaktualizowac rekordu. Rekord nie zostal zaladowany z bazy danych.');
+	ShowError( 'Nie można zaktualizowac rekordu. Rekord nie zostal zaladowany z bazy danych.');
       }
     else
       {
@@ -65,7 +65,7 @@ class NewsText extends BBCodedText implements IMySQLOperationsAble
   {
     if ( !is_numeric( $userId ) )
       {
-	ShowError( 'Nie poprawny user id przy dodawaniu news�w. ' );
+	ShowError( 'Nie poprawny user id przy dodawaniu newsów. ' );
       }
     else 
       {
@@ -104,6 +104,7 @@ class NewsText extends BBCodedText implements IMySQLOperationsAble
     $template->Dodaj("date", $this->_date);
     $template->Dodaj("author_display_name", $this->_author->GetDisplayName());
     $template->Dodaj("author_id", $this->_author->getid());
+	$template->Dodaj("baner_url", (strlen($this->_banerUrl) < 1)? CURRENT_TEMPLATE.'gfx/default_baner.jpg' : $this->_banerUrl);
     $template->Dodaj("content", $text);
 
     return $template->Parsuj();
@@ -126,6 +127,7 @@ class NewsText extends BBCodedText implements IMySQLOperationsAble
     $template->Dodaj("author_id", $this->_author->getid());
     $template->Dodaj("content", $text);
     $template->Dodaj("id", $this->_id);
+	$template->Dodaj("baner_url", (strlen($this->_banerUrl) < 1)? CURRENT_TEMPLATE.'gfx/default_baner.jpg' : $this->_banerUrl);
     $template->DodajWarunek("was_moore", $pos != null);
 
     return $template->Parsuj();
