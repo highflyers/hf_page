@@ -126,6 +126,9 @@ h1 a:hover {
 	margin:0px;
 	padding:0px;
 }
+.sponsorLogo {
+	width:180px;	
+}
 #headerLink h2 {
 	text-decoration:none;
 	position:absolute;
