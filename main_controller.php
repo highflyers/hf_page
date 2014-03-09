@@ -29,7 +29,7 @@ class Controller
   {
     if ( $this->_action == 'site' )
       return $this->GetSite();
-    if ( $this->_action == 'news' )
+    if ( $this->_action == 'news' || $this->_action == 'index' )
       return $this->GetNews();
     if ( $this->_action == 'login' )
       return $this->GetLoginForm();
@@ -100,7 +100,7 @@ class Controller
 
   private function GetShortNewsList()
   {
-    $template = new Template(CURRENT_TEMPLATE."news_short_index.htm");
+    $template = new Template(CURRENT_TEMPLATE."news_short_index.htm"); //tutaj
     $template->Laduj();
     $provider = new NewsProvider($this->_mysql);
 

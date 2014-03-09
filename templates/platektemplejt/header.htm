@@ -1,37 +1,41 @@
-﻿<div id="top" class="{classTop}">
-  <div class="backgroundNavBox" id="backgroundNavBoxCornerLeft">
-    <div class="backgroundNavBox" id="backgroundNavBoxCornerRight">
-      <div class="backgroundNavBox" id="backgroundNavBoxEdge">
-        <div id="navBox">        
-          <h1>
-            <a id="homeLink" href="/index.php">HIGH FLYERS</a>
-          </h1>
-          <div id="mainMenu" class="ddsmoothmenu">
-	    {main_menu}
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div id="header" class="{classHeader}">
-    <a id="headerLink" href="/index.php">
-      <img id="logo" src="/templates/platektemplejt/gfx/logo_hf.png" alt="High Flyers logo">
-      <h2 id="mainHeader">{lang[students_r&d]}<br> {lang[unmanned_flyers]}</h2>
-    </a>
-    <div id="headerBox">
-      {IF loggedin=1}
-      {lang[hello]} <b>{user[nick]}</b>! &bull; <a class="hbLink" href='/?action=logout'>{lang[logout]}</a>
-      {/IF}
-      {IF loggedin=0}
-
-      {/IF}
-		<a href="/?hf_lang=pl"><img id="flagPL" src="templates/platektemplejt/gfx/icons/flagPL_0.png" alt="język polski" /></a>
-		<a href="/?hf_lang=en"><img id="flagEN" src="templates/platektemplejt/gfx/icons/flagEN_0.png" alt="english language" /></a>
-		<br>
-		<a class="hbLink" target="_blank" href="http://www.polsl.pl/">Politechnika Śląska</a>
-		<form method="get" action="index.php">
-		<!--<input type="text" name="q" class="search" placeh…--> 
-		</form>
-    </div>
-  </div>
-</div>
+            <div id="top" class="topPage">
+                <div class="backgroundNavBox" id="backgroundNavBoxCornerLeft">
+                <div class="backgroundNavBox" id="backgroundNavBoxCornerRight">
+                <div class="backgroundNavBox" id="backgroundNavBoxEdge">
+                    <div id="navBox">
+                        
+                        <h1>
+                            <a id="homeLink" href="index.php">HIGH FLYERS</a>
+                        </h1>
+                        <div id="mainMenu" class="ddsmoothmenu">
+            				{main_menu}
+                        </div>
+                	</div>
+                </div>
+                </div>
+                </div>
+                
+                <div id="header" class="headerPage">
+                  <a id="headerLink" href="/index.php">
+                    <img id="logo" src="templates/platektemplejt/gfx/logo_hf.png" alt="High Flyers logo">
+                    <h2 id="mainHeader">{lang[students_r&d]}<br> {lang[unmanned_flyers]}</h2>
+                  </a>
+                  <div id="headerBox">
+                    {IF loggedin=1}
+                    {lang[hello]} <b>{user[nick]}</b>! &bull; <a class="hbLink" href='/?action=logout'>{lang[logout]}</a>
+                    {/IF}
+                    {IF loggedin=0}
+              
+                    {/IF}
+                      <a href="http://www.polsl.pl"><img src="templates/platektemplejt/gfx/logo_polsl.png" alt="{lang[our_university]}"></a>
+                      <!-- <a href="/?hf_lang=pl"><img id="flagPL" src="templates/platektemplejt/gfx/icons/flagPL_0.png" alt="język polski" /></a>
+                      <a href="/?hf_lang=en"><img id="flagEN" src="templates/platektemplejt/gfx/icons/flagEN_0.png" alt="english language" /></a>
+                      <br>
+                      <a class="hbLink" target="_blank" href="http://www.polsl.pl/">Politechnika Śląska</a>
+                      <form method="get" action="index.php">
+                      <input type="text" name="q" class="search" placeh…
+                      </form> -->
+                  </div>
+                </div>
+                
+              </div> <!-- top end -->

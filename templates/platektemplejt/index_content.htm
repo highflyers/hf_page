@@ -1,181 +1,100 @@
-<div class="backgroundMain" id="backgroundMainNewsBox">
-  <div id="main">
-    
-    <div id="newsBox">
-      <div id="newsBoxHead">
-        <div id="newsBanner">
-          <div id="newsBannerShadow">
-            <a class="newsArrow" id="newsArrowPrev" href="index.php" onclick="newsPrev(event)"></a>
-            <a class="newsArrow" id="newsArrowNext" href="index.php" onclick="newsNext(event)"></a>
-            <div class="clear"></div>
-          </div>
-        </div>
-      </div>
-      <div id="newsBoxBody">
-        <div id="newsBodyColLeft">
-          <div id="newsContent"></div>
-         <div id="newsContentShadow"></div>
-        </div>
-        <div id="newsBodyColRight">
-          <div id="newsInfo">
-            <p class="newsInfoItem" id="newsInfoAuthor"></p>
-            <p class="newsInfoItem" id="newsInfoDate"></p>
-            <p class="newsInfoItem" id="newsInfoArchive"><a href='/?hf_lang={langID}&action=news'>{lang[news_arch]}</a></p>
-          </div>
-          <ul id="newsList">
-	    {LOOP=quick_dynamic_list}
+			<div class="backgroundMain" id="backgroundMainCornerLeft">
+            <div class="backgroundMain" id="backgroundMainCornerRight">
+            <div class="backgroundMain" id="backgroundMainEdge">
+            <div class="backgroundMain" id="backgroundContentLeft">
+            <div class="backgroundMain" id="backgroundContentRight">
+            <div class="backgroundMain" id="backgroundContentWhite">
+                <div id="main">
+{where_is}
 
-            <li><a class="normalLink" href="javascript:void(0)" onclick="dontGo(event); newsLoad({quick_dynamic_list[iterator]})">{quick_dynamic_list[title]}</a></li>
-	    {/LOOP}
-          </ul>
-        </div>
-        <div class="clear"></div>
-      </div>
-      <div id="newsBoxFoot">
-        <div id="newsFootColLeft">
-          <div id="newsSummary">
-            <h3 id="newsTitle"></h3>
-            <p id="newsExcerpt"></p>
-          </div>
-        </div>
-        <div id="newsFootColRight">
-          <div id="newsCircleNav">
-            <a class="newsCircleButton" href="javascript: void(0)" onclick="dontGo(event); newsLoad(1)"></a>
-            <a class="newsCircleButton" href="javascript: void(0)" onclick="dontGo(event); newsLoad(2)"></a>
-            <a class="newsCircleButton" href="javascript: void(0)" onclick="dontGo(event); newsLoad(3)"></a>
-            <a class="newsCircleButton" href="javascript: void(0)" onclick="dontGo(event); newsLoad(4)"></a>
-            <a class="newsCircleButton" href="javascript: void(0)" onclick="dontGo(event); newsLoad(5)"></a>
-            <a class="newsCircleButton" href="javascript: void(0)" onclick="dontGo(event); newsLoad(6)"></a>
-          </div>
-          <a id="newsButtonRead" class="normalLink" href="javascript: void(0)" onclick="newsExpand()">{lang[read_more]}</a>
-        </div>
-        <div class="clear"></div>
-      </div>
-    </div>
-    
-    <!--<div id="contentTop">
-        <div id="contentTopLeft">
-          <div id="breadscrumbs">
-            <a href="index.php">Strona główna</a>
-            <div id="breadscrumbsArrow"></div>
-            <a href="index.php?p=2">O nas</a>
-            <div id="breadscrumbsArrow"></div>
-            <a href="index.php?p=2-1">Osiągnięcia</a>
-            <div id="breadscrumbsArrow"></div>
-            <span>Air Cargo challenge 2013</span>
-          </div>
-        </div>
-        <div id="contentTopRight">
-          <div id="socialButtons">
-            
-          </div>
-        </div>
-    </div>-->
-    
-    <div id="mainBody">
-      <div id="colLeft">
-        <div class="sideBox sideBoxLeft">
-          <!--<div class="sideBoxHeader">
-              <h4>PARTNERZY</h4>
-          </div>-->
-          <div class="sideBoxContent">
-            <div class="center">
-							<a href="http://www.flytronic.pl" alt="Flytronic Sp. z o.o."
-								target="_blank"> <img border="0"
-								src="http://uav.polsl.pl/images/pliki/sponsorzy/ft.jpg"
-								width="195" height="87"></a><br /> <br /> <a
-								href="http://www.wb.com.pl" alt="WB Electronics" target="_blank">
-								<img border="0"
-								src="http://uav.polsl.pl/images/pliki/sponsorzy/wb.jpg"
-								width="195" height="54">
-							</a> <br /> <br /> <a href="http://www.altium.com/"
-								target="_blank" title="Altium"><img
-								src="images/pliki/strona/news/altium.jpg" width="195"
-								alt="Altium" /></a> <br /> <br /> <a
-								href="http://www.wz-narzedzia.pl/" target="_blank"
-								title="WZ-Narzędzia"><img
-								src="images/pliki/sponsorzy/wz.jpg" border="0"
-								alt="WZ-Narzędzia" width="195" /></a> <br /> <br /> <a
-								href="http://www.modele.sklep.pl/" target="_blank"
-								title="Modele Sklep"><img
-								src="images/pliki/sponsorzy/modele.png" border="0"
-								alt="Modele Sklep" width="195" /></a> <br /> <br /> <a
-								href="http://www.mesco.com.pl/" target="_blank" title="MESco"><img
-								src="images/pliki/sponsorzy/mesco.jpg" border="0" alt="MESco"
-								width="195" /></a>
-						</div>
-          </div>
-        </div>
-      </div>
-      <div id="contentBox">
-        <div id="content">
-          <h3 class="contentHeader">{lang[hello_here]}!</h3>
-          <p>
-	    {lang[hello_message]}
-	  </p>
-        </div>
-      </div>
-      
-      <div id="colRight">
-        <div class="sideBox sideBoxRight">
-          <!--<div class="sideBoxHeader">
-              <h4>NOWOŚCI</h4>
-          </div>-->
-          <div class="sideBoxContent">
-            <!--<a class="socialButton" id="button_rss" href="index.php?action=rss" target="_blank">
-              <img src="" alt="RSS">
-            </a>-->
-            <a class="socialButton" id="button_fb" href="http://facebook.com/high.flyers.polsl" target="_blank">
-              <img src="" alt="Find us on Facebook!">
-            </a>
-            <div class="clear"></div>
-            <a class="socialButton" id="button_picasa" href="http://picasaweb.google.com/highflyers.polsl" target="_blank">
-              <img src="" alt="High Flyers on Picasa">
-            </a>
-            <div class="clear"></div>
-            <a class="socialButton" id="button_yt" href="http://www.youtube.com/user/HighFlyersPOLSL" target="_blank">
-              <img src="" alt="Our Youtube channel">
-            </a>
-            <div class="clear"></div>
-          </div>
-        </div>
-		<div class="sideBox sideBoxRight">
-          <!--<div class="sideBoxHeader">
-              <h4>PARTNERZY 2</h4>
-          </div>-->
-          <div class="sideBoxContent">
-            <div class="center">
-				<a
-								href="http://www.osiline.com/" target="_blank" title="Osiline"><img
-								src="images/pliki/sponsorzy/osiline.png" border="0"
-								alt="Osiline" width="195" /></a> <br /> <br /> <a
-								href="http://www.parklotniczy.pl/" target="_blank"
-								title="Bielski Park
-Lotniczy"><img
-								src="images/pliki/sponsorzy/park_lotniczy.png" border="0"
-								alt="Bielski Park Lotniczy" width="195" /></a> <br /> <br /> <a
-								href="http://www.pzlmielec.pl" target="_blank"
-								title="PZL Mielec"><img
-								src="images/pliki/sponsorzy/mielec.jpg" border="0"
-								alt="PZL Mielec" title="PZL
-Mielec" width="195" height="100" /></a> <br /> <br /> <a
-								href="http://www.tme.eu" target="_blank"
-								title="Transfer Multisort
-Elektronik"> <img
-								src="images/pliki/sponsorzy/tme_znak_sq.jpg" border="0"
-								alt="Transfer Multisort Elektronik"
-								title="Transfer Multisort Elektronik" width="195" /></a>
-				<div class="clear"></div>
+					<div id="backgroundMainBodyColBg">
+						<div id="backgroundMainBodyColShadowLeft">
+							<div id="backgroundMainBodyColShadowRight">
+								<div id="mainBody">
+									<div id="colLeft">
+										<div class="sideBox sideBoxLeft">
+											<div class="sideBoxHeader">
+                            	                <h4>{lang[partners]}</h4>
+              								</div>
+              								<div class="sideBoxContent withShadow">
+              									<div class="center">
+                                                    <a href="http://www.flytronic.pl" alt="Flytronic Sp. z o.o." target="_blank">
+                                                        <img border="0" src="http://uav.polsl.pl/images/pliki/sponsorzy/ft.jpg" width="195" height="87">
+                                                    </a>
+                                                    <br /><br />
+                                                    <a href="http://www.wb.com.pl" alt="WB Electronics" target="_blank">
+                                                        <img border="0" src="http://uav.polsl.pl/images/pliki/sponsorzy/wb.jpg" width="195" height="54">
+                                                    </a>
+                                                    <br /><br />
+                                                    <a href="http://www.altium.com/" target="_blank" title="Altium"><img src="images/pliki/strona/news/altium.jpg" width="195" alt="Altium" />
+                                                    </a>
+                                                    <br /><br />
+                                                    <a href="http://www.wz-narzedzia.pl/" target="_blank" title="WZ-Narzędzia"><img src="images/pliki/sponsorzy/wz.jpg" border="0" alt="WZ-Narzędzia" width="195" />
+                                                    </a>
+                                                    <br /><br />
+                                                    <a href="http://www.modele.sklep.pl/" target="_blank" title="Modele Sklep">
+                                                        <img src="images/pliki/sponsorzy/modele.png" border="0" alt="Modele Sklep" width="195" />
+                                                    </a>
+                                                    <br /><br />
+                                                    <a href="http://www.mesco.com.pl/" target="_blank" title="MESco">
+                                                        <img src="images/pliki/sponsorzy/mesco.jpg" border="0" alt="MESco" width="195" />
+                                                    </a>
+                                                    <br /><br />
+                                                    <a href="http://www.osiline.com/" target="_blank" title="Osiline">
+                                                        <img src="images/pliki/sponsorzy/osiline.png" border="0" alt="Osiline" width="195" />
+                                                    </a><br /><br />
+                                                    <a href="http://www.parklotniczy.pl/" target="_blank" title="Bielski Park Lotniczy">
+                                                        <img src="images/pliki/sponsorzy/park_lotniczy.png" border="0" alt="Bielski Park Lotniczy" width="195" />
+                                                    </a>
+                                                    <br /><br />
+                                                    <a href="http://www.pzlmielec.pl" target="_blank" title="PZL Mielec">
+                                                        <img src="images/pliki/sponsorzy/mielec.jpg" border="0" alt="PZL Mielec" title="PZL Mielec" width="195" height="100" />
+                                                    </a>
+                                                    <br /><br />
+                                                    <a href="http://www.tme.eu" target="_blank" title="Transfer Multisort Elektronik">
+                                                        <img src="images/pliki/sponsorzy/tme_znak_sq.jpg" border="0" alt="Transfer Multisort Elektronik" title="Transfer Multisort Elektronik" width="195" />
+                                                    </a>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div id="contentBox" class="withTopBorder">
+										<div id="content">
+            								<h3 class="contentHeader">{lang[hello_here]}!</h3>
+            								<p>{lang[hello_message]}</p>
+                							<h3 class="contentHeaderBlue">{lang[news]}</h3>
+            								{main_content}
+                							<div class="clear"></div>
+										</div>
+									</div>
+	  
+                                    <div id="colRight">
+										<div class="sideBox sideBoxRight">
+                                        	{news_short_list}
+                                    	</div>
+                                    	<div class="sideBox sideBoxRight">
+                                    		<div class="sideBoxHeader">
+                                    			<h4>{lang[shortcut]}</h4>
+                                   			</div>
+                                    		<div class="sideBoxContent withShadow">
+                                    			<ul>
+                                                	<li><a class="normalLink" href="http://uav.polsl.pl/?action=site&id=5">{lang[joinUs]}</a></li>
+                                    				<li><a class="normalLink" href="http://uav.polsl.pl/?hf_pagepl&action=site&id=34">{lang[media]}</a></li>
+                                                    <li><a class="normalLink" href="http://uav.polsl.pl/?hf_pagepl&action=site&id=6">{lang[sponsors]}</a></li>
+                                                </ul>
+                                                <br />
+                                                <div class="fb-facepile" data-href="https://www.facebook.com/high.flyers.polsl" data-width="180" data-max-rows="5" data-colorscheme="light" data-size="small" data-show-count="true"></div>
+                                     		</div>
+                                   		</div>
+          							</div>
+          						<div class="clear"></div>
+         					</div>
+          				</div>
+					</div>
+				</div>
 			</div>
-          </div>
-        </div>
-      </div>
-      <div class="clear"></div>
-    </div>
-  </div>
-</div>
-<div id="newsDataBase">
-{LOOP=news_expand_list}
-{news_expand_list}
-{/LOOP}
-</div>
+			</div>
+			</div>
+			</div>
+            </div>
+            </div>

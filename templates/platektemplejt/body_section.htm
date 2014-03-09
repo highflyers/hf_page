@@ -1,37 +1,33 @@
 <body>
-{IF is_index=0}
-  <div class="background" id="backgroundQuadro">
-{/IF}
-    <div class="background" id="backgroundStripe">
-      <div class="background" id="backgroundClouds">
-	<div class="background" id="backgroundSeparator">
-	  <div class="background" id="backgroundFooter">
-	    <div id="container">
-	      {header}
+	<div id="fb-root"></div>
+	<div class="background" id="backgroundQuadro">
+	<div class="background" id="backgroundStripe">
+    <div class="background" id="backgroundClouds">
+    <div class="background" id="backgroundSeparator">
+    <div class="background" id="backgroundFooter">
+    	<div id="container">
+        	{header}
+            {current_content_tpl}
+			
+            <div class="clear"></div>
+			
+            <div class="backgroundBottom" id="backgroundBottomLeft">
+            <div class="backgroundBottom" id="backgroundBottomRight">
+                <div id="bottom">
+                    <div class="center">
+						<img style="width:493px; margin:10px 0px;" src="{tpl_url}gfx/images/logo_ue.jpg" alt="Kapitał Ludzki - Narodowa Strategia Spójności, Unia Europejska - Europejski Fundusz Społeczny">
+					</div>
+                </div>
+            </div>
+            </div>
 	      
-	      {current_content_tpl}
-	      	      
-	      <div class="clear"></div>
+	      {footer}
 	      
-	      <div class="backgroundBottom" id="backgroundBottomLeft">
-		<div class="backgroundBottom" id="backgroundBottomRight">
-		  <div id="bottom">
-		    <div class="center">
-		      <img style="width:493px; margin:10px 0px;" src="/{tpl_url}/gfx/images/logo_ue.jpg" alt="Kapitał Ludzki - Narodowa Strategia Spójności, Unia Europejska - Europejski Fundusz Społeczny">
-		    </div>
-		  </div>
-		</div>
-	      </div>
-	      
-	      {footer}	      
-	      
-	    </div>
-	  </div>
-	</div>
-      </div>
+        </div>
     </div>
-  {IF is_index=0}
-  </div>
-  {/IF}
+    </div>
+    </div>
+    </div>
+    </div>
 </body>
 
