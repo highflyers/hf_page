@@ -24,7 +24,7 @@ h2, h3, h4, h5, h6 {
 	background:url("../gfx/bg_stripe.png") left top repeat-x;
 }
 #backgroundClouds {
-	background:url("../gfx/bg_clouds.jpg") center top no-repeat;
+	background:url("../gfx/bg_clouds.png") center top no-repeat;
 }
 #backgroundSeparator {
 	background:url("../gfx/bg_separator.png") 0px 550px repeat-x;
@@ -140,7 +140,8 @@ h1 a:hover {
 #headerBox {
 	position:absolute;
 	right:0px;
-	top:30px;
+	top:17px;
+	right:25px;
 	text-align:right;
 }
 .hbLink, .hbLink span {
@@ -187,12 +188,6 @@ header form {
 #backgroundMainEdge {
 	background:url("../gfx/shadow_edge_main.png") center 0px no-repeat;
 }
-#backgroundContentLeft {
-	background:url("../gfx/shadow_side.png") 224px 0px repeat-y;
-}
-#backgroundContentRight {
-	background:url("../gfx/shadow_side.png") 764px 0px repeat-y;
-}
 #backgroundMainNewsBox {
 	background:url("../gfx/newsBoxHead.png") 0px 0px no-repeat;
 }
@@ -200,8 +195,12 @@ header form {
 	width:1012px;
 	background:url("../gfx/background_content.gif") 236px 0px repeat-y;
 }
-
-
+#backgroundMainBodyColShadowLeft {
+	background:url("../gfx/shadow_side.png") 224px top repeat-y;
+}
+#backgroundMainBodyColShadowRight {
+	background:url("../gfx/shadow_side.png") 764px top repeat-y;
+}
 #contentTop {
 	width:980px; 
 	height:35px;
@@ -360,6 +359,19 @@ header form {
 	margin:15px 0px;
 	padding:0px;
 }
+.contentHeaderBlue {
+	font-size:18px;
+	margin:20px 0px 0px 0px;
+	padding:9px 20px 9px 20px;
+	display:block;
+	width:500px;
+	height:18px;
+	background:rgb(0,50,100);
+	color:white;
+	text-transform:uppercase;
+	position:relative;
+	right:20px;
+}
 .contentBanner {
 	width:100%;
 }
@@ -424,6 +436,7 @@ div.center {
 .actionLink p {
 	display:block;
 	width:413px;
+
 	height:15px;
 	font-size:15px;
 	line-height:15px;
@@ -446,6 +459,7 @@ div.center {
 	margin:0px;
 	clear:both;
 	text-align:center;
+	background:url("../gfx/background_content.gif") center top repeat-y;
 }
 #footer {
 	width:980px;
@@ -490,6 +504,12 @@ div.center {
 #newsBanner {
 	width:980px;
 	height:350px;
+}
+.newsListBanner {
+	width:540px;
+	position:relative;
+	right:20px;	
+	border-top:1px solid rgb(0,50,100);
 }
 #newsBannerShadow {
 	background:url("../gfx/newsContentShadow.png") left bottom no-repeat;
