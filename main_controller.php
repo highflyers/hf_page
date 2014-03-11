@@ -94,7 +94,8 @@ class Controller
     
     $user = new User($this->_mysql->FetchAssoc());
     
-    $news = new NewsText($row['title'], $row['content'], $user, $row['date']);
+	$date = $provider -> formatDate($row['date']);
+	$news = new NewsText($row['title'], $row['content'], $user, $id, $date);
     return $news->GetHTMLNews();
   }
 

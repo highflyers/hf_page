@@ -40,7 +40,8 @@ class NewsProvider {
 			
 			$user = new User ( $this->_mysql->FetchAssoc () );
 			
-			array_push ( $newsList, new NewsText ( $row ['title'], $row ['content'], $user, $row ['id'], $row ['date'], $row ['baner_url'] ) );
+			$date = $this -> formatDate($row['date']);
+			array_push ( $newsList, new NewsText ( $row ['title'], $row ['content'], $user, $row ['id'], $date, $row ['baner_url'] ) );
 		}
 		
 		return $newsList;
@@ -69,10 +70,14 @@ class NewsProvider {
 			
 			$user = new User ( $this->_mysql->FetchAssoc () );
 			
-			array_push ( $newsList, new NewsText ( $row ['title'], $row ['content'], $user, $row ['id'], $row ['date'] ) );
+			array_push ( $newsList, new NewsText ( $row ['title'], $row ['content'], $user, $row ['id'], $this -> formatDate($row['date'])) );
 		}
 		
 		return $newsList;
+	}
+	
+	public function formatDate($date) {
+		return strlen($date) ? "&nbsp;&nbsp;::&nbsp;&nbsp;" . $date : '';
 	}
 }
 ?>

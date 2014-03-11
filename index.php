@@ -31,7 +31,8 @@ require_once 'modules/login.php';
 require_once 'model/mysql.php';
 $object = new Mysql ();
 require_once 'config.php';
-$object->Connect ( $dbhost, $dbuser, $dbpassword, $dbname );
+//$object->Connect ( $dbhost, $dbuser, $dbpassword, $dbname );
+$object->Connect ( 'localhost', 'root', '', 'hfpage' );
 $login = new Login ( $session, $object );
 $login->ValidateLogin ();
 

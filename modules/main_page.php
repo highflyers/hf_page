@@ -71,32 +71,6 @@ class MainPage {
 		$template->Dodaj ( "news_short_list", $this->GetNewsShortList () );
 		
 		return $template->Parsuj ();
-		
-		/*$provider = new NewsProvider ( $this->_mysql );
-		
-		$tmp = $provider->GetLastNewsList ( 6 );
-		
-		$content = array ();
-		$i = 1;
-		foreach ( $tmp as $val )
-			array_push ( $content, $val->GetNewsFromIndex ( $i ++ ) );
-		
-		$template->DodajPetle ( "news_expand_list", $content );
-		
-		$dynList = array ();
-		
-		$result = $this->_mysql->Query ( 'select ' . $this->_mysql->GetImprovedLang ( 'news.title' ) . 'title from news order by date desc limit 0, 6' );
-		$i=1;
-		while ($row = mysql_fetch_array($result)) {
-			array_push ( $dynList, array (
-					'title' => $row ['title'],
-					'iterator' => $i ++ 
-			) );
-		}
-		
-		$template->DodajPetle ( "quick_dynamic_list", $dynList );
-		
-		return $template->Parsuj ();*/
 	}
 	private function GetFooter() {
 		$template = new Template ( CURRENT_TEMPLATE . "footer.htm" );
