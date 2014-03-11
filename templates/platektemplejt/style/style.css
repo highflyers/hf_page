@@ -250,7 +250,7 @@ header form {
 }
 .socialButton {
 	display:block;
-	float:left;
+	float:right;
 	height:35px;
 	padding:0px;
 	margin:0px;
