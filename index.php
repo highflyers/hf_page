@@ -1,4 +1,6 @@
 <?php
+ini_set('display_startup_errors',1);
+ini_set('display_errors',1);
 error_reporting ( E_ALL );
 
 require_once 'model/session.php';
@@ -31,8 +33,7 @@ require_once 'modules/login.php';
 require_once 'model/mysql.php';
 $object = new Mysql ();
 require_once 'config.php';
-//$object->Connect ( $dbhost, $dbuser, $dbpassword, $dbname );
-$object->Connect ( 'localhost', 'root', '', 'hfpage' );
+$object->Connect ( $dbhost, $dbuser, $dbpassword, $dbname );
 $login = new Login ( $session, $object );
 $login->ValidateLogin ();
 
