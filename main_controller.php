@@ -124,11 +124,13 @@ class Controller
 
     for ( $i = $left; $i < $right; $i++ )
       {
-	array_push($nums, $i + 1);
+        array_push($nums,$i+1);
       }
-    
+
+    $template->DodajWarunek("not_first", $current != 0);    
+    $template->DodajWarunek("not_last", $current+1 != ceil($cnt));    
     $template->Dodaj("max_number", ceil($cnt));
-    $template->Dodaj("prev", max($current - 1, 1));
+    $template->Dodaj("prev", max($current, 1));
     $template->Dodaj("next", min($current + 2, ceil($cnt)));
     $template->DodajPetle("news_short", $content);
     $template->DodajPetle("numbers", $nums);
