@@ -67,7 +67,17 @@ class MenuLoader {
 		global $langID;
 		
 		for($i = 0; $i < count ( $struct ); $i ++) {
-			$str .= "<li><a  href='/?hf_page" . $langID . "&action=site&id=" . $struct [$i]->GetSite () . "'>" . $struct [$i]->GetTitle () . "</a>";
+		        $beg = substr($struct[$i]->GetTitle(), 0, 7);
+		        if ($beg == "http://" || $beg == "https:/") {
+			   $splited = split("\|", $struct[$i]->GetTitle());
+			   $url = $splited[0];
+			   $tit = $splited[1];
+			}
+			else {
+			   $url = "/?hf_page" . $langID . "&action=site&id=" . $struct [$i]->GetSite () ;
+			   $tit = $struct[$i]->GetTitle(); 
+			}
+			$str .= "<li><a  href='".$url."'>" . $tit . "</a>";
 			if ($struct [$i]->GetChildren () != null)
 				$str .= $this->MediumLevelMenu ( $struct [$i]->GetChildren () );
 			$str .= "</li>";
@@ -81,7 +91,19 @@ class MenuLoader {
 		global $langID;
 		
 		for($i = 0; $i < count ( $this->_structure ); $i ++) {
-			$str .= "<li><a class=menuItemTopLevel href='/?hf_lang=" . $langID . "&action=site&id=" . $this->_structure [$i]->GetSite () . "'>" . $this->_structure [$i]->GetTitle () . "</a>";
+		       // copy paste, fuck yeah!
+ 			$beg = substr($this->_structure[$i]->GetTitle(), 0, 7);
+		        if ($beg == "http://" || $beg == "https:/") {
+			   $splited = split("\|", $this->_structure[$i]->GetTitle());
+			   $url = $splited[0];
+			   $tit = $splited[1];
+			}
+			else {
+			   $url = "/?hf_page" . $langID . "&action=site&id=" . $this->_structure [$i]->GetSite ();
+			   $tit = $this->_structure[$i]->GetTitle(); 
+			}
+
+			$str .= "<li><a class=menuItemTopLevel href='".$url."'>" . $tit . "</a>";
 			if ($this->_structure [$i]->GetChildren () != null)
 				$str .= $this->MediumLevelMenu ( $this->_structure [$i]->GetChildren () );
 			$str .= "</li>";
