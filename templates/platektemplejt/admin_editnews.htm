@@ -2,7 +2,8 @@
 <h3>Wybierz news do edycji</h3>
 <ul>
 {LOOP=news}
-<li><a href="/?hf_page={langID}&action=admin&admin_act=edit_news&news_edit_id={news[id]}">{news[title]}</a> <br /></li>
+<li><a href="/?hf_page={langID}&action=admin&admin_act=edit_news&news_edit_id={news[id]}">{news[title]}</a> 
+<form action="/?hf_page={langID}&action=admin&admin_act=edit_news" method=post onsubmit="return confirm('Sure?');"><input type=hidden name="remove_id" value="{news[id]}"><input type=submit value="USUN"></form> <br /></li>
 {/LOOP}
 </ul>
 {/IF}

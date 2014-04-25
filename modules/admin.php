@@ -35,6 +35,9 @@ class AdminController
 
     $add = "";
 
+    if (isset($_POST["remove_id"]))
+       $this->_newsManager->RemoveNews(intval($_POST["remove_id"]));
+
     if ( $act == 'edit_news' )
       $add = $this->_newsManager->GetEditNews();
     else if ( $act == 'add_news' )

@@ -97,5 +97,11 @@ Link do pliku: <input name=sbaner id=sbaner value="'.$banerDefault.'"><br /></fi
 		$editor = new WysiwygEditor ( 'action=admin&admin_act=edit_news&news_edit_id=' . $id, 'editNewsP', 'Zakończ edycję', $row ['content'] );
 		$this->GetTextEditor ( $template, $editor, $row ['title'], $row ['baner_url'] );
 	}
+
+	public function RemoveNews($id)
+	{
+		$this->_mysql->Query ( "delete from news where id = " . $id );
+	}
+			
 }
 ?>
