@@ -69,7 +69,7 @@ class MenuLoader {
 		for($i = 0; $i < count ( $struct ); $i ++) {
 		        $beg = substr($struct[$i]->GetTitle(), 0, 7);
 		        if ($beg == "http://" || $beg == "https:/") {
-			   $splited = explode("\|", $struct[$i]->GetTitle());
+			   $splited = explode("|", $struct[$i]->GetTitle());
 			   $url = $splited[0];
 			   $tit = $splited[1];
 			}
@@ -94,7 +94,7 @@ class MenuLoader {
 		       // copy paste, fuck yeah!
  			$beg = substr($this->_structure[$i]->GetTitle(), 0, 7);
 		        if ($beg == "http://" || $beg == "https:/") {
-			   $splited = explode("\|", $this->_structure[$i]->GetTitle());
+			   $splited = explode("|", $this->_structure[$i]->GetTitle());
 			   $url = $splited[0];
 			   $tit = $splited[1];
 			}
