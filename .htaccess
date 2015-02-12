@@ -1,4 +1,5 @@
 RewriteEngine On
+
 RewriteBase /
 RewriteRule ^aktualnosci$ index.php?&site=aktualnosci [L]
 RewriteRule ^aktualnosci/([0-9]+)$ index.php?site=aktualnosci&news_id=$1
@@ -64,3 +65,5 @@ RewriteRule ^([a-z]{2})/admin/translator index.php?action=admin&admin_act=transl
 RewriteRule ^(pl|en) index.php?hf_lang=$1 [L]
 
 RewriteCond %{REQUEST_FILENAME} !\.(zip|pdf|css|jpg|gif|js|png)$ [NC]  
+
+Options -Indexes
